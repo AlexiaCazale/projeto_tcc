@@ -46,7 +46,7 @@ if($_POST){
 
     if(!$erro){
         //Gravar no bd
-        $kando = new KanDO(0, $_POST["nome"], $_POST["descricao"], $_POST["data_entrega"], $_POST["statusAtv"], $_POST["disciplina"]);
+        $kando = new KanDO(0, $_POST["nome"], $_POST["descricao"], $_POST["data_entrega"], $_POST["statusAtv"]);
         $kandoDAO = new kandoDAO();
         $kandoDAO -> inserir($kando);
         header("location:pageKando.php");
@@ -60,7 +60,7 @@ if($_POST){
 <div class="content">
 	<div class="container">
         <br><br>
-		<h1 class="border">Adicionar tarefa</h1>
+		<h1 class="border">Alterar tarefa</h1>
         <div class="form-atv">
             <form action="#" method="post">
                 <label for="nome">Nome da atividade:</label>
@@ -92,21 +92,21 @@ if($_POST){
 
                         <?php
 
-                            // $curso = new Curso();
-                            // $cursoDAO = new cursoDAO();
-                            // $ret = $cursoDAO -> buscar_um_curso($curso);
+                            $curso = new Curso();
+                            $cursoDAO = new cursoDAO();
+                            $ret = $cursoDAO -> buscar_um_curso($curso);
         
-                            // foreach($ret as $dado)
-                            // {
-                            //     if(isset($_POST["curso"]) && $_POST["curso"] == $dado->idcurso)
-                            //     {
-                            //         echo "<option value='{$dado->idcurso}' selected>{$dado->nomeCurso}</option>";
-                            //     }
-                            //     else
-                            //     {
-                            //         echo "<option value='{$dado->idcurso}'>{$dado->nomeCurso}</option>";
-                            //     }
-                            // }//fim do foreach
+                            foreach($ret as $dado)
+                            {
+                                if(isset($_POST["curso"]) && $_POST["curso"] == $dado->idcurso)
+                                {
+                                    echo "<option value='{$dado->idcurso}' selected>{$dado->nomeCurso}</option>";
+                                }
+                                else
+                                {
+                                    echo "<option value='{$dado->idcurso}'>{$dado->nomeCurso}</option>";
+                                }
+                            }//fim do foreach
 
                         ?>
                         

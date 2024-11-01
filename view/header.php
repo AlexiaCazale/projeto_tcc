@@ -33,7 +33,7 @@
 
     <style>
 
-        img{
+        nav img{
             width: 15%;
             margin-left: 35px
         }

@@ -33,17 +33,20 @@
         {
                
         echo "<tr>
-            <td>{$dados -> nome}</td>
-            <td>{$dados -> descricao}</td>
-            <td>{$dados -> data_entrega}</td>
             <td>
+           <b>{$dados -> nome}</b> <br>
+            {$dados -> descricao} <br>
+            {$dados -> data_entrega} <br><br>
+
+            <a href='alterarAtv.php?idproduto={$dados->idkando}' class='btn-alterar'>Alterar</a> &nbsp;
+
+            <a href='deletarAtv.php?idproduto={$dados->idkando}' class='btn-apagar' >Apagar</a>
             
-            <a href='edit_produto.php?idproduto={$dados->idkando}' class='btn btn-warning'>Alterar</a>
             </td>
             </tr>"; 
         }
         ?>
-
+           
         </table>
 
          <!-- Botão de Adicionar Tarefa -->
@@ -113,6 +116,23 @@
         .btn-center{
             display: flex;
             justify-content: center;
+        }
+
+        .btn-alterar{
+            background-color: #F2E0A6;
+            font-size: 15px;
+            padding: 5px;
+            border-radius: 6px;
+            color: black;
+        }
+
+        .btn-apagar{
+            background-color: red;
+            color: white;
+            font-size: 15px;
+            padding: 5px;
+            border-radius: 6px;
+            text-decoration: none;
         }
     </style>
 
