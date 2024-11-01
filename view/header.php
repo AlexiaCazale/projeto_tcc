@@ -19,59 +19,30 @@
 </head>
 
 <body>
-    <!-- <nav class="navbar navbar-expand-lg border-bottom border-body" data-bs-theme="dark">
-        <div class="container-fluid">
-            
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-            </button>
-
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="index.php">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="pageFatec.php">Fatec</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="pagePomodoro.php">Pomodoro</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="pageKando.php">KanDO </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="pageDashboard.php">Dashboard</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="pagePerfil.php">Perfil</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav> -->
-
     <nav>
+        <a href="index.php" class="image"><img src="../images/soft.png" alt="ícone"></a>
         <ul>
-           <li><a class="nav-link active" aria-current="page" href="index.php">Home</a></li>
-            <li><a class="nav-link" href="pageFatec.php">Fatec</a></li>
-            <li><a class="nav-link" href="pagePomodoro.php">Pomodoro</a></li>
-            <li><a class="nav-link" href="pageKando.php">KanDO</a></li>
-            <li><a class="nav-link" href="pageDashboard.php">Dashboard</a></li>
-            <li><a class="nav-link" href="pagePerfil.php">Perfil</a></li>
+            <!-- <li><a class="nav-link active" aria-current="page" href="index.php">Home</a></li> -->
+                <li><a class="nav-link" href="pageDashboard.php">Dashboard</a></li>
+                <li><a class="nav-link" href="pageKando.php">KanDO</a></li>
+                <li><a class="nav-link" href="pagePomodoro.php">Pomodoro</a></li>
+                <li><a class="nav-link" href="pageFatec.php">Fatec</a></li>
+                <li><a class="nav-link" href="pagePerfil.php">Perfil</a></li>
         </ul>
     </nav>
 
     <style>
 
-    /* body{
-        background: linear-gradient(90deg, #232946, #B8C1EC);
-    } */
+        img{
+            width: 15%;
+            margin-left: 35px
+        }
 
-    /* Estilos gerais da navbar */
         nav {
             background-color: #232946;
-            /* padding: 10px 20px; */
+            display: flex;
+            width: 100%;
+            justify-content: space-between;
         }
 
         ul {
@@ -80,8 +51,23 @@
             align-items: center;
         }
 
-        li {
+        nav ul{
+            display: flex;
+            justify-content: flex-end;
             margin: 5px;
+            margin-right: 55px
+        }
+
+
+        /* a {
+            display: flex;
+            justify-content: flex-start;
+            margin: 5px;
+        } */
+
+        .image{
+            display: flex;
+            justify-content: unset;
         }
 
         .nav-link {
@@ -92,10 +78,6 @@
             border-radius: 5px;
             transition: background 0.3s;
         }
-
-        /* .nav-link:hover {
-            background-color: #3e8e41; /* Sutil alteração no hover */
-        } */
 
         /* Responsividade para telas menores */
         @media (max-width: 768px) {

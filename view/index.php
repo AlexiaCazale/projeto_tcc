@@ -9,20 +9,23 @@
     </div>
     <div class="bem-vindo">
         <h1>Bem-vindo(a)!</h1>
-        <img src="" alt="">
+        <div class="img-center">
+            <img src="../images/dark.png" alt="ícone">
+        </div/>
          <h3 class="center">Organize<span> &nbsp; seus estudos  &nbsp; </span>de maneira rápida e prática onde estiver!</h3>
     </div>
 
     <br><br>
-
-    <button class="btn-entrar"><a href="login.php">Entrar</a></button> &nbsp; &nbsp;
-    <button class="btn-cadastrar"><a href="cadastro.php">Cadastrar</a></button>
+    <div class="btn-center">
+        <button class="btn-entrar"><a href="login.php">Entrar</a></button> &nbsp; &nbsp;
+        <button class="btn-cadastrar"><a href="cadastro.php">Cadastrar</a></button>
+    </div>
 </div>
 
 <style>
 
     .container{
-        margin-top: 250px;
+        margin-top: 10%;
         /* margin-left: 50%; */
     }
 
@@ -49,10 +52,20 @@
         font-weight: bold;
     }
 
+    img{
+        width: 15%;
+    }
+
+    .btn-center, .img-center{
+        display: flex;
+        justify-content: center;
+    }
+
     .btn-entrar{
+        width: 15%;
         background-color: #F2E0A6;
         border-radius: 6px;
-        margin-left: 30%;
+        /* margin-left: 30%; */
     }
 
     .btn-entrar a{
@@ -60,6 +73,7 @@
     }
 
     .btn-cadastrar{
+        width: 15%;
         background-color: #232946;
         color: #ffff;
         border-radius: 6px;

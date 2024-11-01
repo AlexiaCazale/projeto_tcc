@@ -18,7 +18,6 @@
 }
 
 button{
-    width: 20%;
     padding: 15px;
     text-transform: uppercase;
     text-decoration: none;
@@ -26,7 +25,7 @@ button{
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    margin-top: 20px;
+    /* margin-top: 10px; */
 }
 
 a{
@@ -35,5 +34,14 @@ a{
 }
 
 nav{
-    padding: 1.5rem;
+    padding: 1rem;
+}
+
+.border{
+    background-color: #1b2238;
+    padding: 15px;
+    border-radius: 8px;
+    margin: 0 35%;
+    display: flex;
+    justify-content: center;
 }
