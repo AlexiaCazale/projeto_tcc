@@ -24,31 +24,28 @@ if($_POST){
         $erro = true;
     }
 
-    if(empty($_POST["preco"])){
+    if(empty($_POST["data_entrega"])){
         $msg[2] = "Preencha o campo!";
         $erro = true;
     }
 
-    if(empty($_POST["data_entrega"])){
+    if($_POST["statusAtv"] == ''){
         $msg[3] = "Preencha o campo!";
         $erro = true;
     }
 
-    if($_POST["statusAtv"] == 0){
+    if($_POST["disciplina"] == ''){
         $msg[4] = "Preencha o campo!";
-        $erro = true;
-    }
-
-    if($_POST["disciplina"] == 0){
-        $msg[5] = "Preencha o campo!";
         $erro = true;
     }
 
     if(!$erro){
         //Gravar no bd
         $kando = new KanDO(0, $_POST["nome"], $_POST["descricao"], $_POST["data_entrega"], $_POST["statusAtv"], $_POST["disciplina"]);
+
         $kandoDAO = new kandoDAO();
         $kandoDAO -> inserir($kando);
+
         header("location:pageKando.php");
     }
 }
@@ -84,11 +81,14 @@ if($_POST){
                         <option value="2">Feito</option>
                         
                     </select>
-                    <div style="color:white"><?php echo $msg[4] != ""?$msg[4]:'';?></div>
+                    <div style="color:white"><?php echo $msg[3] != ""?$msg[3]:'';?></div>
 
                 <label for="disciplina">Disciplina:</label>
                 <select name="disciplina" id="disciplina">
-                        <option value="">Escolha os status da sua atividade</option>
+                        <option value="">Escolha a disciplina da sua atividade</option>
+                        <option value="0">Fazer</option>
+                        <option value="1">Fazendo</option>
+                        <option value="2">Feito</option>
 
                         <?php
 
@@ -111,7 +111,7 @@ if($_POST){
                         ?>
                         
                     </select>
-                    <div style="color:white"><?php echo $msg[5] != ""?$msg[5]:'';?></div>
+                    <div style="color:white"><?php echo $msg[4] != ""?$msg[4]:'';?></div>
                 <br><br>
                 <div class="center">
                     <input type="submit" class="enviar"> 

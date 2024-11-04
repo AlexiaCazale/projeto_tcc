@@ -92,21 +92,21 @@ if($_POST){
 
                         <?php
 
-                            $curso = new Curso();
-                            $cursoDAO = new cursoDAO();
-                            $ret = $cursoDAO -> buscar_um_curso($curso);
+                            // $curso = new Curso();
+                            // $cursoDAO = new cursoDAO();
+                            // $ret = $cursoDAO -> buscar_um_curso($curso);
         
-                            foreach($ret as $dado)
-                            {
-                                if(isset($_POST["curso"]) && $_POST["curso"] == $dado->idcurso)
-                                {
-                                    echo "<option value='{$dado->idcurso}' selected>{$dado->nomeCurso}</option>";
-                                }
-                                else
-                                {
-                                    echo "<option value='{$dado->idcurso}'>{$dado->nomeCurso}</option>";
-                                }
-                            }//fim do foreach
+                            // foreach($ret as $dado)
+                            // {
+                            //     if(isset($_POST["curso"]) && $_POST["curso"] == $dado->idcurso)
+                            //     {
+                            //         echo "<option value='{$dado->idcurso}' selected>{$dado->nomeCurso}</option>";
+                            //     }
+                            //     else
+                            //     {
+                            //         echo "<option value='{$dado->idcurso}'>{$dado->nomeCurso}</option>";
+                            //     }
+                            // }//fim do foreach
 
                         ?>
                         

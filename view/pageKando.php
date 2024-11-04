@@ -1,6 +1,6 @@
 <?php
     require_once "../model/conexao.class.php";
-//   require_once "../models/kando.class.php";
+    require_once "../model/kando.class.php";
     require_once "../model/kandoDAO.class.php";
     require_once "header.php";
     require_once "footer.php";
@@ -15,15 +15,10 @@
     <!-- Tabela Kanban -->
         <table>
         <tr>
-            <th>FAZER</th>
-            <th>FAZENDO</th>
-            <th>FEITO</th>
+            <th class="fazer">FAZER</th>
+            <th class="fazendo">FAZENDO</th>
+            <th class="feito">FEITO</th>
         </tr>
-        <!-- <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr> -->
 
         <?php
         $kandoDAO = new kandoDAO();
@@ -31,19 +26,26 @@
 
         foreach($retorno as $dados)
         {
-               
-        echo "<tr>
-            <td>
-           <b>{$dados -> nome}</b> <br>
-            {$dados -> descricao} <br>
-            {$dados -> data_entrega} <br><br>
-
-            <a href='alterarAtv.php?idproduto={$dados->idkando}' class='btn-alterar'>Alterar</a> &nbsp;
-
-            <a href='deletarAtv.php?idproduto={$dados->idkando}' class='btn-apagar' >Apagar</a>
+        
+            // if(dados -> statusAtv.value == 1){
+            //FAZER
+    
+            echo "<tr class='fazer'>
+                <td>
+                <b>{$dados -> nome}</b> <br>
+                {$dados -> disciplina} <br>
+                {$dados -> descricao} <br><br>
+                <b>Data de entrega: {$dados -> data_entrega} </b> <br><br>
+                <a href='alterarAtv.php?idproduto={$dados->idkando}' class='btn-alterar'>Alterar</a> &nbsp;"
+        ?>
             
-            </td>
-            </tr>"; 
+            <a href='deletarAtv.php?id=<?php echo $dado->idkando ?>' class='btn-apagar' onclick="return confirm('Deseja realmente excluir?')">Excluir</a>&nbsp; &nbsp;
+
+        <?php
+            
+            echo "</td>
+                </tr>"; 
+
         }
         ?>
            
@@ -134,6 +136,7 @@
             border-radius: 6px;
             text-decoration: none;
         }
+
     </style>
 
 </body>

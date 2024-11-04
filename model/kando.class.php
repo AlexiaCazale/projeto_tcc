@@ -1,15 +1,16 @@
 <?php
     class KanDO{
 
-        public function __construct(private int $idkando = 0, private string $nome = '', private string $descricao = '', private string $data_entrega = '', private string $statusAtv = '', $disciplina){}
+        public function __construct(private int $idkando = 0, private string $nome = '', private string $descricao = '', private string $data_entrega, private string $statusAtv = '', private string $disciplina = ''){
 
+            // Converte a string de data para um objeto DateTime
+        // $this->data_entrega = new DateTime($data_entrega);
+
+        }
 
         public function getIdkando(){
             return $this -> idkando;
         }   
-        // public function setIdkando(){
-        //     $this -> idkando = $idkando;
-        // }   
         
         public function getNome(){
             return $this -> nome;
@@ -20,7 +21,7 @@
         }   
 
         public function getDataEntrega(){
-            return $this -> data_entrega;
+            return $this -> data_entrega; // -> format('d/m/Y');
         }   
 
         public function getStatus(){
