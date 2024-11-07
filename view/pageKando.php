@@ -1,26 +1,28 @@
 <?php
-    require_once "../model/conexao.class.php";
-    require_once "../model/kando.class.php";
-    require_once "../model/kandoDAO.class.php";
     require_once "header.php";
     require_once "footer.php";
-?>
+    ?>
 
 <br><br>
-    <h1 class="border">Quadro KanDO</h1>
+<h1 class="border">Quadro KanDO</h1>
 
-    <br>
+<br>
 
-    <div class="container">
+<div class="container">
     <!-- Tabela Kanban -->
-        <table>
+    <table>
         <tr>
             <th class="fazer">FAZER</th>
             <th class="fazendo">FAZENDO</th>
             <th class="feito">FEITO</th>
         </tr>
-
+        
         <?php
+        
+        require_once "../model/conexao.class.php";
+        require_once "../model/kando.class.php";
+        require_once "../model/kandoDAO.class.php";
+
         $kandoDAO = new kandoDAO();
         $retorno = $kandoDAO->buscar_todas();
 
@@ -39,7 +41,7 @@
                 <a href='alterarAtv.php?idproduto={$dados->idkando}' class='btn-alterar'>Alterar</a> &nbsp;"
         ?>
             
-            <a href='deletarAtv.php?id=<?php echo $dado->idkando ?>' class='btn-apagar' onclick="return confirm('Deseja realmente excluir?')">Excluir</a>&nbsp; &nbsp;
+            <a href='deletarAtv.php?id=<?php echo $dado->idkando?>' class='btn-apagar' onclick="return confirm('Deseja realmente excluir?')">Excluir</a>&nbsp; &nbsp;
 
         <?php
             

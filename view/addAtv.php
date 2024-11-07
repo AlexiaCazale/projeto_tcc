@@ -92,8 +92,8 @@ if($_POST){
 
                         <?php
 
-                            // $curso = new Curso();
-                            // $cursoDAO = new cursoDAO();
+                            // $disciplina = new Disicplina();
+                            // $ = new cursoDAO();
                             // $ret = $cursoDAO -> buscar_um_curso($curso);
         
                             // foreach($ret as $dado)

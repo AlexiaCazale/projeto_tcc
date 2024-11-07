@@ -13,35 +13,34 @@
                 <div class="cursos">
                     <h3 class="title">Selecione um curso: </h3>
                     <br>
-                    <input type="radio" name="sistemas-para-internet" id="si">
+                    <input type="radio" name="sistemas-para-internet" value="1">
                     <label for="sistemas-para-internet">Construção Naval</label> <br>
-                    <input type="radio" name="sistemas-para-internet" id="si">
+                    <input type="radio" name="sistemas-para-internet" value="2">
                     <label for="sistemas-para-internet">Gestão da Produção Industrial</label><br>
-                    <input type="radio" name="sistemas-para-internet" id="si">
+                    <input type="radio" name="sistemas-para-internet" value="3">
                     <label for="sistemas-para-internet">Gestão Empresarial</label><br>
-                    <input type="radio" name="sistemas-para-internet" id="si">
+                    <input type="radio" name="sistemas-para-internet" value="4">
                     <label for="sistemas-para-internet">Meio Ambiente e Recursos Hídricos</label><br>
-                    <input type="radio" name="sistemas-para-internet" id="si">
+                    <input type="radio" name="sistemas-para-internet" value="5">
                     <label for="sistemas-para-internet">Sistemas para Internet</label><br>
-                    <input type="radio" name="sistemas-para-internet" id="si">
+                    <input type="radio" name="sistemas-para-internet" value="6">
                     <label for="sistemas-para-internet">Desenvolvimento de Software Multiplataforma</label><br>
-                    <input type="radio" name="sistemas-para-internet" id="si">
+                    <input type="radio" name="sistemas-para-internet" value="7">
                     <label for="sistemas-para-internet">Gestão da Tecnologia da Informação</label><br>
-                    <input type="radio" name="sistemas-para-internet" id="si">
+                    <input type="radio" name="sistemas-para-internet" value="8">
                     <label for="sistemas-para-internet">Logística</label><br>
-                    <input type="radio" name="sistemas-para-internet" id="si">
+                    <input type="radio" name="sistemas-para-internet" value="9">
                     <label for="sistemas-para-internet">Sistemas Navais</label><br>
                 </div>
                 <div class="disciplinas">
                     <h3 class="title">Disciplinas:</h3>
-                    <br>
-                    <img src="" alt="grade_curricular">
+                    <br><br>
+                    <div class="btn-center">
+                        <!-- <a href="addCurso.php"><button>Adicionar curso</button></a> &nbsp; &nbsp; -->
+                        <a href="addDisciplina.php"><button>Adicionar disciplina</button></a>
+                    </div>
                 </div>
             </div>
-            <!-- <div class="btn-center">
-                <a href="addCurso.php"><button>Adicionar curso</button></a> &nbsp; &nbsp;
-                <a href="addDisciplina.php"><button>Adicionar disciplina</button></a>
-            </div> -->
             <br>
         </div>
         <br><br>

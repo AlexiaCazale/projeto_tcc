@@ -6,7 +6,7 @@
 			parent:: __construct();
 		}
 		
-		public function buscar_todas()
+		public function buscar_todos()
 		{
 			$sql = "SELECT * FROM curso";
 			try
