@@ -81,7 +81,36 @@ if($_POST){
                         <option value="2">Feito</option>
                         
                     </select>
+<<<<<<< HEAD
                     <div style="color:white"><?php echo $msg[3] != ""?$msg[3]:'';?></div>
+=======
+                    <div style="color:white"><?php echo $msg[4] != ""?$msg[4]:'';?></div>
+
+                <label for="disciplina">Disciplina:</label>
+                <select name="disciplina" id="disciplina">
+                        <option value="">Escolha os status da sua atividade</option>
+
+                        <?php
+
+                            // $curso = new Curso();
+                            // $cursoDAO = new cursoDAO();
+                            // $ret = $cursoDAO -> buscar_um_curso($curso);
+        
+                            // foreach($ret as $dado)
+                            // {
+                            //     if(isset($_POST["curso"]) && $_POST["curso"] == $dado->idcurso)
+                            //     {
+                            //         echo "<option value='{$dado->idcurso}' selected>{$dado->nomeCurso}</option>";
+                            //     }
+                            //     else
+                            //     {
+                            //         echo "<option value='{$dado->idcurso}'>{$dado->nomeCurso}</option>";
+                            //     }
+                            // }//fim do foreach
+
+                        ?>
+                        
+>>>>>>> 5ad675832afe11b918a91e0e8f450e50400d3ed9
                     </select>
                 <br><br>
                 <div class="center">

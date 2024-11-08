@@ -1,26 +1,26 @@
 <?php
     class Curso{
-        public function __construct(private int $idcurso = 0, private string $nomeCurso = '', private string $descricaoCurso = '', private array $disciplina = array()){}
+        public function __construct(private int $idcurso = 0, private string $nome = '', private string $descricao = ''){}
 
         public function getIdcurso(){
             return $this -> idcurso;
         }
         
-        public function getNomeCurso(){
+        public function getNome(){
             return $this -> nomeCurso;
         }
 
-        public function getDescricaoCurso(){
+        public function getDescricao(){
             return $this -> descricaoCurso;
         }
 
-        public function getDisciplina(){
-            return $this -> disciplina;
-        }
+        // public function getDisciplina(){
+        //     return $this -> disciplina;
+        // }
 
-        public function setDisciplina(Disciplina $disciplina){
-            $this -> disciplina[] = $disciplina;
-        }
+        // public function setDisciplina(Disciplina $disciplina){
+        //     $this -> disciplina[] = $disciplina;
+        // }
 
     }
 

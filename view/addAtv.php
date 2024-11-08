@@ -42,8 +42,10 @@ if($_POST){
     if(!$erro){
         //Gravar no bd
         $kando = new KanDO(0, $_POST["nome"], $_POST["descricao"], $_POST["data_entrega"], $_POST["statusAtv"], $_POST["disciplina"]);
+
         $kandoDAO = new kandoDAO();
         $kandoDAO -> inserir($kando);
+
         header("location:pageKando.php");
     }
 }
@@ -77,6 +79,7 @@ if($_POST){
                         <option value="0">Fazer</option>
                         <option value="1">Fazendo</option>
                         <option value="2">Feito</option>
+<<<<<<< HEAD
                 </select>
                 <div style="color:white"><?php echo $msg[3] != ""?$msg[3]:'';?></div>
 
@@ -86,10 +89,23 @@ if($_POST){
                         <option value="0">Fazer</option>
                         <option value="1">Fazendo</option>
                         <option value="2">Feito</option>
+=======
+                        
+                    </select>
+                    <div style="color:white"><?php echo $msg[3] != ""?$msg[3]:'';?></div>
+
+                <label for="disciplina">Disciplina:</label>
+                <select name="disciplina" id="disciplina">
+                        <option value="">Escolha a disciplina da sua atividade</option>
+                        <option value="0">Fazer</option>
+                        <option value="1">Fazendo</option>
+                        <option value="2">Feito</option>
+
+>>>>>>> 5ad675832afe11b918a91e0e8f450e50400d3ed9
                         <?php
 
-                            // $curso = new Curso();
-                            // $cursoDAO = new cursoDAO();
+                            // $disciplina = new Disicplina();
+                            // $ = new cursoDAO();
                             // $ret = $cursoDAO -> buscar_um_curso($curso);
         
                             // foreach($ret as $dado)

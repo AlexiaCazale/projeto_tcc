@@ -1,14 +1,14 @@
 <?php
-	class kandoDAO extends Conexao
+	class disciplinaDAO extends Conexao
 	{
 		public function __construct()
 		{
 			parent:: __construct();
 		}
 		
-		public function buscar_todas()
+		public function buscar_todos()
 		{
-			$sql = "SELECT * FROM kando";
+			$sql = "SELECT * FROM disciplina";
 			try
 			{
 				$stm = $this->db->prepare($sql);
@@ -24,20 +24,17 @@
 			}
 		}
 
-		public function inserir($kando)
+		public function inserir($disciplina)
 		{
-			$sql = "INSERT INTO kando (nome, descricao, data_entrega, statusAtv, disciplina) VALUES(?, ?, ?, ?, ?)";
+			$sql = "INSERT INTO disciplina (nome, descricao) VALUES(?, ?)";
 			try
 			{
 				$stm = $this->db->prepare($sql);
-				$stm->bindValue(1, $kando->getNome());
-				$stm->bindValue(2, $kando->getDescricao());
-				$stm->bindValue(3, $kando->getDataEntrega());
-				$stm->bindValue(4, $kando->getStatus());
-				$stm->bindValue(5, $kando->getDisciplina());
+				$stm->bindValue(1, $disciplina->getNome());
+				$stm->bindValue(2, $disciplina->getDescricao());
 				$stm->execute();
 				$this->db = null;
-				return "Atividade inserida com sucesso";
+				return "Disciplina inserido com sucesso";
 			}
 			catch(PDOException $e)
 			{
@@ -48,21 +45,17 @@
 			}
 		}
 
-		public function alterar($kando)
+		public function alterar($disciplina)
 		{
-			$sql = "UPDATE kando SET nome = ?, descricao = ?, data_entrega = ?, statusAtv = ?, disciplina = ? WHERE idkando = ?";
+			$sql = "UPDATE disciplina SET nome = ?, descricao = ?WHERE idcurso = ?";
 			try
 			{
 				$stm = $this->db->prepare($sql);
-				$stm->bindValue(1, $kando->getNome());
-				$stm->bindValue(2, $kando->getDescricao());
-				$stm->bindValue(3, $kando->getDataEntrega());
-				$stm->bindValue(4, $kando->getStatus());
-				$stm->bindValue(5, $kando->getDisciplina());
-				$stm->bindValue(6, $kando->getIdkando());
+				$stm->bindValue(1, $disciplina->getNome());
+				$stm->bindValue(2, $disciplina->getDescricao());
 				$stm->execute();
 				$this->db = null;
-				return "Atividade alterada com sucesso";
+				return "Disciplina alterada com sucesso";
 			}
 			catch(PDOException $e)
 			{
@@ -73,20 +66,16 @@
 			}
 		}
 
-		public function excluir($kando)
+		public function excluir($disciplina)
 		{
-			$sql = "DELETE FROM kando WHERE idkando = ?";
+			$sql = "DELETE FROM disciplina WHERE iddisciplina = ?";
 			try
 			{
 				$stm = $this->db->prepare($sql);
-<<<<<<< HEAD
-				$stm->bindValue(1, $kando->getIdkando());
-=======
-				$stm->bindValue(1, $kando -> getIdkando());
->>>>>>> 5ad675832afe11b918a91e0e8f450e50400d3ed9
+				$stm->bindValue(1, $curso->getIddisciplina());
 				$stm->execute();
 				$this->db = null;
-				return "Atividade excluída com sucesso";
+				return "Disciplina excluida com sucesso";
 			}
 			catch(PDOException $e)
 			{
@@ -119,13 +108,13 @@
 		// 	}
 		// }
 
-		public function buscar_uma_atividade($kando)
+		public function buscar_uma_disciplina($disciplina)
 		{
-			$sql = "SELECT * FROM kando WHERE idkando = ?";
+			$sql = "SELECT * FROM disciplina WHERE iddisciplina = ?";
 			try
 			{
 				$stm = $this->db->prepare($sql);
-				$stm->bindValue(1,$kando->getIdkando());
+				$stm->bindValue(1, $disciplina->getIddisciplina());
 				$stm->execute();
 				$this->db = null;
 				return $stm->fetchAll(PDO::FETCH_OBJ);
@@ -139,16 +128,16 @@
 			}
 		}
 
-        public function buscar_um($kando)
-		{
-			$sql = "SELECT * FROM kando WHERE statusAtv = ?";
+        // public function buscar_um($kando)
+		// {
+		// 	$sql = "SELECT * FROM kando WHERE statusAtv = ?";
 			
-			$stm = $this->db->prepare($sql);
-			$stm->bindValue(1,$kando->getStatus());
-			$stm->execute();
-			$this->db = null;
-			return $stm->fetchAll(PDO::FETCH_OBJ);
-		}
+		// 	$stm = $this->db->prepare($sql);
+		// 	$stm->bindValue(1,$kando->getStatus());
+		// 	$stm->execute();
+		// 	$this->db = null;
+		// 	return $stm->fetchAll(PDO::FETCH_OBJ);
+		// }
 
 	}//fim da classe
 ?>
