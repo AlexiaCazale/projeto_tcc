@@ -5,9 +5,9 @@
 		require_once "../model/kando.class.php";
 		require_once "../model/kandoDAO.class.php";
 		
-		$kando = new Kando($_GET["id"]);
+		$kando = new KanDO($_GET["id"]);
 		$kandoDAO = new kandoDAO();
-		$retorno = $kandoDAO->excluir($kando);
+		$retorno = $kandoDAO -> excluir($kando);
 		
 		header("location:pageKando.php?mensagem=$retorno");
 		die();

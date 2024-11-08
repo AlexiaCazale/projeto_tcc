@@ -1,15 +1,11 @@
 <?php
     class KanDO{
 
-        public function __construct(private int $idkando = 0, private string $nome = '', private string $descricao = '', private string $data_entrega = '', private string $statusAtv = '', $disciplina){}
-
+        public function __construct(private int $idkando = 0, private string $nome = '', private string $descricao = '', private string $data_entrega = '', private string $statusAtv = '', private string $disciplina = ''){}
 
         public function getIdkando(){
             return $this -> idkando;
         }   
-        // public function setIdkando(){
-        //     $this -> idkando = $idkando;
-        // }   
         
         public function getNome(){
             return $this -> nome;

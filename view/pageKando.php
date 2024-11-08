@@ -4,6 +4,31 @@
     require_once "../model/kandoDAO.class.php";
     require_once "header.php";
     require_once "footer.php";
+    
+    $kandoDAO = new kandoDAO();
+    $retorno = $kandoDAO -> buscar_todas();
+
+    $tableValues = [
+        'arrayT1' => [],
+        'arrayT2' => [],
+        'arrayT3' => []
+    ];
+
+    function teste($x){
+        global $retorno, $tableValues;
+        foreach($retorno as $dado){
+            if($dado->statusAtv == $x){
+                $tableValues['arrayT' . ($x + 1)][] = $dado;
+            }
+        }
+    }
+
+    for ($i = 0; $i <= 2; $i++) {
+        teste($i);
+    }
+
+    //echo '<pre>' . var_dump($tableValues['arrayT1']) . '</pre>';
+
 ?>
 
 <br><br>
@@ -16,44 +41,82 @@
         <table>
         <tr>
             <th>FAZER</th>
-            <th>FAZENDO</th>
-            <th>FEITO</th>
-        </tr>
-        <!-- <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr> -->
-
         <?php
-        $kandoDAO = new kandoDAO();
-        $retorno = $kandoDAO->buscar_todas();
-
-        foreach($retorno as $dados)
-        {
-               
-        echo "<tr>
-            <td>
-           <b>{$dados -> nome}</b> <br>
-            {$dados -> descricao} <br>
-            {$dados -> data_entrega} <br><br>
-
-            <a href='alterarAtv.php?idproduto={$dados->idkando}' class='btn-alterar'>Alterar</a> &nbsp;
-
-            <a href='deletarAtv.php?idproduto={$dados->idkando}' class='btn-apagar' >Apagar</a>
-            
-            </td>
-            </tr>"; 
-        }
+            global $tableValues;
+            foreach($tableValues['arrayT1'] as $dados)
+            {
+                echo "<tr class='table1'>
+                    <td>
+                <b>{$dados -> nome}</b> <br>
+                    {$dados -> descricao} <br>
+                    {$dados -> data_entrega} <br><br>
+    
+                    <a href='alterarAtv.php?idproduto={$dados->idkando}' class='btn-alterar'>Alterar</a> &nbsp;
+    
+                    <a href='deletarAtv.php?idproduto={$dados->idkando}' class='btn-apagar' >Apagar</a>
+                    
+                    </td>
+                    </tr>"; 
+                }
         ?>
-           
+               
+            </table>
+            
+        </tr>
+
+        <table>
+            <tr>
+                <th>FAZENDO</th>
+        <?php
+            global $tableValues;
+            foreach($tableValues['arrayT2'] as $dados)
+            {
+                echo "<tr class='table1'>
+                    <td>
+                <b>{$dados -> nome}</b> <br>
+                    {$dados -> descricao} <br>
+                    {$dados -> data_entrega} <br><br>
+    
+                    <a href='alterarAtv.php?idproduto={$dados->idkando}' class='btn-alterar'>Alterar</a> &nbsp;
+    
+                    <a href='deletarAtv.php?idproduto={$dados->idkando}' class='btn-apagar' >Apagar</a>
+                    
+                    </td>
+                    </tr>"; 
+                }
+        ?>
+            </tr>
         </table>
 
-         <!-- Botão de Adicionar Tarefa -->
-        <div class="btn-center">
-            <a href="addAtv.php"><button class="add-task-btn">+</button></a>
-        </div>
-  </div>
+        <table>
+            <tr>
+                <th>FEITO</th>
+        <?php
+            global $tableValues;
+            foreach($tableValues['arrayT3'] as $dados)
+            {
+                echo "<tr class='table1'>
+                    <td>
+                <b>{$dados -> nome}</b> <br>
+                    {$dados -> descricao} <br>
+                    {$dados -> data_entrega} <br><br>
+    
+                    <a href='alterarAtv.php?idproduto={$dados->idkando}' class='btn-alterar'>Alterar</a> &nbsp;
+    
+                    <a href='deletarAtv.php?idproduto={$dados->idkando}' class='btn-apagar' >Apagar</a>
+                    
+                    </td>
+                    </tr>"; 
+                }
+        ?>
+            </tr>
+        </table>
+        <!-- Botão de Adicionar Tarefa -->
+
+    </div>
+    <div class="btn-center">
+        <a href="addAtv.php"><button class="add-task-btn">+</button></a>
+    </div>
 
 
     <style>
@@ -78,9 +141,10 @@
 
              /* Tabela Kanban */
         table {
-            width: 100%;
+            width: 30%;
+            display: inline-table;
             table-layout: fixed;
-            border-spacing: 20px;
+            /* border-spacing: 8px; */
         }
 
         th, td{
@@ -93,10 +157,11 @@
 
         th {
             font-size: 1.2em;
+            height: 25px;
         }
 
         tbody{
-            margin: 0 25px;
+            /* margin: 0 25px; */
         }
 
          /* Botão de adicionar tarefa */
@@ -133,6 +198,16 @@
             padding: 5px;
             border-radius: 6px;
             text-decoration: none;
+        }
+
+        .container{
+            display:flex;
+            justify-content: center;
+        }
+
+        .table1{
+            width: 100%;
+            display: table;
         }
     </style>
 

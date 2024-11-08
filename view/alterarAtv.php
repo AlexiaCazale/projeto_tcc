@@ -3,7 +3,14 @@
   require_once "../model/kando.class.php";
   require_once "../model/kandoDAO.class.php";
 
-  $msg = array("","","","","", "");
+  $msg = array("","","","");
+
+  if($_GET)
+  {
+      $kando = new KanDO($_GET["id"]);
+      $kandoDAO = new kandoDAO();
+      $ret = $kandoDAO->buscar_uma_atividade($kando);
+  }
 
 if($_POST){
 
@@ -24,35 +31,25 @@ if($_POST){
         $erro = true;
     }
 
-    if(empty($_POST["preco"])){
+    if(empty($_POST["data_entrega"])){
         $msg[2] = "Preencha o campo!";
         $erro = true;
     }
 
-    if(empty($_POST["data_entrega"])){
+    if($_POST["statusAtv"] == ''){
         $msg[3] = "Preencha o campo!";
         $erro = true;
     }
 
-    if($_POST["statusAtv"] == 0){
-        $msg[4] = "Preencha o campo!";
-        $erro = true;
-    }
-
-    if($_POST["disciplina"] == 0){
-        $msg[5] = "Preencha o campo!";
-        $erro = true;
-    }
-
     if(!$erro){
+        
         //Gravar no bd
-        $kando = new KanDO(0, $_POST["nome"], $_POST["descricao"], $_POST["data_entrega"], $_POST["statusAtv"]);
+        $kando = new KanDO($_POST["idkando"], $_POST["nome"], $_POST["descricao"], $_POST["data_entrega"], $_POST["statusAtv"]);
         $kandoDAO = new kandoDAO();
-        $kandoDAO -> inserir($kando);
+        $kandoDAO -> alterar($kando);
         header("location:pageKando.php");
     }
 }
-
     require_once "header.php";
     require_once "footer.php";
 ?>
@@ -84,34 +81,8 @@ if($_POST){
                         <option value="2">Feito</option>
                         
                     </select>
-                    <div style="color:white"><?php echo $msg[4] != ""?$msg[4]:'';?></div>
-
-                <label for="disciplina">Disciplina:</label>
-                <select name="disciplina" id="disciplina">
-                        <option value="">Escolha os status da sua atividade</option>
-
-                        <?php
-
-                            $curso = new Curso();
-                            $cursoDAO = new cursoDAO();
-                            $ret = $cursoDAO -> buscar_um_curso($curso);
-        
-                            foreach($ret as $dado)
-                            {
-                                if(isset($_POST["curso"]) && $_POST["curso"] == $dado->idcurso)
-                                {
-                                    echo "<option value='{$dado->idcurso}' selected>{$dado->nomeCurso}</option>";
-                                }
-                                else
-                                {
-                                    echo "<option value='{$dado->idcurso}'>{$dado->nomeCurso}</option>";
-                                }
-                            }//fim do foreach
-
-                        ?>
-                        
+                    <div style="color:white"><?php echo $msg[3] != ""?$msg[3]:'';?></div>
                     </select>
-                    <div style="color:white"><?php echo $msg[5] != ""?$msg[5]:'';?></div>
                 <br><br>
                 <div class="center">
                     <input type="submit" class="enviar"> 
