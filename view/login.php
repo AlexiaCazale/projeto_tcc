@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/style.css">
-    <title>Document</title>
+    <title>Login</title>
 </head>
 <body>
     <div class="container">
@@ -23,12 +23,25 @@
 
                 <br><br>
 
-                <button class="btn-entrar"><a href="dashboard.php">Entrar</a></button> &nbsp; &nbsp;
+                <button class="btn-entrar"><a href="pageDashboard.php">Entrar</a></button> &nbsp; &nbsp;
+                <p class="white_font">Não possui uma conta? Faça <a href="cadastro.php">Cadastro</a>!</p>
             </div>
         </div>
     </div>
 
     <style>
+
+        .white_font {
+            color: white;
+        }
+        
+        button a {
+            color: #232946;
+        }
+
+        a {
+            color: #F2E0A6;
+        }
 
         h1{
             color: white;
@@ -64,7 +77,6 @@
             display: block;
             margin-top: 15px;
             font-size: 22px;
-            
         }
 
         input{
