@@ -79,11 +79,7 @@
 			try
 			{
 				$stm = $this->db->prepare($sql);
-<<<<<<< HEAD
 				$stm->bindValue(1, $kando->getIdkando());
-=======
-				$stm->bindValue(1, $kando -> getIdkando());
->>>>>>> 5ad675832afe11b918a91e0e8f450e50400d3ed9
 				$stm->execute();
 				$this->db = null;
 				return "Atividade excluída com sucesso";

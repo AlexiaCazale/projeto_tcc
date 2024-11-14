@@ -109,6 +109,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <label for="cadastro">Data de Cadastro: </label>
         <input type="date" name="data_cadastro" id="cadastro" required>
     </div>
+    <div class="flex_row">
+        <label for="cadastro">Perfil: </label>
+        <select name="statusAtv" id="statusAtv" required>
+            <option value="">Escolha seu tipo de perfil</option>
+            <option value="0">Aluno</option>
+            <option value="1">Professor</option>        
+        </select>
+    </div>
     <br><br>
     <button type="submit">Cadastrar</button>
 </form>

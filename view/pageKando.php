@@ -1,7 +1,9 @@
 <?php
     require_once "header.php";
     require_once "footer.php";
-<<<<<<< HEAD
+    require_once "../model/conexao.class.php";
+    require_once "../model/kandoDAO.class.php";
+    require_once "../model/kando.class.php";
     
     $kandoDAO = new kandoDAO();
     $retorno = $kandoDAO -> buscar_todas();
@@ -28,20 +30,16 @@
     //echo '<pre>' . var_dump($tableValues['arrayT1']) . '</pre>';
 
 ?>
-=======
-    ?>
->>>>>>> 5ad675832afe11b918a91e0e8f450e50400d3ed9
 
 <br><br>
 <h1 class="border">Quadro KanDO</h1>
 
-<br>
+<br><br>
 
 <div class="container">
     <!-- Tabela Kanban -->
     <table>
         <tr>
-<<<<<<< HEAD
             <th>FAZER</th>
         <?php
             global $tableValues;
@@ -60,45 +58,6 @@
                     </td>
                     </tr>"; 
                 }
-=======
-            <th class="fazer">FAZER</th>
-            <th class="fazendo">FAZENDO</th>
-            <th class="feito">FEITO</th>
-        </tr>
-        
-        <?php
-        
-        require_once "../model/conexao.class.php";
-        require_once "../model/kando.class.php";
-        require_once "../model/kandoDAO.class.php";
-
-        $kandoDAO = new kandoDAO();
-        $retorno = $kandoDAO->buscar_todas();
-
-        foreach($retorno as $dados)
-        {
-        
-            // if(dados -> statusAtv.value == 1){
-            //FAZER
-    
-            echo "<tr class='fazer'>
-                <td>
-                <b>{$dados -> nome}</b> <br>
-                {$dados -> disciplina} <br>
-                {$dados -> descricao} <br><br>
-                <b>Data de entrega: {$dados -> data_entrega} </b> <br><br>
-                <a href='alterarAtv.php?idproduto={$dados->idkando}' class='btn-alterar'>Alterar</a> &nbsp;"
-        ?>
-            
-            <a href='deletarAtv.php?id=<?php echo $dado->idkando?>' class='btn-apagar' onclick="return confirm('Deseja realmente excluir?')">Excluir</a>&nbsp; &nbsp;
-
-        <?php
-            
-            echo "</td>
-                </tr>"; 
-
-        }
->>>>>>> 5ad675832afe11b918a91e0e8f450e50400d3ed9
         ?>
                
             </table>
@@ -241,7 +200,6 @@
             text-decoration: none;
         }
 
-<<<<<<< HEAD
         .container{
             display:flex;
             justify-content: center;
@@ -251,8 +209,6 @@
             width: 100%;
             display: table;
         }
-=======
->>>>>>> 5ad675832afe11b918a91e0e8f450e50400d3ed9
     </style>
 
 </body>

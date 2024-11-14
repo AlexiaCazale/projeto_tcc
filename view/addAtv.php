@@ -79,7 +79,6 @@ if($_POST){
                         <option value="0">Fazer</option>
                         <option value="1">Fazendo</option>
                         <option value="2">Feito</option>
-<<<<<<< HEAD
                 </select>
                 <div style="color:white"><?php echo $msg[3] != ""?$msg[3]:'';?></div>
 
@@ -89,19 +88,6 @@ if($_POST){
                         <option value="0">Fazer</option>
                         <option value="1">Fazendo</option>
                         <option value="2">Feito</option>
-=======
-                        
-                    </select>
-                    <div style="color:white"><?php echo $msg[3] != ""?$msg[3]:'';?></div>
-
-                <label for="disciplina">Disciplina:</label>
-                <select name="disciplina" id="disciplina">
-                        <option value="">Escolha a disciplina da sua atividade</option>
-                        <option value="0">Fazer</option>
-                        <option value="1">Fazendo</option>
-                        <option value="2">Feito</option>
-
->>>>>>> 5ad675832afe11b918a91e0e8f450e50400d3ed9
                         <?php
 
                             // $disciplina = new Disicplina();

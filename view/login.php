@@ -22,7 +22,7 @@
                 <input type="password">
 
                 <br><br>
-
+                <p>Não possui conta? Faça <a href="cadastro.php" class="login">Cadastro</a>!</p>
                 <button class="btn-entrar"><a href="dashboard.php">Entrar</a></button> &nbsp; &nbsp;
             </div>
         </div>
@@ -36,6 +36,16 @@
             font-family: "Krona One", sans-serif;
             font-weight: 400;
             font-style: normal;
+        }
+
+        p, .login{
+            color: white;
+            text-transform: none;
+            margin-bottom: 5px;
+        }
+
+        a{
+            color: black;
         }
         
         .container{
