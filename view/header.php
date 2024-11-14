@@ -20,7 +20,7 @@
 
 <body>
     <nav>
-        <a href="index.php" class="image"><img src="../images/soft.png" alt="ícone"></a>
+        <a href="index.php" class="image"><img src="../images/corujaBrancaFundoTransparente.png" alt="ícone" class="logo"></a>
         <ul>
             <!-- <li><a class="nav-link active" aria-current="page" href="index.php">Home</a></li> -->
                 <li><a class="nav-link" href="pageDashboard.php">Dashboard</a></li>
@@ -32,6 +32,10 @@
     </nav>
 
     <style>
+
+        .logo {
+            width: 25%;
+        }
 
         nav img{
             width: 15%;
