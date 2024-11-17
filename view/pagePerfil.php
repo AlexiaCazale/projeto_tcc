@@ -23,7 +23,7 @@
 <div class="container">
     
     <div class="content">
-        <h2 class="title"><i class="fa-solid fa-user-pen" style="color: #ffffff;"> </i> Altere seus dados</h2>
+        <h2 class="title">Altere seus dados</h2>
         <label for="foto">Foto de perfil:</label>
         <div class="photo">
             <img src="../img/profile-picture.webp" class="profile-foto" alt="add-foto"> 
@@ -89,14 +89,15 @@
             width: auto;
         }
 
-        /* .photo{
-            display: flex;
-            justify-content: space-around;
+        .photo{
+            display: grid;
+            justify-content: center;
             align-items: center;
-        } */
+        }
 
         .photo i{
             font-size: 25px;
+            justify-self: right;
         }
 
         .title{
@@ -113,7 +114,7 @@
             background-color: #1b2238;
             padding: 30px 60px 30px 60px;
             border-radius: 8px;
-            margin: 0 15%;
+            margin: 0 35%;
             width: 1000px;
         }
 
