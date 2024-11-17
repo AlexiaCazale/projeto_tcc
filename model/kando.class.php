@@ -16,8 +16,7 @@
         }   
 
         public function getDataEntrega(){
-            $date = new DateTime($this->data_entrega);
-            return $date->format('d/m/Y');
+            return $this -> data_entrega; // -> format('d/m/Y');
         }   
 
         public function getStatus(){

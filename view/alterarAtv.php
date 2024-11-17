@@ -47,7 +47,7 @@ if($_POST){
         //     die("Erro: Dados inválidos ou incompletos.");
         // }
 
-        $kando = new KanDO($_POST["nome"], $_POST["descricao"], $_POST["data_entrega"], $_POST["statusAtv"], $_POST["disciplina"]);
+        $kando = new KanDO($_POST["idkando"], $_POST["nome"], $_POST["descricao"], $_POST["data_entrega"], $_POST["statusAtv"], $_POST["disciplina"]);
 
         $kandoDAO = new kandoDAO();
         $retorno = $kandoDAO -> alterar($kando);
@@ -75,8 +75,9 @@ if($_POST){
                 <textarea name="descricao" id="descricao" placeholder="Adicione a descrição da atividade"><?php echo $ret[0] -> descricao; ?></textarea>
                 <div style="color:white"><?php echo $msg[1] != ""?$msg[1]:'';?></div>
 
-                <label for="data_entrega">Data de entrega: </label>
-                <input type="date" name="data_entrega" value="<?php echo $ret[0] -> fata_entrega; ?>">
+                <label for="data_entrega">Data de entrega:</label>
+                <input type="date" name="data_entrega" id="data_entrega" value="<?php echo isset($ret[0]->data_entrega) ? date('d/m/Y', strtotime($ret[0]->data_entrega)) : 'Sem data';?>">
+
 
                 <div style="color:white"><?php echo $msg[2] != ""?$msg[2]:'';?></div>
 
@@ -120,7 +121,7 @@ if($_POST){
                     </select>
                 <br><br>
                 <div class="center">
-                    <input type="submit" class="enviar"> 
+                    <input type="submit" class="enviar">  
                 </div>
             </form>
         </div>

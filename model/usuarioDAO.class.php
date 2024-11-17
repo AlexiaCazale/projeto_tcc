@@ -55,8 +55,8 @@
         }    
 
 	
-		public function buscar_usuario(){
-			$sql = "SELECT * FROM usuario WHERE id = ?";
+		public function buscar_usuario($usuario){
+			$sql = "SELECT * FROM usuario WHERE idusuario = ?";
 			try
 			{
 				$stm = $this->db->prepare($sql);
@@ -75,30 +75,29 @@
 		}
 	
 	
-	// public function alterar($kando)
-	// {
-	// 	$sql = "UPDATE kando SET nome = ?, descricao = ?, data_entrega = ?, statusAtv = ?, disciplina = ? WHERE idkando = ?";
-	// 	try
-	// 	{
-	// 		$stm = $this->db->prepare($sql);
-	// 		$stm->bindValue(1, $kando->getNome());
-	// 		$stm->bindValue(2, $kando->getDescricao());
-	// 		$stm->bindValue(3, $kando->getDataEntrega());
-	// 		$stm->bindValue(4, $kando->getStatus());
-	// 		$stm->bindValue(5, $kando->getDisciplina());
-	// 		$stm->bindValue(6, $kando->getIdkando());
-	// 		$stm->execute();
-	// 		$this->db = null;
-	// 		return "Atividade alterada com sucesso";
-	// 	}
-	// 	catch(PDOException $e)
-	// 	{
-	// 		$this->db = null;
-	// 		echo $e->getMessage();
-	// 		echo $e->getCode();
-	// 		die();
-	// 	}
-	//}
+		public function alterar($usuario)
+		{
+			$sql = "UPDATE usuario SET nome = ?, telefone = ?, email = ?, senha = ?, perfil = ? WHERE idusuario = ?";
+			try
+			{
+				$stm = $this->db->prepare($sql);
+				$stm -> bindValue(1, $usuario -> getNome());
+				$stm -> bindValue(2, $usuario -> getTelefone());
+				$stm -> bindValue(3, $usuario -> getEmail());
+				$stm -> bindValue(4, $usuario -> getSenha());
+				$stm -> bindValue(5, $usuario -> getPerfil());
+				$stm->execute();
+				$this->db = null;
+				return "Usuário alterado com sucesso";
+			}
+			catch(PDOException $e)
+			{
+				$this->db = null;
+				echo $e->getMessage();
+				echo $e->getCode();
+				die();
+			}
+		}
 
-}
+	}
 ?>

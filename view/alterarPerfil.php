@@ -12,8 +12,59 @@
         header("Location: index.php");
         exit();
     }
-    //var_dump($_SESSION)
-?>
+
+    $msg = array("","","","");
+
+    if($_GET){
+        $usuario = new Usuario($_GET["id"]);
+        $usuarioDAO = new usuarioDAO();
+        $ret = $usuarioDAO->buscar_usuario($kando);
+    }
+    
+    
+    if($_POST){
+    
+        $erro = false;
+    
+        if(empty($_POST["nome"])){
+            $msg[0] = "Preencha o campo!";
+            $erro = true;
+        }
+    
+        if(empty($_POST["telefone"])){
+            $msg[1] = "Preencha o campo!";
+            $erro = true;
+        }
+    
+        if(empty($_POST["email"])){
+            $msg[2] = "Preencha o campo!";
+            $erro = true;
+        }
+    
+        if(empty($_POST["senha"])){
+            $msg[3] = "Preencha o campo!";
+            $erro = true;
+        }
+    
+        if(!$erro){
+            
+            //Gravar no bd
+            // if (
+            //     !isset($_POST["idkando"], $_POST["nome"], $_POST["descricao"], $_POST["data_entrega"])){
+            //     die("Erro: Dados inválidos ou incompletos.");
+            // }
+    
+            $usuario = new usuario($_POST["idusuario"], $_POST["nome"], $_POST["telefone"], $_POST["email"], $_POST["senha"]);
+    
+            $usuarioDAO = new usuarioDAO();
+            $retorno = $usuarioDAO -> alterar($usuario);
+    
+            header("location:pagePerfil.php?mensagem=$retorno");
+        }
+    }
+        require_once "header.php";
+        require_once "footer.php";
+    ?>
 
 <br><br>
 
@@ -23,50 +74,47 @@
 <div class="container">
     
     <div class="content">
-        <h2 class="title"><i class="fa-solid fa-user-pen" style="color: #ffffff;"> </i> Altere seus dados</h2>
-        <label for="foto">Foto de perfil:</label>
-        <div class="photo">
-            <img src="../img/profile-picture.webp" class="profile-foto" alt="add-foto"> 
-            <i class="fa-regular fa-pen-to-square" style="color: #ffffff;"></i>            <!-- <div class="btn-center">
-                <a href="alterarPerfil.php" class="btn-alterar">Alterar foto</a> &nbsp; &nbsp;
-            </div> -->
-        </div>
-        <br>
+        <h2 class="title">Altere seus dados</h2>
         <label for="nome">Nome: </label>
+        <input type="text" name="nome" id="nome" value="<?php echo $_SESSION["nome"]; ?>" required>
+
         <?php
-            echo "<button class='info' readonly>";
-            echo "<b>" . $_SESSION["nome"] . "</b>";
-            echo "</button> <br>";
+            // echo "<button class='info' readonly>";
+            // echo "<b>" . $_SESSION["nome"] . "</b>";
+            // echo "</button> <br>";
         ?>
         <br>
 
         <label for="telefone">Telefone: </label>
+        <input type="text" name="nome" id="nome" value="<?php echo $_SESSION["telefone"]; ?>" required>
         <?php
-             echo "<button class='info' readonly>";
-             echo "<b>" . $_SESSION["telefone"] . "</b>";
-             echo "</button> <br>";
+            //  echo "<button class='info' readonly>";
+            //  echo "<b>" . $_SESSION["telefone"] . "</b>";
+            //  echo "</button> <br>";
         ?>
         <br>
 
         <label for="email">Email: </label>
+        <input type="text" name="nome" id="nome" value="<?php echo $_SESSION["email"]; ?>" required>
         <?php
-            echo "<button class='info' readonly>";
-            echo "<b>" . $_SESSION["email"] . "</b>";
-            echo "</button> <br>";
+            // echo "<button class='info' readonly>";
+            // echo "<b>" . $_SESSION["email"] . "</b>";
+            // echo "</button> <br>";
         ?>
         <br>
 
-        <label for="senha">Senha: </label>
+        <label for="senha">Nova senha: </label>
+        <input type="text" name="nome" id="nome" placeholder="Digite uma nova senha" value="<?php echo isset($_POST['senha'])?$_POST['senha']:''?>" required>
         <?php
-            echo "<button class='info' readonly>";
-            echo "<b>" . $_SESSION["senha"] . "</b>";
-            echo "</button> <br>";
+            // echo "<button class='info' readonly>";
+            // echo "<b>" . $_SESSION["senha"] . "</b>";
+            // echo "</button> <br>";
         ?>
         <br><br>
 
         <div class="btn-center">
-            <a href="alterarPerfil.php" class="btn-alterar">Alterar</a> &nbsp; &nbsp;
-            <a href="logout.php" class="btn-apagar">Sair</a>
+            <input type="submit" class="salvar">&nbsp; &nbsp;
+            <a href="pagePerfil.php"><button class="btn-voltar">Cancelar</button></a>
         </div>
     </div>
 </div>
@@ -88,13 +136,6 @@
             height: 150px;
             width: auto;
         }
-
-        /* .photo{
-            display: flex;
-            justify-content: space-around;
-            align-items: center;
-        } */
-
         .photo i{
             font-size: 25px;
         }
@@ -127,11 +168,12 @@
 
         input, .info{
             margin-top: 5px;
-            border: 1px solid #bbb;
+            border: 1px solid #000000;
             box-sizing: border-box;
             width: 100%;
             padding: 10px;
             border-radius: 5px;
+            font-size: 15px;
         }
 
         .info{
@@ -151,6 +193,7 @@
 
         
         button{
+            text-transform: none;
             background-color: #F2E0A6;
             font-size: 15px;
             padding: 10px;
@@ -158,29 +201,30 @@
             color: black;
         }
 
-        .btn-apagar{
+        .btn-voltar{
             background-color: red;
             color: white;
             font-size: 20px;
             padding: 10px;
             border-radius: 6px;
             text-decoration: none;
-            width: 105px;
+            width: 115px;
             text-align: center;
         }
 
         .btn-center{
             display: flex;
             justify-content: center;
+            align-items: baseline;
         }
 
-        .btn-alterar{
-            background-color: #F2E0A6;
+        .salvar{
+            background-color: green;
             font-size: 20px;
             padding: 10px;
             border-radius: 6px;
             color: black;
-            width: 105px;
+            width: 115px;
             text-align: center;
         }
 
