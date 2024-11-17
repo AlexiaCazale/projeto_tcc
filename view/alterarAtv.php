@@ -1,16 +1,19 @@
 <?php
+
+session_start();
+
   require_once "../model/conexao.class.php";
   require_once "../model/kando.class.php";
   require_once "../model/kandoDAO.class.php";
 
   $msg = array("","","","");
 
-  if($_GET)
-  {
-      $kando = new KanDO($_GET["id"]);
-      $kandoDAO = new kandoDAO();
-      $ret = $kandoDAO->buscar_uma_atividade($kando);
-  }
+if($_GET){
+    $kando = new KanDO($_GET["idkando"]);
+    $kandoDAO = new kandoDAO();
+    $ret = $kandoDAO->buscar_uma_atividade($kando);
+}
+
 
 if($_POST){
 
@@ -18,11 +21,6 @@ if($_POST){
 
     if(empty($_POST["nome"])){
         $msg[0] = "Preencha o campo!";
-        $erro = true;
-    }
-
-    if(strlen($_POST["nome"]) < 7){
-        $msg[0] = "Nome do produto deve ter no mínimo 7 caracteres";
         $erro = true;
     }
 
@@ -44,10 +42,17 @@ if($_POST){
     if(!$erro){
         
         //Gravar no bd
-        $kando = new KanDO($_POST["idkando"], $_POST["nome"], $_POST["descricao"], $_POST["data_entrega"], $_POST["statusAtv"]);
+        // if (
+        //     !isset($_POST["idkando"], $_POST["nome"], $_POST["descricao"], $_POST["data_entrega"])){
+        //     die("Erro: Dados inválidos ou incompletos.");
+        // }
+
+        $kando = new KanDO($_POST["nome"], $_POST["descricao"], $_POST["data_entrega"], $_POST["statusAtv"], $_POST["disciplina"]);
+
         $kandoDAO = new kandoDAO();
-        $kandoDAO -> alterar($kando);
-        header("location:pageKando.php");
+        $retorno = $kandoDAO -> alterar($kando);
+
+        header("location:pageKando.php?mensagem=$retorno");
     }
 }
     require_once "header.php";
@@ -60,16 +65,19 @@ if($_POST){
 		<h1 class="border">Alterar tarefa</h1>
         <div class="form-atv">
             <form action="#" method="post">
+                <input type="hidden" name="idkando" value="<?php echo $ret[0] -> idkando; ?>">
+
                 <label for="nome">Nome da atividade:</label>
-                <input type="text" name="nome" id="nome" placeholder="Adicione o nome da atividade" value="<?php echo isset($_POST['nome'])?$_POST['nome']:''?>">
+                <input type="text" name="nome" id="nome" value="<?php echo $ret[0] -> nome; ?>" required>
                 <div style="color:white"><?php echo $msg[0] != ""?$msg[0]:'';?></div> 
                 
                 <label for="descricao">Descrição da atividade:</label>
-            <textarea name="descricao" id="descricao" placeholder="Adicione a descrição da atividade"><?php echo isset($_POST['descricao'])?$_POST['descricao']:''?></textarea>
+                <textarea name="descricao" id="descricao" placeholder="Adicione a descrição da atividade"><?php echo $ret[0] -> descricao; ?></textarea>
                 <div style="color:white"><?php echo $msg[1] != ""?$msg[1]:'';?></div>
 
                 <label for="data_entrega">Data de entrega: </label>
-                <input type="date" name="data_entrega" value="<?php echo isset($_POST['data_entrega'])?$_POST['data_entrega']:''?>">
+                <input type="date" name="data_entrega" value="<?php echo $ret[0] -> fata_entrega; ?>">
+
                 <div style="color:white"><?php echo $msg[2] != ""?$msg[2]:'';?></div>
 
                 <label for="statusAtv">Status:</label>
@@ -84,30 +92,31 @@ if($_POST){
                 <div style="color:white"><?php echo $msg[3] != ""?$msg[3]:'';?></div>
                     
                 <label for="disciplina">Disciplina:</label>
-                    <select name="disciplina" id="disciplina">
+                <select name="disciplina" id="disciplina">
                         <option value="">Escolha os status da sua atividade</option>
-                        
+                        <option value="0">Fazer</option>
+                        <option value="1">Fazendo</option>
+                        <option value="2">Feito</option>
                         <?php
 
-                            // $curso = new Curso();
-                            // $cursoDAO = new cursoDAO();
+                            // $disciplina = new Disicplina();
+                            // $ = new cursoDAO();
                             // $ret = $cursoDAO -> buscar_um_curso($curso);
-                            
+        
                             // foreach($ret as $dado)
                             // {
-                                //     if(isset($_POST["curso"]) && $_POST["curso"] == $dado->idcurso)
-                                //     {
-                                    //         echo "<option value='{$dado->idcurso}' selected>{$dado->nomeCurso}</option>";
-                                    //     }
-                                    //     else
-                                    //     {
-                                        //         echo "<option value='{$dado->idcurso}'>{$dado->nomeCurso}</option>";
-                                        //     }
-                                        // }//fim do foreach
-                                        
-                                        ?>
+                            //     if(isset($_POST["curso"]) && $_POST["curso"] == $dado->idcurso)
+                            //     {
+                            //         echo "<option value='{$dado->idcurso}' selected>{$dado->nomeCurso}</option>";
+                            //     }
+                            //     else
+                            //     {
+                            //         echo "<option value='{$dado->idcurso}'>{$dado->nomeCurso}</option>";
+                            //     }
+                            // }//fim do foreach
+
+                        ?>
                         
-                        <div style="color:white"><?php echo $msg[4] != ""?$msg[4]:'';?></div>
                     </select>
                 <br><br>
                 <div class="center">

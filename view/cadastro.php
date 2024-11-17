@@ -2,15 +2,44 @@
 session_start();
 $msg = array('', '', '', '');
 
-if($_POST)
-	{
-		require_once "../models/conexao.class.php";
-		require_once "../models/usuario.class.php";
-		require_once "../models/usuarioDAO.class.php";
-		
-		$erro = false;
-		
+if($_POST){
 
+		require_once "../model/conexao.class.php";
+		require_once "../model/usuario.class.php";
+		require_once "../model/usuarioDAO.class.php";
+
+        $erro = false;
+
+        if(empty($_POST["nome"])){
+            $msg[0] = "Preencha o campo!";
+            $erro = true;
+        }
+    
+        if(strlen($_POST["nome"]) < 7){
+            $msg[0] = "Seu nome deve ter no mínimo 7 caracteres";
+            $erro = true;
+        }
+    
+        if(empty($_POST["email"])){
+            $msg[1] = "Preencha o campo!";
+            $erro = true;
+        }
+    
+        if(empty($_POST["senha"])){
+            $msg[2] = "Preencha o campo!";
+            $erro = true;
+        }
+    
+        if(empty($_POST["telefone"])){
+            $msg[3] = "Preencha o campo!";
+            $erro = true;
+        }
+    
+        if($_POST["perfil"] = ""){
+            $msg[4] = "Selecione uma opção!";
+            $erro = true;
+        }    
+		
 		if(!$erro)
 		{
 			//verificar no BD
@@ -19,26 +48,9 @@ if($_POST)
 			$usuarioDAO = new usuarioDAO();
 			$retorno = $usuarioDAO -> cadastrar($usuario);
 
-            header("location:cadastro.php?mensagem=$retorno");
+            header("location:login.php?mensagem=$retorno");
             die();
-			
-			// if(count($retorno) == 1)
-			// {
-			// 	//encontrou
-				
-			// 	$_SESSION["id"] = $retorno[0]->idusuario;
-			// 	$_SESSION["nome"] = $retorno[0]->nome;
-			// 	$_SESSION["perfil"] = $retorno[0]->perfil;
-				
-			// 	header("location:index.php");
-			// 	die();
-			// }
-			// else
-			// {
-			// 	//não encontrou
-			// 	$msg[2] = "Verifique os dados informados";
-			// }
-			
+            
 		}
 	}
 
@@ -50,7 +62,7 @@ if($_POST)
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/style.css">
-    <title>Document</title>
+    <title>Login</title>
 </head>
 <body>
     <div class="container">
@@ -64,35 +76,41 @@ if($_POST)
                 <form method="POST" action="">
                     <div class="flex_row">
                         <label for="nome">Nome: </label>
-                        <input type="text" name="nome" id="nome" required>
+                        <input type="text" name="nome" id="nome "placeholder="Adicione seu nome" value="<?php echo isset($_POST['nome'])?$_POST['nome']:''?>">
+                        <div style="color:white"><?php echo $msg[0] != ""?$msg[0]:'';?></div> 
                     </div>
                     <br>
                     <div class="flex_row">
                         <label for="email">E-mail: </label>
-                        <input type="email" name="email" id="email" required>
+                        <input type="email" name="email" id="email" placeholder="Adicione seu e-mail" value="<?php echo isset($_POST['email'])?$_POST['email']:''?>">
+                        <div style="color:white"><?php echo $msg[1] != ""?$msg[1]:'';?></div> 
+                    </div>
+                    <br>
+                    <div class="flex_row">
+                        <label for="tel">Senha: </label>
+                        <input type="password" name="senha" id="senha"  placeholder="Adicione sua senha" value="<?php echo isset($_POST['senha'])?$_POST['senha']:''?>">
+                        <div style="color:white"><?php echo $msg[2] != ""?$msg[2]:'';?></div> 
                     </div>
                     <br>
                     <div class="flex_row">
                         <label for="tel">Telefone: </label>
-                        <input type="text" name="telefone" id="tel" required>
+                        <input type="text" name="telefone" id="tel"  placeholder="Adicione seu telefone" value="<?php echo isset($_POST['telefone'])?$_POST['telefone']:''?>">
+                        <div style="color:white"><?php echo $msg[3] != ""?$msg[3]:'';?></div> 
                     </div>
                     <br>
-                    <!-- <div class="flex_row">
-                        <label for="cadastro">Data de Cadastro: </label>
-                        <input type="date" name="data_cadastro" id="cadastro" required>
-                    </div> -->
                     <div class="flex_row">
                         <label for="cadastro">Perfil: </label>
-                        <select name="perfil" id="perfil" required>
+                        <select name="perfil" id="perfil" value="<?php echo isset($_POST['perfil'])?$_POST['perfil']:''?>">
                             <option value="">Escolha seu tipo de perfil</option>
                             <option value="aluno">Aluno</option>
                             <option value="professor">Professor</option>        
                         </select>
+                        <div style="color:white"><?php echo $msg[4] != ""?$msg[4]:'';?></div> 
                     </div>
+                    <br><br>
+                    <p>Já possui conta? Faça <a href="login.php" class="login">Login</a>!</p>
+                    <button type="submit" class="btn-entrar">Cadastrar</button> &nbsp; &nbsp;
                 </form>
-                <br><br>
-                <p>Já possui conta? Faça <a href="login.php" class="login">Login</a>!</p>
-                <button class="btn-entrar"><a href="index.php">Cadastrar</a></button> &nbsp; &nbsp;
             </div>
         </div>
     </div>

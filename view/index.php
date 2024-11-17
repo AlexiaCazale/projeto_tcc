@@ -17,8 +17,12 @@
 
     <br><br>
     <div class="btn-center">
-        <button class="btn-entrar"><a href="login.php">Entrar</a></button> &nbsp; &nbsp;
-        <button class="btn-cadastrar"><a href="cadastro.php">Cadastrar</a></button>
+        <?php
+            if(!isset($_SESSION["id"])){
+                echo '<button class="btn-entrar"><a href="login.php">Entrar</a></button> &nbsp; &nbsp;';
+                echo '<button class="btn-cadastrar"><a href="cadastro.php">Cadastrar</a></button>';
+            }
+        ?>
     </div>
 </div>
 

@@ -1,6 +1,18 @@
 <?php
+    session_start();
+    
     require_once "header.php";
     require_once "footer.php";
+    require_once "../model/conexao.class.php";
+    require_once "../model/usuarioDAO.class.php";
+    require_once "../model/usuario.class.php";
+
+    
+    if (!isset($_SESSION['id'])) {
+        header("Location: index.php");
+        exit();
+    }
+    //var_dump($_SESSION)
 ?>
 
 <br><br>
@@ -11,25 +23,50 @@
 <div class="container">
     
     <div class="content">
-        <h2 class="title">Altere seus dados</h2>
+        <h2 class="title"><i class="fa-solid fa-user-pen" style="color: #ffffff;"> </i> Altere seus dados</h2>
+        <label for="foto">Foto de perfil:</label>
+        <div class="photo">
+            <img src="../img/profile-picture.webp" class="profile-foto" alt="add-foto"> 
+            <i class="fa-regular fa-pen-to-square" style="color: #ffffff;"></i>            <!-- <div class="btn-center">
+                <a href="alterarPerfil.php" class="btn-alterar">Alterar foto</a> &nbsp; &nbsp;
+            </div> -->
+        </div>
+        <br>
         <label for="nome">Nome: </label>
-        <input type="text" readonly>
+        <?php
+            echo "<button class='info' readonly>";
+            echo "<b>" . $_SESSION["nome"] . "</b>";
+            echo "</button> <br>";
+        ?>
         <br>
 
-        <label for="nome">Telefone: </label>
-        <input type="text" readonly>
+        <label for="telefone">Telefone: </label>
+        <?php
+             echo "<button class='info' readonly>";
+             echo "<b>" . $_SESSION["telefone"] . "</b>";
+             echo "</button> <br>";
+        ?>
         <br>
 
-        <label for="nome">Email: </label>
-        <input type="text" readonly>
+        <label for="email">Email: </label>
+        <?php
+            echo "<button class='info' readonly>";
+            echo "<b>" . $_SESSION["email"] . "</b>";
+            echo "</button> <br>";
+        ?>
         <br>
 
-        <label for="nome">Senha: </label>
-        <input type="text" readonly>
-        <br><br><br>
+        <label for="senha">Senha: </label>
+        <?php
+            echo "<button class='info' readonly>";
+            echo "<b>" . $_SESSION["senha"] . "</b>";
+            echo "</button> <br>";
+        ?>
+        <br><br>
 
         <div class="btn-center">
-                <a href="alterarPerfil.php"><button>Alterar</button></a> &nbsp; &nbsp;
+            <a href="alterarPerfil.php" class="btn-alterar">Alterar</a> &nbsp; &nbsp;
+            <a href="logout.php" class="btn-apagar">Sair</a>
         </div>
     </div>
 </div>
@@ -43,6 +80,19 @@
             font-style: normal;
             color: white;
             text-transform: uppercase;
+        }
+
+        .profile-foto{
+            margin-top: 15px;
+            border-radius: 50%;
+            height: 150px;
+            width: auto;
+        }
+
+        .photo{
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
         }
 
         .title{
@@ -71,13 +121,19 @@
             
         }
 
-        input{
+        input, .info{
             margin-top: 5px;
             border: 1px solid #bbb;
             box-sizing: border-box;
             width: 100%;
             padding: 10px;
             border-radius: 5px;
+        }
+
+        .info{
+            cursor: auto;
+            background-color: white;
+            text-align: start;
         }
 
         .border{
@@ -98,9 +154,30 @@
             color: black;
         }
 
+        .btn-apagar{
+            background-color: red;
+            color: white;
+            font-size: 20px;
+            padding: 10px;
+            border-radius: 6px;
+            text-decoration: none;
+            width: 105px;
+            text-align: center;
+        }
+
         .btn-center{
             display: flex;
             justify-content: center;
+        }
+
+        .btn-alterar{
+            background-color: #F2E0A6;
+            font-size: 20px;
+            padding: 10px;
+            border-radius: 6px;
+            color: black;
+            width: 105px;
+            text-align: center;
         }
 
 </style>

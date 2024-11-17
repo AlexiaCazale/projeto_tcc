@@ -1,6 +1,13 @@
 <?php
+session_start();
+
     require_once "header.php";
     require_once "footer.php";
+
+    if (!isset($_SESSION['id'])) {
+        header("Location: index.php");
+        exit();
+    }
 ?>
 
 <!DOCTYPE html>

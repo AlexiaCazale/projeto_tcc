@@ -10,6 +10,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/f9a0acd7af.js" crossorigin="anonymous"></script>
     <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"> -->
     <link rel="stylesheet" href="css/style.css">
     <title>Corujário</title>
@@ -23,11 +24,15 @@
         <a href="index.php" class="image"><img src="../images/corujaBrancaFundoTransparente.png" alt="ícone" class="logo"></a>
         <ul>
             <!-- <li><a class="nav-link active" aria-current="page" href="index.php">Home</a></li> -->
-                <li><a class="nav-link" href="pageDashboard.php">Dashboard</a></li>
-                <li><a class="nav-link" href="pageKando.php">KanDO</a></li>
-                <li><a class="nav-link" href="pagePomodoro.php">Pomodoro</a></li>
-                <li><a class="nav-link" href="pageFatec.php">Fatec</a></li>
-                <li><a class="nav-link" href="pagePerfil.php">Perfil</a></li>
+                <?php
+                    if(isset($_SESSION["id"])){
+                       echo '<li><a class="nav-link" href="pageDashboard.php">Dashboard</a></li>';
+                        echo '<li><a class="nav-link" href="pageKando.php">KanDO</a></li>';
+                        echo '<li><a class="nav-link" href="pagePomodoro.php">Pomodoro</a></li>';
+                        echo '<li><a class="nav-link" href="pageFatec.php">Fatec</a></li>';
+                        echo '<li><a class="nav-link" href="pagePerfil.php">Perfil</a></li>';
+                    }
+                ?>
         </ul>
     </nav>
 

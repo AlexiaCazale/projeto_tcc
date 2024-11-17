@@ -14,11 +14,6 @@ if($_POST){
         $erro = true;
     }
 
-    if(strlen($_POST["nome"]) < 7){
-        $msg[0] = "Nome do produto deve ter no mínimo 7 caracteres";
-        $erro = true;
-    }
-
     if(empty($_POST["descricao"])){
         $msg[1] = "Preencha o campo!";
         $erro = true;
@@ -44,7 +39,7 @@ if($_POST){
         $kando = new KanDO(0, $_POST["nome"], $_POST["descricao"], $_POST["data_entrega"], $_POST["statusAtv"], $_POST["disciplina"]);
 
         $kandoDAO = new kandoDAO();
-        $kandoDAO -> inserir($kando);
+        $retorno = $kandoDAO -> inserir($kando);
 
         header("location:pageKando.php");
     }
@@ -60,6 +55,7 @@ if($_POST){
 		<h1 class="border">Adicionar tarefa</h1>
         <div class="form-atv">
             <form action="#" method="post">
+                
                 <label for="nome">Nome da atividade:</label>
                 <input type="text" name="nome" id="nome" placeholder="Adicione o nome da atividade" value="<?php echo isset($_POST['nome'])?$_POST['nome']:''?>">
                 <div style="color:white"><?php echo $msg[0] != ""?$msg[0]:'';?></div> 

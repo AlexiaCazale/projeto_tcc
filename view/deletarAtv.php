@@ -5,7 +5,7 @@
 		require_once "../model/kando.class.php";
 		require_once "../model/kandoDAO.class.php";
 		
-		$kando = new KanDO($_GET["id"]);
+		$kando = new KanDO($_GET["idkando"]);
 		$kandoDAO = new kandoDAO();
 		$retorno = $kandoDAO -> excluir($kando);
 		

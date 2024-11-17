@@ -1,10 +1,16 @@
 <?php
+session_start();
     require_once "header.php";
     require_once "footer.php";
     require_once "../model/conexao.class.php";
     require_once "../model/kandoDAO.class.php";
     require_once "../model/kando.class.php";
     
+    if (!isset($_SESSION['id'])) {
+        header("Location: index.php");
+        exit();
+    }
+
     $kandoDAO = new kandoDAO();
     $retorno = $kandoDAO -> buscar_todas();
 
@@ -45,15 +51,15 @@
             global $tableValues;
             foreach($tableValues['arrayT1'] as $dados)
             {
-                echo "<tr class='table1'>
+                echo "<tr>
                     <td>
                 <b>{$dados -> nome}</b> <br>
                     {$dados -> descricao} <br>
-                    {$dados -> data_entrega} <br><br>
+                <p>Para: <br>{$dados -> data_entrega}</p><br>
     
-                    <a href='alterarAtv.php?idproduto={$dados->idkando}' class='btn-alterar'>Alterar</a> &nbsp;
+                    <a href='alterarAtv.php?idkando={$dados->idkando}' class='btn-alterar'>Alterar</a> &nbsp;
     
-                    <a href='deletarAtv.php?idproduto={$dados->idkando}' class='btn-apagar' >Apagar</a>
+                    <a href='deletarAtv.php?idkando={$dados->idkando}' class='btn-apagar' >Apagar</a>
                     
                     </td>
                     </tr>"; 
@@ -71,15 +77,15 @@
             global $tableValues;
             foreach($tableValues['arrayT2'] as $dados)
             {
-                echo "<tr class='table1'>
+                echo "<tr>
                     <td>
                 <b>{$dados -> nome}</b> <br>
                     {$dados -> descricao} <br>
-                    {$dados -> data_entrega} <br><br>
+                <p>Para: <br>{$dados -> data_entrega}</p><br>
     
-                    <a href='alterarAtv.php?idproduto={$dados->idkando}' class='btn-alterar'>Alterar</a> &nbsp;
+                    <a href='alterarAtv.php?idkando={$dados->idkando}' class='btn-alterar'>Alterar</a> &nbsp;
     
-                    <a href='deletarAtv.php?idproduto={$dados->idkando}' class='btn-apagar' >Apagar</a>
+                    <a href='deletarAtv.php?idkando={$dados->idkando}' class='btn-apagar' >Apagar</a>
                     
                     </td>
                     </tr>"; 
@@ -95,31 +101,36 @@
             global $tableValues;
             foreach($tableValues['arrayT3'] as $dados)
             {
-                echo "<tr class='table1'>
+                echo "<tr>
                     <td>
                 <b>{$dados -> nome}</b> <br>
                     {$dados -> descricao} <br>
-                    {$dados -> data_entrega} <br><br>
+                <p class='entregue'>Entregue: <br> {$dados -> data_entrega}</p> <br>
     
-                    <a href='alterarAtv.php?idproduto={$dados->idkando}' class='btn-alterar'>Alterar</a> &nbsp;
+                    <a href='alterarAtv.php?idkando={$dados->idkando}' class='btn-alterar'>Alterar</a> &nbsp;
     
-                    <a href='deletarAtv.php?idproduto={$dados->idkando}' class='btn-apagar' >Apagar</a>
-                    
+                    <a href='deletarAtv.php?idkando={$dados->idkando}' class='btn-apagar' >Apagar</a>
+
                     </td>
-                    </tr>"; 
+                    </tr> "; 
                 }
         ?>
             </tr>
         </table>
         <!-- Botão de Adicionar Tarefa -->
-
     </div>
+    <br>
     <div class="btn-center">
         <a href="addAtv.php"><button class="add-task-btn">+</button></a>
     </div>
 
 
     <style>
+
+        .entregue{
+            color: #ff6e6e;
+            font-weight: 700;
+        }
         h1{
             font-size: 40px;
             text-align: center;
@@ -145,6 +156,9 @@
             display: inline-table;
             table-layout: fixed;
             /* border-spacing: 8px; */
+            table-layout: fixed;
+            overflow: hidden;
+            overflow-y: auto; /* Rolagem vertical para conteúdos excedentes */
         }
 
         th, td{
@@ -153,6 +167,7 @@
             border-radius: 8px;
             text-align: center;
             color: white;
+            word-wrap: break-word; /* Quebra as palavras para caberem no espaço */
         }
 
         th {
@@ -186,28 +201,31 @@
         .btn-alterar{
             background-color: #F2E0A6;
             font-size: 15px;
-            padding: 5px;
+            padding: 8px;
             border-radius: 6px;
             color: black;
+            font-weight: 700;
         }
 
         .btn-apagar{
             background-color: red;
             color: white;
             font-size: 15px;
-            padding: 5px;
+            padding: 8px;
             border-radius: 6px;
             text-decoration: none;
+            font-weight: 700;
         }
 
-        .container{
-            display:flex;
-            justify-content: center;
+        .container {
+            display: flex;
+            justify-content: center; /* Centraliza horizontalmente */
+            align-items: self-start;
+            gap: 5px; /* Espaçamento entre as tabelas */
         }
-
-        .table1{
-            width: 100%;
-            display: table;
+        
+        tr{
+            text-align:center;
         }
     </style>
 
