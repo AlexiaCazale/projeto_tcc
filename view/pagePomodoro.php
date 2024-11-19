@@ -16,43 +16,7 @@ session_start();
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Document</title>
-        <style>
-            h1{
-                font-size: 40px;
-                text-align: center;
-                /* font-family: "Krona One", sans-serif; */
-                font-weight: 800;
-                font-style: normal;
-                color: white;
-                text-transform: uppercase;
-            }
-
-            .border{
-                background-color: #1b2238;
-                padding: 15px;
-                border-radius: 8px;
-                margin: 0 35%;
-                display: flex;
-                justify-content: center;
-            }
-            
-            .timer {
-                display: flex;
-                flex-direction: row;
-                align-items: center;
-                justify-content: center;
-                font-size: 2.5em;
-                color: #fff;
-                margin: 0 35%;
-                padding: 40px;
-                /* From https://css.glass */
-                background: rgba(255, 255, 255, 0.05);
-                border-radius: 16px;
-                box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-                backdrop-filter: blur(7.4px);
-                -webkit-backdrop-filter: blur(7.4px);
-            }
-        </style>
+        <link rel="stylesheet" href="css/style_pomodoro.css">
     </head>
     <body> 
         <br><br>
@@ -64,7 +28,31 @@ session_start();
             <div class="time" id="seg">00</div>
         </div>
         <div class="select_timer">
-            
+            <p>Selecione o tempo:</p>
+            <form id="timer-form" class="timer-options">
+                <div class="container">
+                    <label for="temp1" class="timer-option">
+                    <input type="radio" name="timer-option" value="25-5" id="temp1"> 
+                    25 min - 5 min
+                    </label>
+                    <label for="temp2" class="timer-option">
+                    <input type="radio" name="timer-option" value="50-10" id="temp2">  
+                    50 min - 10 min
+                </div>
+                <div class="button_pomodoro">
+                    <button id="start">Iniciar</button>
+                    <button id="stop">Parar</button>
+                    <button id="reset_time">Reiniciar</button>
+                </div>
+            </form>
+            <br>
+            <div id="aviso" class="hidden">
+                <div class="aviso">
+                    <p>Hora do descanso!</p>
+                    <img src="../images/Sleepy_Owl.gif" alt="sleep owl">
+                </div>
+            </div>
         </div>
+        <script src="js/pomodoro.js"></script>
     </body>
 </html>
