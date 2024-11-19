@@ -57,14 +57,14 @@ button {
     background-color: #fcf6d2;
 }
 
-.timer-options {
+.timer_options {
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
 }
 
-.timer-option {
+.timer_option {
     background: rgba(255, 255, 255, 0.158);
     border-radius: 16px;
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);

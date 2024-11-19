@@ -6,74 +6,38 @@ var startButton = document.getElementById("start");
 var stopButton = document.getElementById("stop");
 var resetButton = document.getElementById("reset_time");
 
-var intervalo;
-var correndo = false;
 
-function startTimer (tt, td) {
-    if (correndo) return;
-    correndo = true;
+var min;
 
-    var tTotal = tt * 60.
-    var tDescanso = td * 60;
+function startTimer () {
+    var radioChecked = document.querySelector('input[name="opcao"]:checked');
+    if (radioChecked == null) {
+        console.log("nenhum tempo selecionado");
+    } else if (radioChecked.value == "25-5") {
+        
+        console.log("timer de 25 min escolhido");
 
-    intervalo = setInterval(() => {
-        if (tTotal > 0) {
-            tTotal--;
-            updateDisplay(tTotal);
-        } else if (tTotal === 0) {
-            clearInterval(tDescanso);
-            var aviso = getElementById("aviso");
-            aviso.classList.remove("hidden");
-            startIntervalo(tDescanso);
-        }
-    }, 1000);
-}
+        min = 25;
+        seg = 59;
 
-function startIntervalo (tDescanso) {
-    intervalo = setInterval(() => {
-        if (tDescanso > 0) {
-            tDescanso--;
-            updateDisplay(tDescanso);
-        } else {
-            clearInterval(intervalo);
-            correndo = false;
-            alert("Hora de voltar ao trabalho!");
-        }
-    }, 1000);
-}
+        setInterval(function()
+        {
+            // min--;
+            hrsElem.innerHTML = "00:";
+            minElem.innerHTML = `${min}:`; 
+            segElem.innerHTML = `${seg}`;
+        }, 1000);
+        
 
-function updateDisplay(tseg) {
-    const hrs = Math.floor(tseg / 3600);
-    const min = Math.floor((tseg % 3600) / 60);
-    const seg = tseg % 60;
-
-    hrsElem.textContent = hrs > 0 ? `${String(hrs).padStart(2, '0')}:` : "";
-    minElem.textContent = `${String(min).padStart(2, '0')}:`;
-    segElem.textContent = String(seg).padStart(2, '0');
-}
-
-function stopTimer() {
-    clearInterval(intervalo);
-    correndo = false;
-}
-
-function resetTimer() {
-    stopTimer();
-    hrsElem.textContent = "00:";
-    minElem.textContent = "00:";
-    segElem.textContent = "00";
-}
-
-startButton.addEventListener("click", () => {
-    const selectedOption = document.querySelector('input[name="timer-option"]:checked').value;
-    if (selectedOption === "25-5") {
-        startTimer(25, 5);
-    } else if (selectedOption === "50-10") {
-        startTimer(50, 10);
-    } else {
-        alert("Selecione um tempo válido.");
+       // console.log("passou");
+        
+    } else if (radioChecked.value == "50-10") {
+        console.log("timer de 50 min escolhido");
+        minElem.innerHTML = "50:"; 
+        hrsElem.innerHTML = "00:"; 
+        segElem.innerHTML = "00";
+        tempo = 50 * 60;
     }
-});
-
-stopButton.addEventListener("click", stopTimer());
-resetButton.addEventListener("click", resetTimer());
+    
+    return false;
+}

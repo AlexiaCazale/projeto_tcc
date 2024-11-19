@@ -29,18 +29,18 @@ session_start();
         </div>
         <div class="select_timer">
             <p>Selecione o tempo:</p>
-            <form id="timer-form" class="timer-options">
+            <form id="timer-form" class="timer_options">
                 <div class="container">
-                    <label for="temp1" class="timer-option">
-                    <input type="radio" name="timer-option" value="25-5" id="temp1"> 
+                    <label for="temp1" class="timer_option">
+                    <input type="radio" name="opcao" value="25-5" id="temp1"> 
                     25 min - 5 min
                     </label>
-                    <label for="temp2" class="timer-option">
-                    <input type="radio" name="timer-option" value="50-10" id="temp2">  
+                    <label for="temp2" class="timer_option">
+                    <input type="radio" name="opcao" value="50-10" id="temp2">  
                     50 min - 10 min
                 </div>
                 <div class="button_pomodoro">
-                    <button id="start">Iniciar</button>
+                    <button type="button" id="start" onclick="startTimer()">Iniciar</button>
                     <button id="stop">Parar</button>
                     <button id="reset_time">Reiniciar</button>
                 </div>
