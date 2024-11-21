@@ -20,8 +20,11 @@
             if(!isset($_SESSION["id"])){
                 echo '<button class="btn-entrar"><a href="login.php">Entrar</a></button> &nbsp; &nbsp;';
                 echo '<button class="btn-cadastrar"><a href="cadastro.php">Cadastrar</a></button>';
+            }else{
+                echo '<button class="btn-center green"><a href="pageDashboard.php">Veja seu progresso +</a></button>';
             }
         ?>
+
     </div>
 </div>
 
@@ -36,6 +39,15 @@
         display: flex;
         justify-content: center;
         align-items: center;
+    }
+
+    .green{
+        color: white;
+        background-color: green;
+    }
+
+    a{
+        color: white;
     }
 
     h3{
