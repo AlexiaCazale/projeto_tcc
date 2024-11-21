@@ -2,7 +2,6 @@
     session_start();
     
     require_once "header.php";
-    require_once "footer.php";
     require_once "../model/conexao.class.php";
     require_once "../model/usuarioDAO.class.php";
     require_once "../model/usuario.class.php";
@@ -114,7 +113,7 @@
             background-color: #1b2238;
             padding: 30px 60px 30px 60px;
             border-radius: 8px;
-            margin: 0 35%;
+            margin: 0 15%;
             width: 1000px;
         }
 
@@ -189,3 +188,4 @@
 
 </body>
 </html>
+<?php require_once "footer.php"; ?>

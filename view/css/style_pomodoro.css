@@ -33,7 +33,8 @@ h1{
     backdrop-filter: blur(7.4px);
     -webkit-backdrop-filter: blur(7.4px);
 }
-p {
+
+.pomodoro {
     display: flex;
     justify-content: center;
     font-size: 1.5em;

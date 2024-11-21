@@ -1,7 +1,6 @@
 <?php
 session_start();
     require_once "header.php";
-    require_once "footer.php";
     require_once "../model/conexao.class.php";
     require_once "../model/kandoDAO.class.php";
     require_once "../model/kando.class.php";
@@ -231,3 +230,4 @@ session_start();
 
 </body>
 </html>
+<?php require_once "footer.php"; ?>

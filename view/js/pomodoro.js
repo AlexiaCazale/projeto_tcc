@@ -6,7 +6,6 @@ var startButton = document.getElementById("start");
 var stopButton = document.getElementById("stop");
 var resetButton = document.getElementById("reset_time");
 
-
 var min;
 
 function startTimer () {
@@ -17,15 +16,28 @@ function startTimer () {
         
         console.log("timer de 25 min escolhido");
 
-        min = 25;
+        min = 24;
         seg = 59;
+        minElem.innerHTML = '24:';
+        segElem.innerHTML = '59';
 
         setInterval(function()
         {
-            // min--;
+            min--;
             hrsElem.innerHTML = "00:";
             minElem.innerHTML = `${min}:`; 
+        }, 60000);
+
+        setInterval(function()
+        {
+            seg--;
             segElem.innerHTML = `${seg}`;
+
+            if (seg <= 0) {
+                seg = 60;
+                // seg--;
+            }
+    
         }, 1000);
         
 
@@ -33,11 +45,43 @@ function startTimer () {
         
     } else if (radioChecked.value == "50-10") {
         console.log("timer de 50 min escolhido");
-        minElem.innerHTML = "50:"; 
-        hrsElem.innerHTML = "00:"; 
-        segElem.innerHTML = "00";
-        tempo = 50 * 60;
+
+        min = 49;
+        seg = 59;
+        minElem.innerHTML = '49:';
+        segElem.innerHTML = '59';
+
+
+        setInterval(function()
+        {
+            min--;
+            hrsElem.innerHTML = "00:";
+            minElem.innerHTML = `${min}:`; 
+        }, 60000);
+
+        setInterval(function()
+        {
+            seg--;
+            segElem.innerHTML = `${seg}`;
+
+            if (seg <= 0) {
+                seg = 60;
+                // seg--;
+            }
+    
+        }, 1000);
     }
     
     return false;
+}
+
+function stopTimer(){
+    clearInterval();
+    document.getElementById('stop').disabled = false;
+}
+
+function resetTimer(){
+    hor = 0;
+    min = 0;
+    seg = 0;
 }

@@ -3,13 +3,52 @@
 session_start();
 require_once "header.php";
 require_once "../model/conexao.class.php";
+require_once "../model/blocos.class.php";
 require_once "../model/blocosDAO.class.php";
 require_once "../model/cursoDAO.class.php";
+require_once "../model/curso.class.php";
+require_once "../model/pet.class.php";
 require_once "../model/petDAO.class.php";
 
 if (!isset($_SESSION['id'])) {
     header("Location: index.php");
     exit();
+}
+
+$msg = array("","","","","");
+if($_POST)
+{
+    $erro = false;
+
+    if($_FILES["imagem"]["name"] == "")
+    {
+        $msg[2] = "Escolha uma imagem para o produto";
+        $erro = true;
+    }
+    else if($_FILES["imagem"]["type"] != "image/png" && $_FILES["imagem"]["type"] != "image/jpg" && $_FILES["imagem"]["type"] != "image/jpeg")
+    {
+        $msg[2] = "Tipo de arquivo inválido";
+        $erro = true;
+    }
+    if(!$erro)
+		{
+			//gravar no banco de dados
+			$bloco = new Blocos(0,$_FILES["imagem"]["name"]);
+			$pet = new Pet(0,$_FILES["imagem"]["name"]);
+			
+			$blocoDAO = new blocoDAO();
+			$blocoDAO->inserir($bloco);
+			$petDAO = new petDAO();
+			$petDAO->inserir($pet);
+			//upload
+			if(!file_exists("../img-imported/{$_FILES["imagem"]["name"]}"))
+			{
+				$path = '../img-imported/';
+				$uploadfile = $path . basename($_FILES["imagem"]["name"]);
+				move_uploaded_file($_FILES['imagem']['tmp_name'], $uploadfile); //move retorna um bool
+			}
+			//header("location:listar_produtos.php");
+		}
 }
 
 ?>
@@ -46,7 +85,11 @@ if (!isset($_SESSION['id'])) {
                 <div class="disciplinas">
                     <h3 class="title">Disciplinas:</h3>
                     <br><br>
-                    
+                    <div class="btn-center">
+                        <!-- <a href="addCurso.php"><button>Adicionar curso</button></a> &nbsp; &nbsp; -->
+                        <a href="addDisciplina.php"><button>Adicionar disciplina</button></a>
+                        
+                    </div>
                 </div>
             </div>
             <br>
@@ -55,8 +98,19 @@ if (!isset($_SESSION['id'])) {
         <div class="content">
         <form class="form-control" action="#" method="POST" enctype="multipart/form-data">
             <h2 class="border">Blocos</h2>
-            <br><br>
-            <img src="../img-imported/<?php $bloco->imagem; ?>" alt="imagem">
+            <div class="btn-center">
+                <!-- <a href="addImagem.php"><button>Adicionar blocos</button></a> &nbsp; &nbsp; -->
+                <input type="file" class="form-label" id="blocos" name="imagem" onchange="mostrar(this)" accept="image/png, image/jpeg">
+            </div>
+            
+            <?php 
+            // $blocosDAO = new blocosDAO();
+            // $bloco = $blocosDAO->buscar_todos();
+            ?>
+            <div class="btn-center">
+                <input class="form-label" type="submit" value="Adicionar bloco">
+                <!-- <img src="../img-imported/<?php //$bloco->imagem; ?>" alt="imagem"> -->
+            </div>
         </form>
             <br>
         </div>
@@ -66,16 +120,42 @@ if (!isset($_SESSION['id'])) {
         <div class="content">
             <form class="form-control" action="#" method="POST" enctype="multipart/form-data">
                 <h2 class="border">Pets</h2>
-                <br><br>
+                <div class="btn-center">
+                    <!-- <a href="addImagem.php"><button>Adicionar pets</button></a> &nbsp; &nbsp; -->
+                    <input type="file" class="form-label" id="pets" name="imagem" onchange="mostrar(this)" accept="image/png, image/jpeg">
+                </div>
+
                 <?php 
-                $petDAO = new petDAO();
-                $pet = $petDAO->buscar_todos();
+                // $petDAO = new petDAO();
+                // $pet = $petDAO->buscar_todos();
                 ?>
-                <img src="../img-imported/<?php $pet->imagem; ?>" alt="imagem">
+
+                <div class="btn-center">
+                    <input class="form-label" type="submit" value="Adicionar pet">
+                    <!-- <img src="../img-imported/<?php //$pet->imagem; ?>" alt="imagem"> -->
+                </div>
             </form>
             <br>
         </div>
     </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+	<script>
+		function mostrar(img)
+		{
+			if(img.files  && img.files[0])
+			{
+				var reader = new FileReader();
+				reader.onload = function(e){
+					$('#img')
+					.attr('src', e.target.result)
+					.width(170)
+					.height(100);
+				};
+				reader.readAsDataURL(img.files[0]);
+			}
+		}
+	</script>
         
     <style>
        h1{

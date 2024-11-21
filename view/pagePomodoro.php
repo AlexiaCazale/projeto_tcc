@@ -1,12 +1,11 @@
 <?php
 session_start();
     require_once "header.php";
-    require_once "footer.php";
 
-    // if (!isset($_SESSION['id'])) {
-    //     header("Location: index.php");
-    //     exit();
-    // }
+    if (!isset($_SESSION['id'])) {
+        header("Location: index.php");
+        exit();
+    }
 
 ?>
 
@@ -28,7 +27,7 @@ session_start();
             <div class="time" id="seg">00</div>
         </div>
         <div class="select_timer">
-            <p>Selecione o tempo:</p>
+            <p class="pomodoro">Selecione o tempo:</p>
             <form id="timer-form" class="timer_options">
                 <div class="container">
                     <label for="temp1" class="timer_option">
@@ -41,14 +40,14 @@ session_start();
                 </div>
                 <div class="button_pomodoro">
                     <button type="button" id="start" onclick="startTimer()">Iniciar</button>
-                    <button id="stop">Parar</button>
-                    <button id="reset_time">Reiniciar</button>
+                    <button type="button" id="stop" onclick="stopTimer()">Parar</button>
+                    <button type="button" id="reset_time" onclick="resetTimer()">Reiniciar</button>
                 </div>
             </form>
             <br>
             <div id="aviso" class="hidden">
                 <div class="aviso">
-                    <p>Hora do descanso!</p>
+                    <p class="pomodoro">Hora do descanso!</p>
                     <img src="../images/Sleepy_Owl.gif" alt="sleep owl">
                 </div>
             </div>
@@ -56,3 +55,5 @@ session_start();
         <script src="js/pomodoro.js"></script>
     </body>
 </html>
+
+<?php require_once "footer.php"; ?>

@@ -25,15 +25,16 @@
 <style>
     footer{
         text-align: center;
-        position: fixed;
-        bottom: 0;
+        /* position: fixed;*/
+        bottom: 0; 
         width: 100%;
         color: #ffff;
         background-color: #232946;
         padding: 15px;
+        margin-top: 50px;
     }
 
     p{
-        margin-top: revert;
+        padding: 10px;
     }
 </style>
