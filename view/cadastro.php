@@ -103,7 +103,7 @@ if($_POST){
                         <select name="perfil" id="perfil" value="<?php echo isset($_POST['perfil'])?$_POST['perfil']:''?>">
                             <option value="">Escolha seu tipo de perfil</option>
                             <option value="aluno">Aluno</option>
-                            <option value="professor">Professor</option>        
+                            <option value="administrador">Professor</option>        
                         </select>
                         <div style="color:white"><?php echo $msg[4] != ""?$msg[4]:'';?></div> 
                     </div>

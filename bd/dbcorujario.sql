@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 18/11/2024 às 02:05
+-- Tempo de geração: 21/11/2024 às 15:56
 -- Versão do servidor: 10.4.32-MariaDB
 -- Versão do PHP: 8.2.12
 
@@ -20,6 +20,18 @@ SET time_zone = "+00:00";
 --
 -- Banco de dados: `dbcorujario`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura para tabela `blocos`
+--
+
+CREATE TABLE `blocos` (
+  `idbloco` int(11) NOT NULL,
+  `nome` varchar(80) NOT NULL,
+  `imagem` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -49,6 +61,18 @@ INSERT INTO `kando` (`idkando`, `nome`, `descricao`, `data_entrega`, `statusAtv`
 -- --------------------------------------------------------
 
 --
+-- Estrutura para tabela `pet`
+--
+
+CREATE TABLE `pet` (
+  `idpet` int(11) NOT NULL,
+  `nome` varchar(80) NOT NULL,
+  `imagem` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Estrutura para tabela `usuario`
 --
 
@@ -74,10 +98,22 @@ INSERT INTO `usuario` (`idusuario`, `nome`, `email`, `senha`, `telefone`, `perfi
 --
 
 --
+-- Índices de tabela `blocos`
+--
+ALTER TABLE `blocos`
+  ADD PRIMARY KEY (`idbloco`);
+
+--
 -- Índices de tabela `kando`
 --
 ALTER TABLE `kando`
   ADD PRIMARY KEY (`idkando`);
+
+--
+-- Índices de tabela `pet`
+--
+ALTER TABLE `pet`
+  ADD PRIMARY KEY (`idpet`);
 
 --
 -- Índices de tabela `usuario`
@@ -90,10 +126,22 @@ ALTER TABLE `usuario`
 --
 
 --
+-- AUTO_INCREMENT de tabela `blocos`
+--
+ALTER TABLE `blocos`
+  MODIFY `idbloco` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT de tabela `kando`
 --
 ALTER TABLE `kando`
   MODIFY `idkando` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
+-- AUTO_INCREMENT de tabela `pet`
+--
+ALTER TABLE `pet`
+  MODIFY `idpet` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de tabela `usuario`

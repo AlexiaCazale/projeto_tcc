@@ -29,7 +29,11 @@
                        echo '<li><a class="nav-link" href="pageDashboard.php">Dashboard</a></li>';
                         echo '<li><a class="nav-link" href="pageKando.php">KanDO</a></li>';
                         echo '<li><a class="nav-link" href="pagePomodoro.php">Pomodoro</a></li>';
-                        echo '<li><a class="nav-link" href="pageFatec.php">Fatec</a></li>';
+                        if (isset($_SESSION["perfil"]) == 'Aluno') {
+                            echo '<li><a class="nav-link" href="pageFatec.php">Fatec</a></li>';
+                        }else{
+                            echo '<li><a class="nav-link" href="pageFatecAdmin.php">Fatec</a></li>';
+                        }   
                         echo '<li><a class="nav-link" href="pagePerfil.php">Perfil</a></li>';
                     }
                 ?>

@@ -38,7 +38,7 @@ if($_POST){
 				$_SESSION["telefone"] = $retorno[0]->telefone;
 				$_SESSION["email"] = $retorno[0]->email;
 				$_SESSION["senha"] = $retorno[0]->senha;
-				//$_SESSION["perfil"] = $retorno[0]->perfil;
+				$_SESSION["perfil"] = $retorno[0]->perfil;
 				
 				header("location:index.php");
 				die();

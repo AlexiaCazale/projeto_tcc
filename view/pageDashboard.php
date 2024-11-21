@@ -24,13 +24,12 @@ session_start();
         <br><br>
         <h1 class="border">Dashboard</h1>
         <br>
-        <h3>Bem-vindo(a), <?php echo $_SESSION["nome"] ?></h3>
+        <h3>Bem-vindo(a), <?php echo $_SESSION["nome"] ?>!</h3>
         <br>
         <h3>Tarefas para fazer: </h3>
         <li>
         <?php 
             global $tableValues;
-            
             
             foreach($tableValues['arrayT1'] as $dados)
             {

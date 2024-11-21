@@ -15,6 +15,7 @@ if (!isset($_SESSION['id'])) {
     exit();
 }
 
+
 $msg = array("","","","","");
 if($_POST)
 {
@@ -99,15 +100,14 @@ if($_POST)
         <form class="form-control" action="#" method="POST" enctype="multipart/form-data">
             <h2 class="border">Blocos</h2>
             <div class="btn-center">
-                <!-- <a href="addImagem.php"><button>Adicionar blocos</button></a> &nbsp; &nbsp; -->
-                <input type="file" class="form-label" id="blocos" name="imagem" onchange="mostrar(this)" accept="image/png, image/jpeg">
+                <input type="file" class="form-label" id="blocos" name="imagem" onchange="mostrarBloco(this)" accept="image/png, image/jpeg">
             </div>
-            
-            <?php 
-            // $blocosDAO = new blocosDAO();
-            // $bloco = $blocosDAO->buscar_todos();
-            ?>
+            <img src="" id="bloco">
             <div class="btn-center">
+                <?php 
+                // $blocosDAO = new blocosDAO();
+                // $bloco = $blocosDAO->buscar_todos();
+                ?>
                 <input class="form-label" type="submit" value="Adicionar bloco">
                 <!-- <img src="../img-imported/<?php //$bloco->imagem; ?>" alt="imagem"> -->
             </div>
@@ -121,16 +121,14 @@ if($_POST)
             <form class="form-control" action="#" method="POST" enctype="multipart/form-data">
                 <h2 class="border">Pets</h2>
                 <div class="btn-center">
-                    <!-- <a href="addImagem.php"><button>Adicionar pets</button></a> &nbsp; &nbsp; -->
-                    <input type="file" class="form-label" id="pets" name="imagem" onchange="mostrar(this)" accept="image/png, image/jpeg">
+                    <input type="file" class="form-label" id="pets" name="imagem" onchange="mostrarPet(this)" accept="image/png, image/jpeg">
                 </div>
-
-                <?php 
-                // $petDAO = new petDAO();
-                // $pet = $petDAO->buscar_todos();
-                ?>
-
+                <img src="" id="pet">
                 <div class="btn-center">
+                    <?php 
+                    // $petDAO = new petDAO();
+                    // $pet = $petDAO->buscar_todos();
+                    ?>
                     <input class="form-label" type="submit" value="Adicionar pet">
                     <!-- <img src="../img-imported/<?php //$pet->imagem; ?>" alt="imagem"> -->
                 </div>
@@ -141,19 +139,33 @@ if($_POST)
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
 	<script>
-		function mostrar(img)
+		function mostrarBloco(img)
 		{
-			if(img.files  && img.files[0])
+			if(img.files && img.files[0])
 			{
 				var reader = new FileReader();
 				reader.onload = function(e){
-					$('#img')
+					$('#bloco')
 					.attr('src', e.target.result)
 					.width(170)
 					.height(100);
 				};
 				reader.readAsDataURL(img.files[0]);
-			}
+		}
+
+		function mostrarPet(img)
+		{
+
+			}if(img.files && img.files[0]){
+                var reader = new FileReader();
+				reader.onload = function(e){
+					$('#pet')
+					.attr('src', e.target.result)
+					.width(170)
+					.height(100);
+				};
+				reader.readAsDataURL(img.files[0]);
+            }
 		}
 	</script>
         

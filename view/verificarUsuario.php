@@ -2,7 +2,7 @@
 	function verificar()
 	{
 		session_start();
-		if(isset($_SESSION["perfil"]) && $_SESSION["perfil"] == "Professor")
+		if(isset($_SESSION["perfil"]) && $_SESSION["perfil"] == "Administrador")
 		{
 			return true;
 		}

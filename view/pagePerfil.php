@@ -55,6 +55,14 @@
         ?>
         <br>
 
+        <label for="senha">Perfil: </label>
+        <?php
+            echo "<button class='info' readonly>";
+            echo "<b>" . $_SESSION["perfil"] . "</b>";
+            echo "</button> <br>";
+        ?>
+        <br>
+
         <label for="senha">Senha: </label>
         <?php
             echo "<button class='info' readonly>";

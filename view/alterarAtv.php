@@ -56,7 +56,6 @@ if($_POST){
     }
 }
     require_once "header.php";
-    require_once "footer.php";
 ?>
 
 <div class="content">
@@ -198,3 +197,4 @@ if($_POST){
 
 </body>
 </html>
+<?php require_once "footer.php"; ?>

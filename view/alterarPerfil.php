@@ -2,7 +2,6 @@
     session_start();
     
     require_once "header.php";
-    require_once "footer.php";
     require_once "../model/conexao.class.php";
     require_once "../model/usuarioDAO.class.php";
     require_once "../model/usuario.class.php";
@@ -62,8 +61,6 @@
             header("location:pagePerfil.php?mensagem=$retorno");
         }
     }
-        require_once "header.php";
-        require_once "footer.php";
     ?>
 
 <br><br>
@@ -72,50 +69,30 @@
 <br><br>
 
 <div class="container">
-    
     <div class="content">
+        <form method="POST" action="">
         <h2 class="title">Altere seus dados</h2>
         <label for="nome">Nome: </label>
-        <input type="text" name="nome" id="nome" value="<?php echo $_SESSION["nome"]; ?>" required>
-
-        <?php
-            // echo "<button class='info' readonly>";
-            // echo "<b>" . $_SESSION["nome"] . "</b>";
-            // echo "</button> <br>";
-        ?>
+        <input type="text" name="nome" id="nome" value="<?php echo $_SESSION["nome"]; echo isset($_POST['nome'])?$_POST['nome']:'' ?>" required>
         <br>
 
         <label for="telefone">Telefone: </label>
-        <input type="text" name="nome" id="nome" value="<?php echo $_SESSION["telefone"]; ?>" required>
-        <?php
-            //  echo "<button class='info' readonly>";
-            //  echo "<b>" . $_SESSION["telefone"] . "</b>";
-            //  echo "</button> <br>";
-        ?>
+        <input type="text" name="nome" id="nome" value="<?php echo $_SESSION["telefone"]; echo isset($_POST['telefone'])?$_POST['telefone']:''?>" required>
         <br>
 
         <label for="email">Email: </label>
-        <input type="text" name="nome" id="nome" value="<?php echo $_SESSION["email"]; ?>" required>
-        <?php
-            // echo "<button class='info' readonly>";
-            // echo "<b>" . $_SESSION["email"] . "</b>";
-            // echo "</button> <br>";
-        ?>
+        <input type="text" name="nome" id="nome" value="<?php echo $_SESSION["email"]; echo isset($_POST['email'])?$_POST['email']:''?>" required>
         <br>
 
         <label for="senha">Nova senha: </label>
-        <input type="text" name="nome" id="nome" placeholder="Digite uma nova senha" value="<?php echo isset($_POST['senha'])?$_POST['senha']:''?>" required>
-        <?php
-            // echo "<button class='info' readonly>";
-            // echo "<b>" . $_SESSION["senha"] . "</b>";
-            // echo "</button> <br>";
-        ?>
+        <input type="text" name="nome" id="nome" placeholder="Digite uma nova senha" value="<?php echo $_SESSION["senha"]; echo isset($_POST['senha'])?$_POST['senha']:''?>" required>
         <br><br>
 
         <div class="btn-center">
             <input type="submit" class="salvar">&nbsp; &nbsp;
-            <a href="pagePerfil.php"><button class="btn-voltar">Cancelar</button></a>
+            <button class="btn-voltar"><a href="pagePerfil.php">Cancelar</a></button>
         </div>
+</form>
     </div>
 </div>
 
@@ -232,3 +209,4 @@
 
 </body>
 </html>
+<?php require_once "footer.php"; ?>
