@@ -21,11 +21,8 @@ session_start();
 <!DOCTYPE html>
 <html lang="pt-br">
     <body>
-        <br><br>
-        <h1 class="border">Dashboard</h1>
-        <br>
+        <h1 class="border">Dashboard</h1>   
         <h3>Bem-vindo(a), <?php echo $_SESSION["nome"] ?>!</h3>
-        <br>
         <h3>Tarefas para fazer: </h3>
         <li>
         <?php 
@@ -45,7 +42,6 @@ session_start();
             h1{
                 font-size: 40px;
                 text-align: center;
-                /* font-family: "Krona One", sans-serif; */
                 font-weight: 800;
                 font-style: normal;
                 color: white;

@@ -1,6 +1,6 @@
 <?php
 session_start();
-$msg = array('', '', '', '');
+$msg = array('', '', '', '', '');
 
 if($_POST){
 
@@ -15,8 +15,8 @@ if($_POST){
             $erro = true;
         }
     
-        if(strlen($_POST["nome"]) < 7){
-            $msg[0] = "Seu nome deve ter no mínimo 7 caracteres";
+        if(strlen($_POST["nome"]) < 2){
+            $msg[0] = "Seu nome deve ter no mínimo 2 caracteres";
             $erro = true;
         }
     
@@ -35,7 +35,7 @@ if($_POST){
             $erro = true;
         }
     
-        if($_POST["perfil"] = ""){
+        if(empty($_POST["perfil"] = "")){
             $msg[4] = "Selecione uma opção!";
             $erro = true;
         }    
@@ -65,11 +65,11 @@ if($_POST){
     <title>Login</title>
 </head>
 <body>
+    <div class="image">
+        <img src="../images/Sleepy_Owl.gif" alt="sleep owl">
+    </div>
     <div class="container">
         <div class="content">
-            <div class="image">
-
-            </div>
             <div class="cadastro">
             <h1>Cadastre-se</h1>
                 <br><br>
@@ -77,25 +77,29 @@ if($_POST){
                     <div class="flex_row">
                         <label for="nome">Nome: </label>
                         <input type="text" name="nome" id="nome "placeholder="Adicione seu nome" value="<?php echo isset($_POST['nome'])?$_POST['nome']:''?>">
-                        <div style="color:white"><?php echo $msg[0] != ""?$msg[0]:'';?></div> 
+                        <br><br>
+                        <div style="color:#f01e2c"><?php echo $msg[0] != ""?$msg[0]:'';?></div> 
                     </div>
                     <br>
                     <div class="flex_row">
                         <label for="email">E-mail: </label>
                         <input type="email" name="email" id="email" placeholder="Adicione seu e-mail" value="<?php echo isset($_POST['email'])?$_POST['email']:''?>">
-                        <div style="color:white"><?php echo $msg[1] != ""?$msg[1]:'';?></div> 
+                        <br><br>
+                        <div style="color:#f01e2c"><?php echo $msg[1] != ""?$msg[1]:'';?></div> 
                     </div>
                     <br>
                     <div class="flex_row">
                         <label for="tel">Senha: </label>
                         <input type="password" name="senha" id="senha"  placeholder="Adicione sua senha" value="<?php echo isset($_POST['senha'])?$_POST['senha']:''?>">
-                        <div style="color:white"><?php echo $msg[2] != ""?$msg[2]:'';?></div> 
+                        <br><br>
+                        <div style="color:#f01e2c"><?php echo $msg[2] != ""?$msg[2]:'';?></div> 
                     </div>
                     <br>
                     <div class="flex_row">
                         <label for="tel">Telefone: </label>
                         <input type="text" name="telefone" id="tel"  placeholder="Adicione seu telefone" value="<?php echo isset($_POST['telefone'])?$_POST['telefone']:''?>">
-                        <div style="color:white"><?php echo $msg[3] != ""?$msg[3]:'';?></div> 
+                        <br><br>
+                        <div style="color:#f01e2c"><?php echo $msg[3] != ""?$msg[3]:'';?></div> 
                     </div>
                     <br>
                     <div class="flex_row">
@@ -105,10 +109,11 @@ if($_POST){
                             <option value="aluno">Aluno</option>
                             <option value="administrador">Professor</option>        
                         </select>
-                        <div style="color:white"><?php echo $msg[4] != ""?$msg[4]:'';?></div> 
+                        <br><br>
+                        <div style="color:#f01e2c"><?php echo $msg[4] != ""?$msg[4]:'';?></div> 
                     </div>
                     <br><br>
-                    <p>Já possui conta? Faça <a href="login.php" class="login">Login</a>!</p>
+                    <p>Já possui conta? Faça <a href="login.php" class="login"><span>Login</span></a>!</p>
                     <button type="submit" class="btn-entrar">Cadastrar</button> &nbsp; &nbsp;
                 </form>
             </div>
@@ -116,6 +121,16 @@ if($_POST){
     </div>
 
     <style>
+
+        body {
+            width: 100%;
+            height: 100vh;
+            display: flex;
+        }
+
+        span {
+            color: #F2E0A6;
+        }
 
         p, .login{
             color: white;
@@ -138,22 +153,16 @@ if($_POST){
         .container{
             background-color: #232946;
             width: 50%;
-            flex-direction: column;
-            margin-left: 50%;
-            display: flex;
-            position: fixed;
-            height: -webkit-fill-available;
+            float: right;
+            padding: 40px;
         }
 
-        .content{
+        .content {
             border-radius: 8px;
             color: black;
             padding: 20px;
             flex-direction: column;
             display: flex;
-            justify-content: space-between;
-            margin: 115px;
-            margin-bottom: 90px;
         }
 
         label {
@@ -177,6 +186,18 @@ if($_POST){
             width: 100%;
             background-color: #F2E0A6;
             color: #000;
+         }
+
+         .image {
+            width: 50%;
+            float: left;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+         }
+
+         .image img {
+            width: 480px;
          }
 
 

@@ -64,6 +64,9 @@ if($_POST){
 </head>
 <body>
         
+    <div class="image">
+        <img src="../images/Sleepy_Owl.gif" alt="sleep owl">
+    </div>
     <div class="container">
         <div class="content">
     
@@ -74,28 +77,35 @@ if($_POST){
 				
 			}
 		?>
-            <div class="image">
-
-            </div>
             <div class="login">
                 <h1>Faça login!</h1>
                 <form method="POST" action="">
                     <label for="email">E-mail: </label>
                     <input type="email" name="email">
-                    <div style="color:white"><?php echo $msg[0] != ""?$msg[0]:'';?></div>
+                    <div style="color:#f01e2c"><?php echo $msg[0] != ""?$msg[0]:'';?></div>
 
                     <label for="senha">Senha: </label>
                     <input type="password" name="senha">
-                    <div style="color:white"><?php echo $msg[1] != ""?$msg[1]:'';?></div> 
+                    <div style="color:#f01e2c"><?php echo $msg[1] != ""?$msg[1]:'';?></div> 
 
                     <br><br>
-                    <p>Não possui conta? Faça <a href="cadastro.php" class="login">Cadastro</a>!</p>
+                    <p>Não possui conta? Faça <a href="cadastro.php" class="login"><span>Cadastro</span></a>!</p>
                     <button type="submit" class="btn-entrar">Entrar</button> &nbsp; &nbsp;
             </div>
         </div>
     </div>
 
     <style>
+
+        body {
+            width: 100%;
+            height: 100vh;
+            display: flex;
+        }
+
+        span {
+            color: #F2E0A6;
+        }
 
         .white_font {
             color: white;
@@ -128,24 +138,36 @@ if($_POST){
         }
         
         .container{
+            display: flex;
+            width: 100%;
+            justify-content: center;
             background-color: #232946;
             width: 50%;
-            flex-direction: column;
-            margin-left: 50%;
-            display: flex;
-            position: fixed;
-            height: -webkit-fill-available;
+            float: right;
+            padding: 40px;
         }
 
-        .content{
+        .content {
+            display: flex;
+            width: 100%;
+            justify-content: center;
             border-radius: 8px;
             color: black;
-            padding: 40px;
+            padding: 20px;
             flex-direction: column;
             display: flex;
-            justify-content: space-between;
-            margin: 135px;
-            margin-bottom: 90px;
+        }
+
+        .image {
+            width: 50%;
+            float: left;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+         }
+
+         .image img {
+            width: 480px;
         }
 
         label {

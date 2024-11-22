@@ -31,10 +31,12 @@ function startTimer() {
     } else if (radioChecked.value == "25-5") {
         console.log("timer de 25 min escolhido");
         lembrete1.classList.add("hidden");
-        criarTimer(1, 0, 5, 0);
+        lembrete2.classList.add("hidden");
+        criarTimer(25, 0, 5, 0);
     } else if (radioChecked.value == "50-10") {
         console.log("timer de 50 min escolhido");
         lembrete1.classList.add("hidden");
+        lembrete2.classList.add("hidden");
         criarTimer(50, 0, 10, 0);
     }
 }
@@ -79,8 +81,10 @@ function stopTimer() {
     clearInterval(descansoInterval);
     console.log("Timer parado.");
     lembrete2.classList.remove("hidden");
+    startButton.textContent = "Continuar";
     startButton.disabled = false;
 }
+
 
 function resetTimer() {
     clearInterval(timerInterval);
@@ -89,6 +93,10 @@ function resetTimer() {
     minElem.innerHTML = "00";
     segElem.innerHTML = "00";
     startButton.disabled = false;
+    lembrete1.classList.add("hidden");
+    lembrete2.classList.add("hidden");
+    bichinho1.classList.add("hidden");
     bichinho2.classList.add("hidden");
+    startButton.textContent = "Iniciar";
     console.log("Timer reiniciado.");
 }
