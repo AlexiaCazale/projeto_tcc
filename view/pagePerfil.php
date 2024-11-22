@@ -11,7 +11,7 @@
         header("Location: index.php");
         exit();
     }
-    //var_dump($_SESSION)
+    // var_dump($_SESSION);
 ?>
 
 <br><br>
@@ -25,7 +25,7 @@
         <h2 class="title">Altere seus dados</h2>
         <label for="foto">Foto de perfil:</label>
         <div class="photo">
-            <img src="../img/profile-picture.webp" class="profile-foto" alt="add-foto"> 
+            <img src="../images/profile-picture.webp" class="profile-foto" alt="add-foto"> 
             <i class="fa-regular fa-pen-to-square" style="color: #ffffff;"></i>            <!-- <div class="btn-center">
                 <a href="alterarPerfil.php" class="btn-alterar">Alterar foto</a> &nbsp; &nbsp;
             </div> -->

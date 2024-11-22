@@ -50,7 +50,7 @@ if($_POST)
                         echo "Falha ao mover a imagem do bloco.";
                     }
 			    }
-                header("location:pageFatec.php");
+                //header("location:pageFatec.php");
             }
         }
 
@@ -72,7 +72,7 @@ if($_POST)
                         echo "Falha ao mover a imagem do pet.";
                     }
                 }
-                header("location:pageFatec.php");
+                //header("location:pageFatec.php");
             }
         }
     
@@ -124,22 +124,16 @@ if($_POST)
         <br><br>
         
         <div class="content">
-        <form class="form-control" action="#" method="POST" enctype="multipart/form-data">
-            <h2 class="border">Blocos</h2>
-            <div class="btn-center">
-                <input type="file" class="form-label" id="blocos" name="bloco_imagem" onchange="mostrarBloco(this)" accept="image/png, image/jpeg">
-            </div>
-            <img src="" id="bloco">
-            <div class="btn-center">
-                <?php 
-                // $blocosDAO = new blocosDAO();
-                // $bloco = $blocosDAO->buscar_todos();
-                ?>
-                <input class="form-label" type="submit" value="Adicionar bloco">
-                <!-- <img src="../img-imported/<?php //$bloco->imagem; ?>" alt="imagem"> -->
-            </div>
-        </form>
-            <br>
+            <form class="form-control" action="#" method="POST" enctype="multipart/form-data">
+                <h2 class="border">Blocos</h2>
+                <div class="btn-center">
+                    <input type="file" class="form-label" id="blocos" name="bloco_imagem" onchange="mostrarBloco(this)" accept="image/png, image/jpeg">
+                </div>
+                <img src="" id="bloco">
+                <div class="btn-center">
+                    <input class="form-label" type="submit" value="Adicionar bloco">
+                </div>
+            </form><br>
         </div>
 
         <br><br>
@@ -154,8 +148,7 @@ if($_POST)
                 <div class="btn-center">
                     <input class="form-label" type="submit" value="Adicionar pet">
                 </div>
-            </form>
-            <br>
+            </form><br>
         </div>
     </div>
 

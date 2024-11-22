@@ -25,14 +25,15 @@
         <ul>
             <!-- <li><a class="nav-link active" aria-current="page" href="index.php">Home</a></li> -->
                 <?php
+                    //var_dump($_SESSION);
                     if(isset($_SESSION["id"])){
                        echo '<li><a class="nav-link" href="pageDashboard.php">Dashboard</a></li>';
                         echo '<li><a class="nav-link" href="pageKando.php">KanDO</a></li>';
                         echo '<li><a class="nav-link" href="pagePomodoro.php">Pomodoro</a></li>';
-                        if (isset($_SESSION["perfil"]) == 'Aluno') {
-                            echo '<li><a class="nav-link" href="pageFatec.php">Fatec</a></li>';
-                        }else{
+                        if (isset($_SESSION["perfil"]) && $_SESSION["perfil"] != 'Aluno') {
                             echo '<li><a class="nav-link" href="pageFatecAdmin.php">Fatec</a></li>';
+                        }else{
+                            echo '<li><a class="nav-link" href="pageFatec.php">Fatec</a></li>';
                         }   
                         echo '<li><a class="nav-link" href="pagePerfil.php">Perfil</a></li>';
                     }

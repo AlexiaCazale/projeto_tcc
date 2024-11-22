@@ -35,7 +35,7 @@ if($_POST){
             $erro = true;
         }
     
-        if(empty($_POST["perfil"] = "")){
+        if(empty($_POST["perfil"])){
             $msg[4] = "Selecione uma opção!";
             $erro = true;
         }    
@@ -104,10 +104,11 @@ if($_POST){
                     <br>
                     <div class="flex_row">
                         <label for="cadastro">Perfil: </label>
-                        <select name="perfil" id="perfil" value="<?php echo isset($_POST['perfil'])?$_POST['perfil']:''?>">
+                        <select name="perfil" id="perfil">
                             <option value="">Escolha seu tipo de perfil</option>
-                            <option value="aluno">Aluno</option>
-                            <option value="administrador">Professor</option>        
+                            <option value='Aluno'<?php echo isset($_POST['perfil']) && $_POST['perfil'] == 'Aluno' ? 'selected' : ''; ?>>Aluno</option>
+                            <option value='Administrador'<?php echo isset($_POST['perfil']) && $_POST['perfil'] == 'Administrador' ? 'selected' : ''; ?>>Professor</option>        
+                        </select>
                         </select>
                         <br><br>
                         <div style="color:#f01e2c"><?php echo $msg[4] != ""?$msg[4]:'';?></div> 
