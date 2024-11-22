@@ -12,8 +12,8 @@
 			try
 			{
 			$stm = $this->db->prepare($sql);
-			$stm->bindValue(1, $produto->getNome());
-			$stm->bindValue(2, $produto->getImagem());
+			$stm->bindValue(1, $bloco->getNome());
+			$stm->bindValue(2, $bloco->getImagem());
 			$stm->execute();
 			$this->db = null;
 			return "Bloco inserido com sucesso";
@@ -30,9 +30,9 @@
 		{
 			$sql = "UPDATE blocos SET nome = ?, imagem = ? WHERE idbloco = ?";
 			$stm = $this->db->prepare($sql);
-			$stm->bindValue(1, $produto->getNome());
-			$stm->bindValue(2, $produto->getImagem());
-			$stm->bindValue(3, $produto->getIdbloco());
+			$stm->bindValue(1, $bloco->getNome());
+			$stm->bindValue(2, $bloco->getImagem());
+			$stm->bindValue(3, $bloco->getIdbloco());
 			$stm->execute();
 			$this->db = null;
 		}

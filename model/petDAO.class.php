@@ -8,12 +8,12 @@
 		
 		public function inserir($pet)
 		{
-			$sql = "INSERT INTO blocos (nome, imagem) VALUES(?,?)";
+			$sql = "INSERT INTO pet (nome, imagem) VALUES(?,?)";
 			try
 			{
 			$stm = $this->db->prepare($sql);
-			$stm->bindValue(1, $produto->getNome());
-			$stm->bindValue(2, $produto->getImagem());
+			$stm->bindValue(1, $pet->getNome());
+			$stm->bindValue(2, $pet->getImagem());
 			$stm->execute();
 			$this->db = null;
 			return "Bloco inserido com sucesso";
@@ -28,11 +28,11 @@
 		}
 		public function alterar($pet)
 		{
-			$sql = "UPDATE blocos SET nome = ?, imagem = ? WHERE idpet = ?";
+			$sql = "UPDATE pet SET nome = ?, imagem = ? WHERE idpet = ?";
 			$stm = $this->db->prepare($sql);
-			$stm->bindValue(1, $produto->getNome());
-			$stm->bindValue(2, $produto->getImagem());
-			$stm->bindValue(3, $produto->getIdpet());
+			$stm->bindValue(1, $pet->getNome());
+			$stm->bindValue(2, $pet->getImagem());
+			$stm->bindValue(3, $pet->getIdpet());
 			$stm->execute();
 			$this->db = null;
 		}

@@ -31,25 +31,51 @@ if($_POST)
         $msg[2] = "Tipo de arquivo inválido";
         $erro = true;
     }
-    if(!$erro)
-		{
-			//gravar no banco de dados
-			$bloco = new Blocos(0,$_FILES["imagem"]["name"]);
-			$pet = new Pet(0,$_FILES["imagem"]["name"]);
-			
-			$blocoDAO = new blocoDAO();
-			$blocoDAO->inserir($bloco);
-			$petDAO = new petDAO();
-			$petDAO->inserir($pet);
-			//upload
-			if(!file_exists("../img-imported/{$_FILES["imagem"]["name"]}"))
-			{
-				$path = '../img-imported/';
-				$uploadfile = $path . basename($_FILES["imagem"]["name"]);
-				move_uploaded_file($_FILES['imagem']['tmp_name'], $uploadfile); //move retorna um bool
-			}
-			//header("location:listar_produtos.php");
-		}
+
+        if (isset($_FILES['bloco_imagem'])) {
+            if(!$erro){
+                //gravar no banco de dados
+                $bloco = new Blocos(0, $_FILES["bloco_imagem"]["name"]);
+                $blocoDAO = new blocoDAO();
+                $blocoDAO->inserir($bloco);
+
+                //upload
+                if(!file_exists("../img-imported/{$_FILES["bloco_imagem"]["name"]}"))
+			    {
+                    $path = '../img-imported/';
+                    $uploadfile = $path . basename($_FILES["bloco_imagem"]["name"]);
+                    if (move_uploaded_file($_FILES['bloco_imagem']['tmp_name'], $uploadfile)) {
+                        echo "Imagem do bloco enviada com sucesso!";
+                    } else {
+                        echo "Falha ao mover a imagem do bloco.";
+                    }
+			    }
+                header("location:pageFatec.php");
+            }
+        }
+
+        if (isset($_FILES['pet_imagem'])) {
+            if(!$erro){
+                //gravar no banco de dados
+                $pet = new Pet(0, $_FILES["pet_imagem"]["name"]);
+                $petDAO = new petDAO();
+                $petDAO->inserir($pet);
+
+                //upload
+                if(!file_exists("../img-imported/{$_FILES["pet_imagem"]["name"]}"))
+                {
+                    $path = '../img-imported/';
+                    $uploadfile = $path . basename($_FILES["pet_imagem"]["name"]);
+                    if (move_uploaded_file($_FILES['pet_imagem']['tmp_name'], $uploadfile)) {
+                        echo "Imagem do pet enviada com sucesso!";
+                    } else {
+                        echo "Falha ao mover a imagem do pet.";
+                    }
+                }
+                header("location:pageFatec.php");
+            }
+        }
+    
 }
 
 ?>
@@ -96,11 +122,12 @@ if($_POST)
             <br>
         </div>
         <br><br>
+        
         <div class="content">
         <form class="form-control" action="#" method="POST" enctype="multipart/form-data">
             <h2 class="border">Blocos</h2>
             <div class="btn-center">
-                <input type="file" class="form-label" id="blocos" name="blocos" onchange="mostrarBloco(this)" accept="image/png, image/jpeg">
+                <input type="file" class="form-label" id="blocos" name="bloco_imagem" onchange="mostrarBloco(this)" accept="image/png, image/jpeg">
             </div>
             <img src="" id="bloco">
             <div class="btn-center">
@@ -121,16 +148,11 @@ if($_POST)
             <form class="form-control" action="#" method="POST" enctype="multipart/form-data">
                 <h2 class="border">Pets</h2>
                 <div class="btn-center">
-                    <input type="file" class="form-label" id="pets" name="pets" onchange="mostrarPet(this)" accept="image/png, image/jpeg">
+                    <input type="file" class="form-label" id="pets" name="pet_imagem" onchange="mostrarPet(this)" accept="image/png, image/jpeg">
                 </div>
                 <img src="" id="pet">
                 <div class="btn-center">
-                    <?php 
-                    // $petDAO = new petDAO();
-                    // $pet = $petDAO->buscar_todos();
-                    ?>
                     <input class="form-label" type="submit" value="Adicionar pet">
-                    <!-- <img src="../img-imported/<?php //$pet->imagem; ?>" alt="imagem"> -->
                 </div>
             </form>
             <br>
