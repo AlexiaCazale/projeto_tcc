@@ -11,8 +11,8 @@ session_start();
         exit();
     }
 
-    $kandoDAO = new kandoDAO();
-    $retorno = $kandoDAO->buscar_todas();
+    // $kandoDAO = new kandoDAO();
+    // $retorno = $kandoDAO->buscar_todas();
 
     //echo '<pre>' . var_dump($tableValues['arrayT1']) . '</pre>';
 
@@ -24,18 +24,22 @@ session_start();
         <h1 class="border">Dashboard</h1>   
         <h3>Bem-vindo(a), <?php echo $_SESSION["nome"] ?>!</h3>
         <h3>Tarefas para fazer: </h3>
-        <ul>
+        <!-- <ul>
         <?php 
-            global $tableValues;
+            // global $tableValues;
             
-            foreach($tableValues['arrayT1'] as $dados)
-            {
-                echo "<li>{$dados->nome}</li>
-                      <li>{$dados->data_entrega}</li>";
+            // foreach($tableValues['arrayT1'] as $dados)
+            // {
+            //     echo "<li>{$dados->nome}</li>
+            //           <li>{$dados->data_entrega}</li>";
                       
-            }
+            // }
         ?>
-        </ul>
+        </ul> -->
+
+        <div>
+            
+        </div>
 
         <style>
 
