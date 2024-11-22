@@ -75,7 +75,7 @@
 				$stm->bindValue(1, $curso->getIdcurso());
 				$stm->execute();
 				$this->db = null;
-				return "Curso excluida com sucesso";
+				return "Curso excluido com sucesso";
 			}
 			catch(PDOException $e)
 			{

@@ -17,10 +17,10 @@ if (!isset($_SESSION['id'])) {
     <h1 class="border">Fatec Jahu</h1>
     <br><br>
     <div class="container">
-        <div class="content">
+        <div class="content center">
             <h2 class="border">Cursos</h2>
             <br>
-            <div class="infos">
+            <div class="infos ">
                 <div class="cursos">
                     <h3 class="title">Selecione um curso: </h3>
                     <br>
@@ -43,13 +43,8 @@ if (!isset($_SESSION['id'])) {
                     <input type="radio" name="sistemas-para-internet" value="9">
                     <label for="sistemas-para-internet">Sistemas Navais</label><br>
                 </div>
-                <div class="disciplinas">
-                    <h3 class="title">Disciplinas:</h3>
-                    <br><br>
-                    
-                </div>
             </div>
-            <br>
+            <button class="center">Buscar grade</button>
         </div>
         <br><br>
         <div class="content">
@@ -88,6 +83,14 @@ if (!isset($_SESSION['id'])) {
             text-transform: uppercase;
         }
 
+        .center {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+            flex-direction: flex_colunm;
+        }
+
         .border{
             background-color: #1b2238;
             padding: 15px;
@@ -122,15 +125,16 @@ if (!isset($_SESSION['id'])) {
         .infos, .title{
             width: 100%;
             display: flex;
-            justify-content: space-around;
+            align-items: center;
+            justify-content: center;
+            flex-direction: flex_colunm;
             text-align: center;
             color: white;
         }
 
         .cursos{
             width: 50%;
-            text-align: left;
-            margin-left: 10px;
+            text-align: justify;
         }
 
         input, label{

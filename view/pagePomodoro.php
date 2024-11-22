@@ -17,13 +17,22 @@ session_start();
         <title>Document</title>
         <link rel="stylesheet" href="css/style_pomodoro.css">
     </head>
-    <body> 
-        <br><br>
+    <body>  
+        <br>
         <h1 class="border">Pomodoro</h1>
-        <br><br>
+        <div id="lembrete1" class="hidden">
+                <div class="aviso">
+                    <p class="pomodoro"><span>Selecione o tempo!</span></p>
+                </div>
+        </div>
+        <div id="lembrete2" class="hidden">
+                <div class="aviso">
+                    <p class="pomodoro"><span>Timer pausado!</span></p>
+                </div>
+        </div>
         <div class="timer">
-            <div class="time" id="hrs">00:</div>
-            <div class="time" id="min">00:</div>
+            <div class="time" id="hrs">00</div>:
+            <div class="time" id="min">00</div>:
             <div class="time" id="seg">00</div>
         </div>
         <div class="select_timer">
@@ -45,10 +54,16 @@ session_start();
                 </div>
             </form>
             <br>
-            <div id="aviso" class="hidden">
+            <div id="aviso1" class="hidden">
                 <div class="aviso">
                     <p class="pomodoro">Hora do descanso!</p>
                     <img src="../images/Sleepy_Owl.gif" alt="sleep owl">
+                </div>
+            </div>
+            <div id="aviso2" class="hidden">
+                <div class="aviso">
+                    <p class="pomodoro">Hora do estudo!</p>
+                    <img src="../images/work_time.gif" alt="work time">
                 </div>
             </div>
         </div>

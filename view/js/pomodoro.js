@@ -6,82 +6,89 @@ var startButton = document.getElementById("start");
 var stopButton = document.getElementById("stop");
 var resetButton = document.getElementById("reset_time");
 
-var min;
+var bichinho1 = document.getElementById("aviso1");
+var bichinho2 = document.getElementById("aviso2");
+var lembrete1 = document.getElementById("lembrete1");
+var lembrete2 = document.getElementById("lembrete2");
 
-function startTimer () {
+var min;
+var seg; 
+var minAtual;
+var segAtual; 
+var timerInterval;
+var descansoInterval;
+
+function startTimer() {
+    if(!bichinho1.classList.contains('hidden'))
+        bichinho1.classList.add('hidden');
+        bichinho2.classList.remove('hidden');
     var radioChecked = document.querySelector('input[name="opcao"]:checked');
     if (radioChecked == null) {
         console.log("nenhum tempo selecionado");
+        bichinho2.classList.add("hidden");
+        lembrete1.classList.remove("hidden");
+        return;
     } else if (radioChecked.value == "25-5") {
-        
         console.log("timer de 25 min escolhido");
-
-        min = 24;
-        seg = 59;
-        minElem.innerHTML = '24:';
-        segElem.innerHTML = '59';
-
-        setInterval(function()
-        {
-            min--;
-            hrsElem.innerHTML = "00:";
-            minElem.innerHTML = `${min}:`; 
-        }, 60000);
-
-        setInterval(function()
-        {
-            seg--;
-            segElem.innerHTML = `${seg}`;
-
-            if (seg <= 0) {
-                seg = 60;
-                // seg--;
-            }
-    
-        }, 1000);
-        
-
-       // console.log("passou");
-        
+        lembrete1.classList.add("hidden");
+        criarTimer(1, 0, 5, 0);
     } else if (radioChecked.value == "50-10") {
         console.log("timer de 50 min escolhido");
-
-        min = 49;
-        seg = 59;
-        minElem.innerHTML = '49:';
-        segElem.innerHTML = '59';
-
-
-        setInterval(function()
-        {
-            min--;
-            hrsElem.innerHTML = "00:";
-            minElem.innerHTML = `${min}:`; 
-        }, 60000);
-
-        setInterval(function()
-        {
-            seg--;
-            segElem.innerHTML = `${seg}`;
-
-            if (seg <= 0) {
-                seg = 60;
-                // seg--;
-            }
-    
-        }, 1000);
+        lembrete1.classList.add("hidden");
+        criarTimer(50, 0, 10, 0);
     }
-    
-    return false;
 }
 
-function stopTimer(){
-    clearInterval();
-    document.getElementById('stop').disabled = false;
+function criarTimer(min, seg, minSecundario, segSecundario) {
+    minAtual = min;
+    segAtual = seg;
+    minElem.innerHTML = minAtual >= 10 ? minAtual : `0${minAtual}`;
+    segElem.innerHTML = segAtual >= 10 ? `${segAtual}` : `0${segAtual}`;
+
+    startButton.disabled = true;
+
+    timerInterval = setInterval(function() {
+        if(segAtual > 0) {
+            segAtual --;
+            segElem.innerHTML = segAtual >= 10 ? `${segAtual}` : `0${segAtual}`;
+            return;
+        }
+        if(minAtual > 0) {
+            minAtual--;
+            segAtual = 59;
+            minElem.innerHTML = minAtual >= 10 ? minAtual : `0${minAtual}`;
+            segElem.innerHTML = segAtual >= 10 ? `${segAtual}` : `0${segAtual}`;
+        } else {
+            clearInterval(timerInterval);
+            if(bichinho1.classList.contains('hidden')) {
+                console.log('Descanso!');
+                bichinho1.classList.remove('hidden');
+                bichinho2.classList.add('hidden')
+            } else {
+                console.log("Estudo!");
+                bichinho1.classList.add("hidden");
+                bichinho2.classList.remove("hidden");
+            }
+            criarTimer(minSecundario, segSecundario, min, seg);
+        }
+    }, 1000);
 }
 
-function resetTimer(){
-    hor = 0;
-    min = 0;
-    seg = 0;
+function stopTimer() {
+    clearInterval(timerInterval);
+    clearInterval(descansoInterval);
+    console.log("Timer parado.");
+    lembrete2.classList.remove("hidden");
+    startButton.disabled = false;
+}
+
+function resetTimer() {
+    clearInterval(timerInterval);
+    clearInterval(descansoInterval);
+    hrsElem.innerHTML = "00";
+    minElem.innerHTML = "00";
+    segElem.innerHTML = "00";
+    startButton.disabled = false;
+    bichinho2.classList.add("hidden");
+    console.log("Timer reiniciado.");
 }

@@ -23,6 +23,15 @@
 </footer>
 
 <style>
+    html,
+    body {
+        width: 100%;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
     footer{
         text-align: center;
         /* position: fixed;*/
