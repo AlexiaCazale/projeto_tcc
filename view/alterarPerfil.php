@@ -107,6 +107,12 @@
             text-transform: uppercase;
         }
 
+        a {
+            text-decoration: none;
+            color: white;
+            font-weight: normal;
+        }
+
         .profile-foto{
             margin-top: 15px;
             border-radius: 50%;
@@ -175,9 +181,10 @@
             font-size: 15px;
             padding: 10px;
             border-radius: 6px;
-            color: black;
+            border: none;
+            color: white;
         }
-
+        
         .btn-voltar{
             background-color: red;
             color: white;
@@ -188,19 +195,20 @@
             width: 115px;
             text-align: center;
         }
-
+        
         .btn-center{
             display: flex;
             justify-content: center;
             align-items: baseline;
         }
-
+        
         .salvar{
+            border: none;
             background-color: green;
             font-size: 20px;
             padding: 10px;
             border-radius: 6px;
-            color: black;
+            color: white;
             width: 115px;
             text-align: center;
         }
