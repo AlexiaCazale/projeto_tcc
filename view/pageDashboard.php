@@ -24,7 +24,7 @@ session_start();
         <h1 class="border">Dashboard</h1>   
         <h3>Bem-vindo(a), <?php echo $_SESSION["nome"] ?>!</h3>
         <h3>Tarefas para fazer: </h3>
-        <li>
+        <ul>
         <?php 
             global $tableValues;
             
@@ -35,7 +35,7 @@ session_start();
                       
             }
         ?>
-        </li>
+        </ul>
 
         <style>
 

@@ -55,16 +55,28 @@ button {
    border-radius: 20px;
 }
 
-#start {
+.start {
     background-color: #e6ffdd;
+}
+
+.start:hover {
+    background-color: #d3ffc3;
 }
 
 #stop {
     background-color: #ffe1e1;
 }
 
+#stop:hover {
+    background-color: #ffc9c9;
+}
+
 #reset_time {
     background-color: #fcf6d2;
+}
+
+#reset_time:hover {
+    background-color: #fff5b6;
 }
 
 .timer_options {

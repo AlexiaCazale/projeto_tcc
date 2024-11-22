@@ -48,7 +48,7 @@ session_start();
                     50 min - 10 min
                 </div>
                 <div class="button_pomodoro">
-                    <button type="button" id="start" onclick="startTimer()">Iniciar</button>
+                    <button type="button" class="start" id="start" onclick="startTimer()">Iniciar</button>
                     <button type="button" id="stop" onclick="stopTimer()">Parar</button>
                     <button type="button" id="reset_time" onclick="resetTimer()">Reiniciar</button>
                 </div>
