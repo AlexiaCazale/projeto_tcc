@@ -11,8 +11,29 @@ session_start();
         exit();
     }
 
-    // $kandoDAO = new kandoDAO();
-    // $retorno = $kandoDAO->buscar_todas();
+    $kandoDAO = new kandoDAO();
+    $retorno = $kandoDAO->buscar_todas();
+
+    //echo '<pre>' . var_dump($retorno) . '</pre>';
+
+    $tableValues = [
+        'arrayT1' => [],
+        'arrayT2' => [],
+        'arrayT3' => []
+    ];
+
+    function teste($x){
+        global $retorno, $tableValues;
+        foreach($retorno as $dado){
+            if($dado->statusAtv == $x){
+                $tableValues['arrayT' . ($x + 1)][] = $dado;
+            }
+        }
+    }
+
+    for ($i = 0; $i <= 2; $i++) {
+        teste($i);
+    }
 
     //echo '<pre>' . var_dump($tableValues['arrayT1']) . '</pre>';
 
@@ -24,21 +45,18 @@ session_start();
         <h1 class="border">Dashboard</h1>   
         <h3>Bem-vindo(a), <?php echo $_SESSION["nome"] ?>!</h3>
         <h3>Tarefas para fazer: </h3>
-        <!-- <ul>
+        <div class="center">
         <?php 
-            // global $tableValues;
+            global $tableValues;
             
-            // foreach($tableValues['arrayT1'] as $dados)
-            // {
-            //     echo "<li>{$dados->nome}</li>
-            //           <li>{$dados->data_entrega}</li>";
+            foreach($tableValues['arrayT1'] as $dados)
+            {
+                echo "<b>{$dados->nome}</b>
+                {$dados -> descricao} <br>
+                <p>Para: <br>{$dados -> data_entrega}</p>";
                       
-            // }
+            }
         ?>
-        </ul> -->
-
-        <div>
-            
         </div>
 
         <style>
@@ -56,6 +74,11 @@ session_start();
                 text-align: center;
             }
 
+            .center{
+                display: inline-grid;
+                justify-content: center;
+            }
+
             .border{
                 background-color: #1b2238;
                 padding: 15px;
@@ -63,6 +86,17 @@ session_start();
                 margin: 0 35%;
                 display: flex;
                 justify-content: center;
+            }
+
+            div{
+                background-color: #1b2238;
+                padding: 20px;
+                border-radius: 8px;
+                text-align: center;
+                color: white;
+                word-wrap: break-word;
+                margin: 0 auto;
+                width: 500px;
             }
 
         </style>
