@@ -52,7 +52,6 @@ if (isset($_FILES['pet_imagem']) && !empty($_FILES['pet_imagem'])) {
 //         $erro = true;
 //     }
     
-}
 
 ?>
     <br><br>
@@ -110,6 +109,19 @@ if (isset($_FILES['pet_imagem']) && !empty($_FILES['pet_imagem'])) {
                     <input class="form-label" type="submit" value="Adicionar bloco">
                 </div>
             </form><br>
+            <div>
+            <?php 
+                $blocosDAO = new blocosDAO();
+                $bloco = $blocosDAO->buscar_todos();
+
+                foreach($bloco as $dados)
+                {
+                    echo '<img src="../img-blocos/' . $dados->nome . ' "alt="imagem" class="blocos">';
+                    //echo '<pre>' . var_dump($dados->imagem) . '</pre>';
+
+                }
+            ?>
+            </div>
         </div>
 
         <br><br>
@@ -125,6 +137,17 @@ if (isset($_FILES['pet_imagem']) && !empty($_FILES['pet_imagem'])) {
                     <input class="form-label" type="submit" value="Adicionar pet">
                 </div>
             </form><br>
+            <div>
+            <?php 
+            $petDAO = new petDAO();
+            $pet = $petDAO->buscar_todos();
+
+            foreach($pet as $dados)
+            {
+                echo '<img src="../img-pets/' . $dados->nome . '"alt="imagem" class="pets">';
+            }
+            ?>
+            </div>
         </div>
     </div>
 
@@ -163,6 +186,21 @@ if (isset($_FILES['pet_imagem']) && !empty($_FILES['pet_imagem'])) {
 	</script>
         
     <style>
+        .blocos{
+            width: 50%;
+            border-radius: 12px;
+            padding: 10px;
+        }
+
+        .pets{
+            width: 40%;
+            border-radius: 12px;
+            padding: 10px;
+            display: inline-flex;
+            justify-content: center;
+            margin: auto;
+        }
+        
        h1{
             font-size: 40px;
             text-align: center;
