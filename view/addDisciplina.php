@@ -50,14 +50,14 @@ if($_POST){
         <br><br>
 		<h1 class="border">Adicionar disciplina</h1>
         <div class="form-atv">
-            <form action="#" method="post">
+            <form action="#" method="post" class="center">
                 <label for="nome">Nome da disciplina:</label>
                 <input type="text" name="nome" id="nome" placeholder="Adicione o nome da disciplina" value="<?php echo isset($_POST['nome'])?$_POST['nome']:''?>">
                 <div style="color:white"><?php echo $msg[0] != ""?$msg[0]:'';?></div> 
                 
                 <label for="descricao">Descrição da disciplina:</label>
                 <textarea name="descricao" id="descricao" placeholder="Adicione a descrição da disciplina"><?php echo isset($_POST['descricao'])?$_POST['descricao']:''?></textarea>
-                <div style="color:white"><?php echo $msg[1] != ""?$msg[1]:'';?></div>
+                <div style="color:#f01e2c"><?php echo $msg[1] != ""?$msg[1]:'';?></div>
 
                 <label for="curso">Curso:</label>
                 <select name="curso" id="curso">
@@ -81,7 +81,7 @@ if($_POST){
                             }//fim do foreach
 
                         ?>
-                        <div style="color:white"><?php echo $msg[2] != ""?$msg[2]:'';?></div>
+                        <div style="color:#f01e2c"><?php echo $msg[2] != ""?$msg[2]:'';?></div>
                     </select>
 
                 <br><br>
@@ -97,7 +97,6 @@ if($_POST){
         h1{
             font-size: 40px;
             text-align: center;
-            /* font-family: "Krona One", sans-serif; */
             font-weight: 800;
             font-style: normal;
             color: white;
@@ -136,7 +135,6 @@ if($_POST){
             border-radius: 6px;
             margin: 5px 0 10px 0;
             border: 1px solid #bbb;
-            /* background-color: #f8f8f8; */
             box-sizing: border-box;
             width: 100%;
             padding: 10px;

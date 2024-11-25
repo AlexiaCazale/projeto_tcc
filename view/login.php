@@ -69,14 +69,6 @@ if($_POST){
     </div>
     <div class="container">
         <div class="content">
-    
-		<?php 
-			if($msg[2] != "")
-			{
-				echo "<div class='alert alert-danger' role='alert'>{$msg[2]}</div>";
-				
-			}
-		?>
             <div class="login">
                 <h1>Faça login!</h1>
                 <form method="POST" action="">
@@ -87,7 +79,13 @@ if($_POST){
                     <label for="senha">Senha: </label>
                     <input type="password" name="senha">
                     <div style="color:#f01e2c"><?php echo $msg[1] != ""?$msg[1]:'';?></div> 
-
+                    <?php 
+                        if($msg[2] != "")
+                        {
+                            echo "<div style='color:#f01e2c' class='alert alert-danger' role='alert'>{$msg[2]}</div>";
+                            
+                        }
+                    ?>
                     <br><br>
                     <p>Não possui conta? Faça <a href="cadastro.php" class="login"><span>Cadastro</span></a>!</p>
                     <button type="submit" class="btn-entrar">Entrar</button> &nbsp; &nbsp;

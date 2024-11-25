@@ -81,7 +81,7 @@ function stopTimer() {
     clearInterval(descansoInterval);
     console.log("Timer parado.");
     lembrete2.classList.remove("hidden");
-    startButton.textContent = "Continuar";
+    startButton.textContent = "Iniciar";
     startButton.disabled = false;
 }
 

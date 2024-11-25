@@ -30,7 +30,7 @@ if($_POST){
         }
     
         if(empty($_POST["telefone"])){
-            $msg[3] = "Preencha o campo!";
+            $msg[3] = "Campo obrigatório!";
             $erro = true;
         }
     
