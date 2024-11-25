@@ -140,6 +140,7 @@ if (!isset($_SESSION['id'])) {
             padding: 10px;
             border-radius: 6px;
             color: black;
+            text-transform: uppercase;
         }
 
         .btn-center{

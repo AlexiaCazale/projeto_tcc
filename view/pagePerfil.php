@@ -12,6 +12,21 @@
         exit();
     }
     // var_dump($_SESSION);
+
+    if (isset($_FILES['perfil_imagem']) && !empty($_FILES['perfil_imagem'])) {
+
+        $usuario = new Usuario($_SESSION['id'], $_FILES["perfil_imagem"]["name"]);
+        $usuarioDAO = new usuarioDAO();
+        $usuarioDAO->alterarFoto($usuario);
+    
+        move_uploaded_file($_FILES['perfil_imagem']['tmp_name'], "../img-perfil/" . $_FILES['perfil_imagem']['name']);
+        // echo 'Update realizado com sucesso';
+
+    }
+
+    //echo '<pre>' . var_dump($_SESSION['foto_perfil']) . '</pre>';
+
+
 ?>
 
 <br><br>
@@ -23,13 +38,20 @@
     
     <div class="content">
         <h2 class="title">Altere seus dados</h2>
-        <label for="foto">Foto de perfil:</label>
-        <div class="photo">
-            <img src="../images/profile-picture.webp" class="profile-foto" alt="add-foto"> 
-            <i class="fa-regular fa-pen-to-square" style="color: #ffffff;"></i>            <!-- <div class="btn-center">
-                <a href="alterarPerfil.php" class="btn-alterar">Alterar foto</a> &nbsp; &nbsp;
-            </div> -->
-        </div>
+        <form class="form-control" action="#" method="POST" enctype="multipart/form-data">
+            <label for="foto">Foto de perfil:</label>
+            <div class="photo">
+                <img src="../img-perfil/<?php echo isset($_SESSION['foto_perfil']) ? $_SESSION['foto_perfil'] : 'profile-picture.webp'; ?>" class="profile-foto" alt="foto de perfil">
+                <br>
+                    
+                <img src="" id="foto">
+                    
+                <div class="btn-center">
+                    <input type="file" class="form-label" id="blocos" name="bloco_imagem" onchange="mostrarFoto(this)" accept="image/png, image/jpeg"> &nbsp; &nbsp; &nbsp; &nbsp;
+                    <button type="submit" class="btn-add">Adicionar foto</button>
+                </div>
+            </div>
+        </form>
         <br>
         <label for="nome">Nome: </label>
         <?php
@@ -65,8 +87,12 @@
 
         <label for="senha">Senha: </label>
         <?php
+        $senha = $_SESSION["senha"];
+        // Substitui a senha por asteriscos com o mesmo comprimento
+        $senha_oculta = str_repeat('*', strlen($senha));
+
             echo "<button class='info' readonly>";
-            echo "<b>" . $_SESSION["senha"] . "</b>";
+            echo $senha_oculta;
             echo "</button> <br>";
         ?>
         <br><br>
@@ -78,6 +104,24 @@
     </div>
 </div>
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+
+	<script>
+		function mostrarFoto(img)
+		{
+			if(img.files && img.files[0])
+			{
+				var reader = new FileReader();
+				reader.onload = function(e){
+					$('#foto')
+					.attr('src', e.target.result)
+					.width(170)
+					.height(100);
+				};
+				reader.readAsDataURL(img.files[0]);
+            }
+		}
+        </script>
 <style>
      h1{
             font-size: 40px;
@@ -99,7 +143,8 @@
         .photo{
             display: grid;
             justify-content: center;
-            align-items: center;
+            place-items: center;
+            color: white;
         }
 
         .photo i{
@@ -133,7 +178,7 @@
             
         }
 
-        input, .info{
+        input, .info, .btn-add{
             margin-top: 5px;
             border: 1px solid #bbb;
             box-sizing: border-box;
@@ -141,6 +186,7 @@
             padding: 10px;
             border-radius: 5px;
         }
+
 
         .info{
             cursor: auto;
@@ -164,17 +210,19 @@
             padding: 10px;
             border-radius: 6px;
             color: black;
+            
         }
 
         .btn-apagar{
             background-color: red;
             color: white;
-            font-size: 20px;
+            font-size: 15px;
             padding: 10px;
             border-radius: 6px;
             text-decoration: none;
             width: 105px;
             text-align: center;
+            text-transform: uppercase;
         }
 
         .btn-center{
@@ -184,12 +232,14 @@
 
         .btn-alterar{
             background-color: #F2E0A6;
-            font-size: 20px;
+            font-size: 15px;
             padding: 10px;
             border-radius: 6px;
             color: black;
             width: 105px;
             text-align: center;
+            text-transform: uppercase;
+            
         }
 
 </style>

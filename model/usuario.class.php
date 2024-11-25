@@ -1,7 +1,7 @@
 <?php
 	class Usuario
 	{
-		public function __construct(private int $idusuario = 0, private string $nome = "", private string $email = "", private string $senha = "", private string $telefone = "", private string $perfil = ""){}
+		public function __construct(private int $idusuario = 0, private string $nome = "", private string $email = "", private string $senha = "", private string $telefone = "", private string $perfil = "", private string $foto_perfil = '' ){}
 		
 		public function getIdusuario()
 		{
@@ -26,6 +26,10 @@
 		public function getPerfil()
 		{
 			return $this->perfil;
+		}
+		public function getFotoPerfil()
+		{
+			return $this->foto_perfil;
 		}
 
 	}

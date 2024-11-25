@@ -53,6 +53,27 @@
                 die();
             }
         }    
+		
+		public function adicionarFoto($usuario){
+			$sql = "UPDATE usuario SET foto_perfil = ? WHERE idusuario = ?";
+			try
+			{
+				$stm = $this->db->prepare($sql);
+				$stm -> bindValue(1, $usuario -> getFotoPerfil());
+				$stm -> bindValue(2, $usuario->getIdusuario()); 
+
+				$stm->execute();
+				$this->db = null;
+				return "Foto alterada com sucesso";
+			}
+			catch(PDOException $e)
+			{
+				$this->db = null;
+				echo $e->getMessage();
+				echo $e->getCode();
+				die();
+			}
+		}
 
 	
 		public function buscar_usuario($usuario){
@@ -73,7 +94,6 @@
 				die();
 			}
 		}
-	
 	
 		public function alterar($usuario)
 		{

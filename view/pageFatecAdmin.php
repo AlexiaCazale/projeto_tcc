@@ -36,23 +36,6 @@ if (isset($_FILES['pet_imagem']) && !empty($_FILES['pet_imagem'])) {
     // echo 'Update realizado com sucesso';
 }
 
-// $msg = array("","","","","");
-// if($_POST){
-
-//     $erro = false;
-
-//     if($_FILES["imagem"]["name"] == "")
-//     {
-//         $msg[2] = "Escolha uma imagem para o produto";
-//         $erro = true;
-//     }
-//     else if($_FILES["imagem"]["type"] != "image/png" && $_FILES["imagem"]["type"] != "image/jpg" && $_FILES["imagem"]["type"] != "image/jpeg")
-//     {
-//         $msg[2] = "Tipo de arquivo inválido";
-//         $erro = true;
-//     }
-    
-
 ?>
     <br><br>
     <h1 class="border">Fatec Jahu</h1>
@@ -200,7 +183,7 @@ if (isset($_FILES['pet_imagem']) && !empty($_FILES['pet_imagem'])) {
             justify-content: center;
             margin: auto;
         }
-        
+
        h1{
             font-size: 40px;
             text-align: center;
@@ -228,6 +211,7 @@ if (isset($_FILES['pet_imagem']) && !empty($_FILES['pet_imagem'])) {
             padding: 10px;
             border-radius: 6px;
             color: black;
+            text-transform: uppercase;
         }
 
         .btn-center{
