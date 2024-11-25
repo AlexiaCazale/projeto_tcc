@@ -27,6 +27,9 @@ SET time_zone = "+00:00";
 -- Estrutura para tabela `blocos`
 --
 
+CREATE DATABASE dbcorujario;
+USE dbcorujario;
+
 CREATE TABLE `blocos` (
   `idbloco` int(11) NOT NULL,
   `nome` varchar(80) NOT NULL,
@@ -149,6 +152,23 @@ ALTER TABLE `pet`
 ALTER TABLE `usuario`
   MODIFY `idusuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 COMMIT;
+
+ALTER TABLE `usuario`
+  MODIFY `perfil` varchar(20) NOT NULL;
+COMMIT;
+
+ALTER TABLE `blocos` DROP COLUMN `imagem`;
+
+ALTER TABLE `blocos`
+  MODIFY `nome` varchar(100) NOT NULL;
+COMMIT;
+
+SELECT * FROM dbcorujario.pet;
+
+DELETE FROM pet WHERE idpet = 1;
+DELETE FROM pet WHERE idpet = 2;
+DELETE FROM pet WHERE idpet = 4;
+
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

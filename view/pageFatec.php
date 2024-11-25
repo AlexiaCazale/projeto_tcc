@@ -51,7 +51,19 @@ if (!isset($_SESSION['id'])) {
         <form class="form-control" action="#" method="POST" enctype="multipart/form-data">
             <h2 class="border">Blocos</h2>
             <br><br>
-            <img src="../img-imported/<?php $bloco->imagem; ?>" alt="imagem">
+            <?php 
+                $blocosDAO = new blocosDAO();
+                $bloco = $blocosDAO->buscar_todos();
+
+                //echo '<pre>' . var_dump($blocosDAO->buscar_todos()) . '</pre>';
+
+                foreach($bloco as $dados)
+                {
+                    echo '<img src="../img-blocos/' . $dados->nome . ' "alt="imagem" class="blocos">';
+                    //echo '<pre>' . var_dump($dados->imagem) . '</pre>';
+
+                }
+            ?>
         </form>
             <br>
         </div>
@@ -65,15 +77,35 @@ if (!isset($_SESSION['id'])) {
                 <?php 
                 $petDAO = new petDAO();
                 $pet = $petDAO->buscar_todos();
+
+                foreach($pet as $dados)
+                {
+                    echo '<img src="../img-pets/' . $dados->nome . '"alt="imagem" class="pets">';
+                }
                 ?>
-                <img src="../img-imported/<?php $pet->imagem; ?>" alt="imagem">
             </form>
             <br>
         </div>
     </div>
         
     <style>
-       h1{
+
+        .blocos{
+            width: 50%;
+            border-radius: 12px;
+            padding: 10px;
+        }
+
+        .pets{
+            width: 40%;
+            border-radius: 12px;
+            padding: 10px;
+            display: inline-flex;
+            justify-content: center;
+            margin: auto;
+        }
+
+        h1{
             font-size: 40px;
             text-align: center;
             /* font-family: "Krona One", sans-serif; */

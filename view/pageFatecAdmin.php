@@ -1,6 +1,7 @@
 <?php
 
 session_start();
+
 require_once "header.php";
 require_once "../model/conexao.class.php";
 require_once "../model/blocos.class.php";
@@ -15,66 +16,41 @@ if (!isset($_SESSION['id'])) {
     exit();
 }
 
+if (isset($_FILES['bloco_imagem']) && !empty($_FILES['bloco_imagem'])) {
 
-$msg = array("","","","","");
-if($_POST)
-{
-    $erro = false;
+    $bloco = new Blocos(0, $_FILES["bloco_imagem"]["name"]);
+    $blocoDAO = new blocosDAO();
+    $blocoDAO->inserir($bloco);
+    
+    move_uploaded_file($_FILES['bloco_imagem']['tmp_name'], "../img-blocos/" . $_FILES['bloco_imagem']['name']);
+    // echo 'Update realizado com sucesso';
+}
 
-    if($_FILES["imagem"]["name"] == "")
-    {
-        $msg[2] = "Escolha uma imagem para o produto";
-        $erro = true;
-    }
-    else if($_FILES["imagem"]["type"] != "image/png" && $_FILES["imagem"]["type"] != "image/jpg" && $_FILES["imagem"]["type"] != "image/jpeg")
-    {
-        $msg[2] = "Tipo de arquivo inválido";
-        $erro = true;
-    }
+if (isset($_FILES['pet_imagem']) && !empty($_FILES['pet_imagem'])) {
 
-        if (isset($_FILES['bloco_imagem'])) {
-            if(!$erro){
-                //gravar no banco de dados
-                $bloco = new Blocos(0, $_FILES["bloco_imagem"]["name"]);
-                $blocoDAO = new blocoDAO();
-                $blocoDAO->inserir($bloco);
+    $pet = new Pet(0, $_FILES["pet_imagem"]["name"]);
+    $petDAO = new petDAO();
+    $petDAO->inserir($pet);
 
-                //upload
-                if(!file_exists("../img-imported/{$_FILES["bloco_imagem"]["name"]}"))
-			    {
-                    $path = '../img-imported/';
-                    $uploadfile = $path . basename($_FILES["bloco_imagem"]["name"]);
-                    if (move_uploaded_file($_FILES['bloco_imagem']['tmp_name'], $uploadfile)) {
-                        echo "Imagem do bloco enviada com sucesso!";
-                    } else {
-                        echo "Falha ao mover a imagem do bloco.";
-                    }
-			    }
-                //header("location:pageFatec.php");
-            }
-        }
+    move_uploaded_file($_FILES['pet_imagem']['tmp_name'], "../img-pets/" . $_FILES['pet_imagem']['name']);
+    // echo 'Update realizado com sucesso';
+}
 
-        if (isset($_FILES['pet_imagem'])) {
-            if(!$erro){
-                //gravar no banco de dados
-                $pet = new Pet(0, $_FILES["pet_imagem"]["name"]);
-                $petDAO = new petDAO();
-                $petDAO->inserir($pet);
+// $msg = array("","","","","");
+// if($_POST){
 
-                //upload
-                if(!file_exists("../img-imported/{$_FILES["pet_imagem"]["name"]}"))
-                {
-                    $path = '../img-imported/';
-                    $uploadfile = $path . basename($_FILES["pet_imagem"]["name"]);
-                    if (move_uploaded_file($_FILES['pet_imagem']['tmp_name'], $uploadfile)) {
-                        echo "Imagem do pet enviada com sucesso!";
-                    } else {
-                        echo "Falha ao mover a imagem do pet.";
-                    }
-                }
-                //header("location:pageFatec.php");
-            }
-        }
+//     $erro = false;
+
+//     if($_FILES["imagem"]["name"] == "")
+//     {
+//         $msg[2] = "Escolha uma imagem para o produto";
+//         $erro = true;
+//     }
+//     else if($_FILES["imagem"]["type"] != "image/png" && $_FILES["imagem"]["type"] != "image/jpg" && $_FILES["imagem"]["type"] != "image/jpeg")
+//     {
+//         $msg[2] = "Tipo de arquivo inválido";
+//         $erro = true;
+//     }
     
 }
 

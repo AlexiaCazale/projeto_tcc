@@ -8,12 +8,11 @@
 		
 		public function inserir($bloco)
 		{
-			$sql = "INSERT INTO blocos (nome, imagem) VALUES(?,?)";
+			$sql = "INSERT INTO blocos (nome)VALUES(?,?)";
 			try
 			{
 			$stm = $this->db->prepare($sql);
 			$stm->bindValue(1, $bloco->getNome());
-			$stm->bindValue(2, $bloco->getImagem());
 			$stm->execute();
 			$this->db = null;
 			return "Bloco inserido com sucesso";
@@ -24,15 +23,14 @@
 				echo $e->getMessage();
 				die();
 			}
-			
 		}
+		
 		public function alterar($bloco)
 		{
-			$sql = "UPDATE blocos SET nome = ?, imagem = ? WHERE idbloco = ?";
+			$sql = "UPDATE blocos SET nome = ? WHERE idbloco = ?";
 			$stm = $this->db->prepare($sql);
 			$stm->bindValue(1, $bloco->getNome());
-			$stm->bindValue(2, $bloco->getImagem());
-			$stm->bindValue(3, $bloco->getIdbloco());
+			$stm->bindValue(2, $bloco->getIdbloco());
 			$stm->execute();
 			$this->db = null;
 		}
@@ -45,17 +43,7 @@
 			$this->db = null;
 			return $stm->fetchAll(PDO::FETCH_OBJ);
 		}
-		
-		// public function buscar_um($produto)
-		// {
-		// 	$sql = "SELECT * FROM produtos WHERE idproduto = ?";
-			
-		// 	$stm = $this->db->prepare($sql);
-		// 	$stm->bindValue(1,$produto->getIdproduto());
-		// 	$stm->execute();
-		// 	$this->db = null;
-		// 	return $stm->fetchAll(PDO::FETCH_OBJ);
-		// }
+
 		
 	}//fim da classe produtoDAO
 ?>
