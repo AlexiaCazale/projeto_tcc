@@ -63,11 +63,9 @@ function criarTimer(min, seg, minSecundario, segSecundario) {
         } else {
             clearInterval(timerInterval);
             if(bichinho1.classList.contains('hidden')) {
-                console.log('Descanso!');
                 bichinho1.classList.remove('hidden');
                 bichinho2.classList.add('hidden')
             } else {
-                console.log("Estudo!");
                 bichinho1.classList.add("hidden");
                 bichinho2.classList.remove("hidden");
             }
@@ -79,9 +77,7 @@ function criarTimer(min, seg, minSecundario, segSecundario) {
 function stopTimer() {
     clearInterval(timerInterval);
     clearInterval(descansoInterval);
-    console.log("Timer parado.");
     lembrete2.classList.remove("hidden");
-    startButton.textContent = "Iniciar";
     startButton.disabled = false;
 }
 
@@ -97,6 +93,4 @@ function resetTimer() {
     lembrete2.classList.add("hidden");
     bichinho1.classList.add("hidden");
     bichinho2.classList.add("hidden");
-    startButton.textContent = "Iniciar";
-    console.log("Timer reiniciado.");
 }

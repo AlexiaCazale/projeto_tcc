@@ -42,33 +42,36 @@ if (isset($_FILES['pet_imagem']) && !empty($_FILES['pet_imagem'])) {
     <br><br>
     <div class="container">
         <div class="content">
-            <h2 class="border">Cursos</h2>
+            <h2 class="border">Cursos e Disciplinas</h2>
             <br>
             <div class="infos">
                 <div class="cursos">
-                    <h3 class="title">Selecione um curso: </h3>
+                    <h3 class="title">Cursos cadastrados: </h3>
                     <br>
-                    <input type="radio" name="sistemas-para-internet" value="1">
-                    <label for="sistemas-para-internet">Construção Naval</label> <br>
-                    <input type="radio" name="sistemas-para-internet" value="2">
-                    <label for="sistemas-para-internet">Gestão da Produção Industrial</label><br>
-                    <input type="radio" name="sistemas-para-internet" value="3">
-                    <label for="sistemas-para-internet">Gestão Empresarial</label><br>
-                    <input type="radio" name="sistemas-para-internet" value="4">
-                    <label for="sistemas-para-internet">Meio Ambiente e Recursos Hídricos</label><br>
-                    <input type="radio" name="sistemas-para-internet" value="5">
-                    <label for="sistemas-para-internet">Sistemas para Internet</label><br>
-                    <input type="radio" name="sistemas-para-internet" value="6">
-                    <label for="sistemas-para-internet">Desenvolvimento de Software Multiplataforma</label><br>
-                    <input type="radio" name="sistemas-para-internet" value="7">
-                    <label for="sistemas-para-internet">Gestão da Tecnologia da Informação</label><br>
-                    <input type="radio" name="sistemas-para-internet" value="8">
-                    <label for="sistemas-para-internet">Logística</label><br>
-                    <input type="radio" name="sistemas-para-internet" value="9">
-                    <label for="sistemas-para-internet">Sistemas Navais</label><br>
+                    <ul class="center_colunm">
+                        <?php
+
+                            $curso = new Curso();
+                            $cursoDAO = new cursoDAO();
+                            $ret = $cursoDAO -> buscar_todos($curso);
+            
+                            foreach($ret as $dado)
+                            {
+                                if(isset($_POST["curso"]) && $_POST["curso"] == $dado->idcurso)
+                                {
+                                    echo "<li value='{$dado->idcurso}' selected>{$dado->nome}</li>";
+                                }
+                                else
+                                {
+                                    echo "<li value='{$dado->idcurso}'>{$dado->nome}</li>";
+                                }
+                            }//fim do foreach
+                                
+                        ?>
+                    </ul>
                 </div>
                 <div class="disciplinas">
-                    <h3 class="title">Disciplinas:</h3>
+                    <h3 class="title">Disciplina:</h3>
                     <br><br>
                     <div class="btn-center">
                         <!-- <a href="addCurso.php"><button>Adicionar curso</button></a> &nbsp; &nbsp; -->
@@ -169,6 +172,17 @@ if (isset($_FILES['pet_imagem']) && !empty($_FILES['pet_imagem'])) {
 	</script>
         
     <style>
+
+        .center_colunm {
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            flex-wrap: wrap;
+            align-content: flex-end;
+            align-items: flex-start;
+            margin-right: 10%;
+        }
+
         .blocos{
             width: 50%;
             border-radius: 12px;
@@ -235,9 +249,7 @@ if (isset($_FILES['pet_imagem']) && !empty($_FILES['pet_imagem'])) {
         }
 
         .cursos{
-            width: 50%;
-            text-align: left;
-            margin-left: 10px;
+            width: 50%; 
         }
 
         input, label{
