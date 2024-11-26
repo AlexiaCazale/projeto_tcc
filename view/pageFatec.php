@@ -5,6 +5,7 @@ require_once "header.php";
 require_once "../model/conexao.class.php";
 require_once "../model/blocosDAO.class.php";
 require_once "../model/cursoDAO.class.php";
+require_once "../model/curso.class.php";
 require_once "../model/petDAO.class.php";
 
 if (!isset($_SESSION['id'])) {
@@ -24,33 +25,35 @@ if (!isset($_SESSION['id'])) {
                 <div class="cursos">
                     <h3 class="title">Selecione um curso: </h3>
                     <br>
-                    <input type="radio" name="sistemas-para-internet" value="1">
-                    <label for="sistemas-para-internet">Construção Naval</label> <br>
-                    <input type="radio" name="sistemas-para-internet" value="2">
-                    <label for="sistemas-para-internet">Gestão da Produção Industrial</label><br>
-                    <input type="radio" name="sistemas-para-internet" value="3">
-                    <label for="sistemas-para-internet">Gestão Empresarial</label><br>
-                    <input type="radio" name="sistemas-para-internet" value="4">
-                    <label for="sistemas-para-internet">Meio Ambiente e Recursos Hídricos</label><br>
-                    <input type="radio" name="sistemas-para-internet" value="5">
-                    <label for="sistemas-para-internet">Sistemas para Internet</label><br>
-                    <input type="radio" name="sistemas-para-internet" value="6">
-                    <label for="sistemas-para-internet">Desenvolvimento de Software Multiplataforma</label><br>
-                    <input type="radio" name="sistemas-para-internet" value="7">
-                    <label for="sistemas-para-internet">Gestão da Tecnologia da Informação</label><br>
-                    <input type="radio" name="sistemas-para-internet" value="8">
-                    <label for="sistemas-para-internet">Logística</label><br>
-                    <input type="radio" name="sistemas-para-internet" value="9">
-                    <label for="sistemas-para-internet">Sistemas Navais</label><br>
+                    <?php
+
+                            $curso = new Curso();
+                            $cursoDAO = new cursoDAO();
+                            $ret = $cursoDAO -> buscar_todos($curso);
+            
+                            foreach($ret as $dado)
+                            {
+                                if(isset($_POST["curso"]) && $_POST["curso"] == $dado->idcurso)
+                                {
+                                    echo "<input type='radio' value='{$dado->idcurso}' name='curso' id='{$dado->idcurso}'>";
+                                    echo "<label for='{$dado->idcurso}'>{$dado->nome}</label> ";
+                                }
+                                else
+                                {
+                                    echo "<input type='radio' value='{$dado->idcurso}' name='curso' id='{$dado->idcurso}'>";
+                                    echo "<label for='{$dado->idcurso}'>{$dado->nome}</label> ";
+                                }
+                            }//fim do foreach
+                                
+                        ?>
                 </div>
             </div>
-            <button class="center">Buscar grade</button>
+            <button class="center">Mostrar Disciplinas</button>
         </div>
         <br><br>
         <div class="content">
         <form class="form-control" action="#" method="POST" enctype="multipart/form-data">
             <h2 class="border">Blocos</h2>
-            <br><br>
             <?php 
                 $blocosDAO = new blocosDAO();
                 $bloco = $blocosDAO->buscar_todos();
@@ -73,7 +76,7 @@ if (!isset($_SESSION['id'])) {
         <div class="content">
             <form class="form-control" action="#" method="POST" enctype="multipart/form-data">
                 <h2 class="border">Pets</h2>
-                <br><br>
+                <div class="center">
                 <?php 
                 $petDAO = new petDAO();
                 $pet = $petDAO->buscar_todos();
@@ -83,6 +86,7 @@ if (!isset($_SESSION['id'])) {
                     echo '<img src="../img-pets/' . $dados->nome . '"alt="imagem" class="pets">';
                 }
                 ?>
+                </div>
             </form>
             <br>
         </div>
@@ -97,7 +101,7 @@ if (!isset($_SESSION['id'])) {
         }
 
         .pets{
-            width: 40%;
+            width: 30%;
             border-radius: 12px;
             padding: 10px;
             display: inline-flex;
@@ -120,7 +124,6 @@ if (!isset($_SESSION['id'])) {
             align-items: center;
             justify-content: center;
             flex-wrap: wrap;
-            flex-direction: flex_colunm;
         }
 
         .border{
@@ -158,17 +161,17 @@ if (!isset($_SESSION['id'])) {
         .infos, .title{
             width: 100%;
             display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-direction: flex_colunm;
-            text-align: center;
+            /* align-items: center;
+            justify-content: center; */
+            /* text-align: center; */
             color: white;
+            margin-left: 15px;
         }
 
-        .cursos{
+        /* .cursos{
             width: 50%;
-            text-align: justify;
-        }
+            /* text-align: justify; 
+        } */
 
         input, label{
             padding: 5px;

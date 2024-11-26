@@ -1,6 +1,6 @@
 <?php
     class Disciplina{
-        public function __construct(private int $iddisciplina = 0, private string $nome = '', private string $descricao = '', private array $curso = array()){}
+        public function __construct(private int $iddisciplina = 0, private string $nome = '', private string $descricao = '', private $curso = null){}
 
         public function getIddisciplina(){
             return $this -> iddisciplina;

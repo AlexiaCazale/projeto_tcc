@@ -8,7 +8,7 @@
 		
 		public function inserir($pet)
 		{
-			$sql = "INSERT INTO pet (nome) VALUES(?,?)";
+			$sql = "INSERT INTO pet (nome) VALUES(?)";
 			try
 			{
 			$stm = $this->db->prepare($sql);

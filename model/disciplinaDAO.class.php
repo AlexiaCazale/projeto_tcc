@@ -26,12 +26,13 @@
 
 		public function inserir($disciplina)
 		{
-			$sql = "INSERT INTO disciplina (nome, descricao) VALUES(?, ?)";
+			$sql = "INSERT INTO disciplina (nome, descricao, idcurso) VALUES(?, ?, ?)";
 			try
 			{
 				$stm = $this->db->prepare($sql);
 				$stm->bindValue(1, $disciplina->getNome());
 				$stm->bindValue(2, $disciplina->getDescricao());
+				$stm->bindValue(3, $disciplina->getCurso()->getIdcurso());
 				$stm->execute();
 				$this->db = null;
 				return "Disciplina inserido com sucesso";

@@ -38,10 +38,10 @@
     
     <div class="content">
         <h2 class="title">Altere seus dados</h2>
-        <form class="form-control" action="#" method="POST" enctype="multipart/form-data">
+        <!-- <form class="form-control" action="#" method="POST" enctype="multipart/form-data">
             <label for="foto">Foto de perfil:</label>
             <div class="photo">
-                <img src="../img-perfil/<?php echo isset($_SESSION['foto_perfil']) ? $_SESSION['foto_perfil'] : 'profile-picture.webp'; ?>" class="profile-foto" alt="foto de perfil">
+                <img src="../img-perfil/<?php //echo isset($_SESSION['foto_perfil']) ? $_SESSION['foto_perfil'] : 'profile-picture.webp'; ?>" class="profile-foto" alt="foto de perfil">
                 <br>
                     
                 <img src="" id="foto">
@@ -51,7 +51,7 @@
                     <button type="submit" class="btn-add">Adicionar foto</button>
                 </div>
             </div>
-        </form>
+        </form> -->
         <br>
         <label for="nome">Nome: </label>
         <?php
@@ -98,7 +98,7 @@
         <br><br>
 
         <div class="btn-center">
-            <a href="alterarPerfil.php" class="btn-alterar">Alterar</a> &nbsp; &nbsp;
+            <!-- <a href="alterarPerfil.php" class="btn-alterar">Alterar</a> &nbsp; &nbsp; -->
             <a href="logout.php" class="btn-apagar">Sair</a>
         </div>
     </div>

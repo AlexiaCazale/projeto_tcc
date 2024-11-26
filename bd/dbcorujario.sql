@@ -27,8 +27,8 @@ SET time_zone = "+00:00";
 -- Estrutura para tabela `blocos`
 --
 
-CREATE DATABASE dbcorujario;
-USE dbcorujario;
+-- CREATE DATABASE dbcorujario;
+-- USE dbcorujario;
 
 CREATE TABLE `blocos` (
   `idbloco` int(11) NOT NULL,

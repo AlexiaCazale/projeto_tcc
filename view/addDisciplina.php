@@ -16,24 +16,26 @@
             $erro = true;
         }
 
-        if(strlen($_POST["nome"]) < 7){
-            $msg[0] = "Nome do produto deve ter no mínimo 7 caracteres";
-            $erro = true;
-        }
-
         if(empty($_POST["descricao"])){
             $msg[1] = "Preencha o campo!";
             $erro = true;
         }
 
         if($_POST["curso"] == ''){
-            $msg[3] = "Preencha o campo!";
+            $msg[3] = "Selecione um curso!";
             $erro = true;
         }
 
         if(!$erro){
             //Gravar no bd
-            $disciplina = new Disciplina(0, $_POST["nome"], $_POST["descricao"]);
+            $curso = new Curso($_POST['curso']);
+
+            $disciplina = new Disciplina(0, $_POST["nome"], $_POST["descricao"], $curso);
+
+            // $cursoDAO = new cursoDAO();
+            // $retorno -> buscar_todos($curso);
+
+            echo '<pre>' . var_dump($curso) . '</pre>';
 
             $disciplinaDAO = new disciplinaDAO();
             $disciplinaDAO -> inserir($disciplina);

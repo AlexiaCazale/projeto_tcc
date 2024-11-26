@@ -8,6 +8,8 @@ require_once "../model/blocos.class.php";
 require_once "../model/blocosDAO.class.php";
 require_once "../model/cursoDAO.class.php";
 require_once "../model/curso.class.php";
+require_once "../model/disciplinaDAO.class.php";
+require_once "../model/disciplina.class.php";
 require_once "../model/pet.class.php";
 require_once "../model/petDAO.class.php";
 
@@ -48,7 +50,7 @@ if (isset($_FILES['pet_imagem']) && !empty($_FILES['pet_imagem'])) {
                 <div class="cursos">
                     <h3 class="title">Cursos cadastrados: </h3>
                     <br>
-                    <ul class="center_colunm">
+                    <div class="center_colunm">
                         <?php
 
                             $curso = new Curso();
@@ -59,22 +61,45 @@ if (isset($_FILES['pet_imagem']) && !empty($_FILES['pet_imagem'])) {
                             {
                                 if(isset($_POST["curso"]) && $_POST["curso"] == $dado->idcurso)
                                 {
-                                    echo "<li value='{$dado->idcurso}' selected>{$dado->nome}</li>";
+                                    echo "<div class='align_row'>";
+                                    echo "<input type='radio' value='{$dado->idcurso}' name='curso' id='{$dado->idcurso}'>";
+                                    echo "<label for='{$dado->idcurso}'>{$dado->nome}</label> <br>";
+                                    echo "</div>";
                                 }
                                 else
                                 {
-                                    echo "<li value='{$dado->idcurso}'>{$dado->nome}</li>";
+                                    echo "<div class='align_row'>";
+                                    echo "<input type='radio' value='{$dado->idcurso}' name='curso' id='{$dado->idcurso}'>";
+                                    echo "<label for='{$dado->idcurso}'>{$dado->nome}</label> <br>";
+                                    echo "</div>";
                                 }
                             }//fim do foreach
                                 
                         ?>
-                    </ul>
+                    </div>
                 </div>
                 <div class="disciplinas">
                     <h3 class="title">Disciplina:</h3>
-                    <br><br>
-                    <div class="btn-center">
+                    <div>
                         <!-- <a href="addCurso.php"><button>Adicionar curso</button></a> &nbsp; &nbsp; -->
+                        <?php 
+                            $disciplina = new Disciplina();
+                            $disciplinaDAO = new disciplinaDAO();
+                            $retorno = $disciplinaDAO->buscar_todos($disciplina);
+
+                            foreach($retorno as $dados)
+                            {
+                                if(isset($_POST["disciplina"]) && $_POST["disciplina"] == $dados->iddisciplina)
+                                {
+                                    echo "<inp value='{$dados->iddisciplina}' selected>{$dados->nome}</p>";
+                                }
+                                else
+                                {
+                                    echo "<p value='{$dados->iddisciplina}'>{$dados->nome}</p>";
+                                }
+                            }
+                        ?>  
+
                         <a href="addDisciplina.php"><button>Adicionar disciplina</button></a>
                         
                     </div>
@@ -123,7 +148,7 @@ if (isset($_FILES['pet_imagem']) && !empty($_FILES['pet_imagem'])) {
                     <input class="form-label" type="submit" value="Adicionar pet">
                 </div>
             </form><br>
-            <div>
+            <div class="center">
             <?php 
             $petDAO = new petDAO();
             $pet = $petDAO->buscar_todos();
@@ -173,14 +198,22 @@ if (isset($_FILES['pet_imagem']) && !empty($_FILES['pet_imagem'])) {
         
     <style>
 
+        .center {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
         .center_colunm {
             display: flex;
-            justify-content: center;
+            /* justify-content: center;*/
             flex-direction: column;
-            flex-wrap: wrap;
-            align-content: flex-end;
+            /* flex-wrap: wrap;
+            align-content: flex-end; */ 
             align-items: flex-start;
-            margin-right: 10%;
+            /* margin-right: 10%; */
+            text-align: start;
         }
 
         .blocos{
@@ -190,7 +223,7 @@ if (isset($_FILES['pet_imagem']) && !empty($_FILES['pet_imagem'])) {
         }
 
         .pets{
-            width: 40%;
+            width: 30%;
             border-radius: 12px;
             padding: 10px;
             display: inline-flex;
@@ -259,6 +292,15 @@ if (isset($_FILES['pet_imagem']) && !empty($_FILES['pet_imagem'])) {
 
         .disciplinas{
             width: 50%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .align_row {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
         }
 
     </style>
