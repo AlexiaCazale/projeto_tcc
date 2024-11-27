@@ -262,6 +262,10 @@ $ret = $cursoDAO -> buscar_todos($curso);
         
     <style>
 
+        h2{
+            text-transform: uppercase;
+        }
+
         .center {
             display: flex;
             align-items: center;
@@ -340,14 +344,14 @@ $ret = $cursoDAO -> buscar_todos($curso);
         .infos, .title{
             width: 100%;
             display: flex;
-            justify-content: space-around;
-            text-align: center;
+            /* justify-content: space-around; */
             color: white;
         }
 
         .cursos{
             width: 50%; 
             margin-left: 10px;
+            align-items: start;
         }
 
         input, label{
@@ -359,13 +363,14 @@ $ret = $cursoDAO -> buscar_todos($curso);
             width: 50%;
             display: flex;
             flex-direction: column;
+            align-items: start;
         }
 
         .align_row {
             display: flex;
             flex-direction: row;
-            justify-content: center;
-            align-items: center;
+            /* justify-content: center;
+            align-items: center; */
         }
 
     </style>

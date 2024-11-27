@@ -37,7 +37,7 @@
 <div class="container">
     
     <div class="content">
-        <h2 class="title">Altere seus dados</h2>
+        <h2 class="title">Verifique seus dados</h2>
         <!-- <form class="form-control" action="#" method="POST" enctype="multipart/form-data">
             <label for="foto">Foto de perfil:</label>
             <div class="photo">
@@ -123,6 +123,11 @@
 		}
         </script>
 <style>
+
+    h2{
+        text-transform: uppercase;
+    }
+    
      h1{
             font-size: 40px;
             text-align: center;

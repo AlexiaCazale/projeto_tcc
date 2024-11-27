@@ -26,6 +26,7 @@ $ret = $cursoDAO -> buscar_todos($curso);
     <div class="container">
         <div class="content center">
             <!-- <h2 class="border">retorno</h2> -->
+            <h2 class="border">Cursos e Disciplinas</h2>
             <br>
             <div class="infos ">
                 <div class="retorno">
@@ -176,6 +177,10 @@ $ret = $cursoDAO -> buscar_todos($curso);
         
     <style>
 
+        .retorno{
+            width: 50%;
+        }
+
         .blocos{
             width: 50%;
             border-radius: 12px;
@@ -198,6 +203,10 @@ $ret = $cursoDAO -> buscar_todos($curso);
             font-weight: 800;
             font-style: normal;
             color: white;
+            text-transform: uppercase;
+        }
+
+        h2{
             text-transform: uppercase;
         }
 
