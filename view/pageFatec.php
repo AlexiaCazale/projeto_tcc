@@ -62,23 +62,27 @@ $ret = $cursoDAO -> buscar_todos($curso);
                                     
                     //echo '<pre>' . var_dump($cursoSelecionado) . '</pre>';
 
-                    if (isset($_POST["curso"])) {            
-    
-                    $disciplina = new Disciplina();
-                    $disciplinaDAO = new disciplinaDAO();
-                    $retorno = $disciplinaDAO->buscar_todos($disciplina);
-
-                    echo '<pre>' . var_dump($retorno) . '</pre>';
-
+                    //if (isset($_POST["curso"])) {            
+                        
+                        $disciplina = new Disciplina();
+                        $disciplinaDAO = new disciplinaDAO();
+                        $retorno = $disciplinaDAO->buscar_todos($disciplina);
+                        
+                        echo '<pre>' . var_dump($retorno) . '</pre>';
 
                         foreach($retorno as $dado){
-                            if ($dado->idcurso == $cursoSelecionado) {
+                            if ($dado->idcurso == 1) {
                                 echo "<div class='align_row'>";
                                 echo "<p name='curso' id='{$dado->idcurso}'>{$dado->nome}</p>";
                                 echo "</div>";
                             }
+                            // if ($dado->idcurso == 2) {
+                            //     echo "<div class='align_row'>";
+                            //     echo "<p name='curso' id='{$dado->idcurso}'>{$dado->nome}</p>";
+                            //     echo "</div>";
+                            // }
                         }
-                    }
+                    //}
 
                 ?>  
                 <input type="submit" class="center" value="Mostrar Disciplinas">
