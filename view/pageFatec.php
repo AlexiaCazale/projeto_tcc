@@ -15,28 +15,9 @@ if (!isset($_SESSION['id'])) {
     exit();
 }
 
-$cursos = [
-    'dspConstrucaoNaval' => [],
-    'dspGpi' => [],
-    'dspGestaoEmpresarial' => [],
-    'dspMeioAmbiente' => [],
-    'dspSi' => [],
-    'dspDsm' => [],
-    'dspGti' => [],
-    'dspLogistica' => [],
-    'dspSistemasNavais' => []
-];
-
-function teste($x){
-
-    global $retorno, $cursos;
-    
-    foreach($retorno as $dado){
-        if($dado->disciplina == $x){
-            $cursos['dsp' . ($x + 1)][] = $dado;
-        }
-    }
-}
+$curso = new Curso();
+$cursoDAO = new cursoDAO();
+$ret = $cursoDAO -> buscar_todos($curso);
 
 ?>
     <br><br>
@@ -44,17 +25,15 @@ function teste($x){
     <br><br>
     <div class="container">
         <div class="content center">
-            <h2 class="border">Cursos</h2>
+            <!-- <h2 class="border">retorno</h2> -->
             <br>
             <div class="infos ">
-                <div class="cursos">
+                <div class="retorno">
                     <h3 class="title">Selecione um curso: </h3>
                     <br>
                     <?php
-
-                            $curso = new Curso();
-                            $cursoDAO = new cursoDAO();
-                            $ret = $cursoDAO -> buscar_todos($curso);
+                        global $ret;
+                           
             
                             foreach($ret as $dado)
                             {
@@ -77,64 +56,34 @@ function teste($x){
                         ?>
                 </div>
                 <div class="disciplinas">
-                <?php 
-                            $disciplina = new Disciplina();
-                            $disciplinaDAO = new disciplinaDAO();
-                            $retorno = $disciplinaDAO->buscar_todos($disciplina);
-                            
+                <?php                           
+                    global $ret;
+                    $cursoSelecionado = $ret;
+                                    
+                    //echo '<pre>' . var_dump($cursoSelecionado) . '</pre>';
 
-                            global $cursos;
+                    if (isset($_POST["curso"])) {            
+    
+                    $disciplina = new Disciplina();
+                    $disciplinaDAO = new disciplinaDAO();
+                    $retorno = $disciplinaDAO->buscar_todos($disciplina);
 
-                            if (isset($_POST["curso"]) && $_POST["curso"] == 0) {
-                                foreach ($cursos['dspConstrucaoNaval'] as $dados) {
-                                    echo "<p value='{$dados->iddisciplina}'>{$dados->nome}</p>";
-                                }
-                            }
+                    echo '<pre>' . var_dump($retorno) . '</pre>';
 
-                            if (isset($_POST["curso"]) && $_POST["curso"] == 1) {
-                            foreach($cursos['dspGpi'] as $dados){
-                                echo "<p value='{$dados->iddisciplina}'>{$dados->nome}</p>";
-                            }
-                        }
 
-                            if (isset($_POST["curso"]) && $_POST["curso"] == 2) {
-                            foreach($cursos['dspGestaoEmpresarial'] as $dados){
-                                echo "<p value='{$dados->iddisciplina}'>{$dados->nome}</p>";
+                        foreach($retorno as $dado){
+                            if ($dado->idcurso == $cursoSelecionado) {
+                                echo "<div class='align_row'>";
+                                echo "<p name='curso' id='{$dado->idcurso}'>{$dado->nome}</p>";
+                                echo "</div>";
                             }
                         }
+                    }
 
-                            if (isset($_POST["curso"]) && $_POST["curso"] == 3) {
-                            foreach($cursos['dspMeioAmbiente'] as $dados){
-                                echo "<p value='{$dados->iddisciplina}'>{$dados->nome}</p>";
-                            }
-                        }
-
-                            if (isset($_POST["curso"]) && $_POST["curso"] == 4) {
-                            foreach($cursos['dspSi'] as $dados){
-                                echo "<p value='{$dados->iddisciplina}'>{$dados->nome}</p>";
-                            }
-                        }
-
-                            foreach($cursos['dspDsm'] as $dados){
-                                echo "<p value='{$dados->iddisciplina}'>{$dados->nome}</p>";
-                            }
-
-                            foreach($cursos['dspGti'] as $dados){
-                                echo "<p value='{$dados->iddisciplina}'>{$dados->nome}</p>";
-                            }
-
-                            foreach($cursos['dspLogistica'] as $dados){
-                                echo "<p value='{$dados->iddisciplina}'>{$dados->nome}</p>";
-                            }
-
-                            foreach($cursos['dspSistemasNavais'] as $dados){
-                                echo "<p value='{$dados->iddisciplina}'>{$dados->nome}</p>";
-                            }
-
-                        ?>  
+                ?>  
+                <input type="submit" class="center" value="Mostrar Disciplinas">
                 </div>
             </div>
-            <button class="center">Mostrar Disciplinas</button>
         </div>
         <br><br>
         <div class="content">
@@ -254,7 +203,7 @@ function teste($x){
             margin-left: 15px;
         }
 
-        /* .cursos{
+        /* .retorno{
             width: 50%;
             /* text-align: justify; 
         } */

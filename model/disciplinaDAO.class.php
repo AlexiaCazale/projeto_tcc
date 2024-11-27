@@ -73,7 +73,7 @@
 			try
 			{
 				$stm = $this->db->prepare($sql);
-				$stm->bindValue(1, $curso->getIddisciplina());
+				$stm->bindValue(1, $disciplina->getIddisciplina());
 				$stm->execute();
 				$this->db = null;
 				return "Disciplina excluida com sucesso";

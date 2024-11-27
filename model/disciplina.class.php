@@ -18,9 +18,9 @@
             return $this -> curso;
         }
 
-        public function setCurso(Curso $curso){
-            $this -> curso[] = $curso;
-        }
+        // public function setCurso(Curso $curso){
+        //     $this -> curso[] = $curso;
+        // }
     }
 
 ?>
