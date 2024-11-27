@@ -38,6 +38,29 @@ if (isset($_FILES['pet_imagem']) && !empty($_FILES['pet_imagem'])) {
     // echo 'Update realizado com sucesso';
 }
 
+$cursos = [
+    'dspConstrucaoNaval' => [],
+    'dspGpi' => [],
+    'dspGestaoEmpresarial' => [],
+    'dspMeioAmbiente' => [],
+    'dspSi' => [],
+    'dspDsm' => [],
+    'dspGti' => [],
+    'dspLogistica' => [],
+    'dspSistemasNavais' => []
+];
+
+function teste($x){
+
+    global $retorno, $cursos;
+    
+    foreach($retorno as $dado){
+        if($dado->disciplina == $x){
+            $cursos['dsp' . ($x + 1)][] = $dado;
+        }
+    }
+}
+
 ?>
     <br><br>
     <h1 class="border">Fatec Jahu</h1>
@@ -86,21 +109,54 @@ if (isset($_FILES['pet_imagem']) && !empty($_FILES['pet_imagem'])) {
                             $disciplina = new Disciplina();
                             $disciplinaDAO = new disciplinaDAO();
                             $retorno = $disciplinaDAO->buscar_todos($disciplina);
+                            
 
-                            foreach($retorno as $dados)
-                            {
-                                if(isset($_POST["disciplina"]) && $_POST["disciplina"] == $dados->iddisciplina)
-                                {
-                                    echo "<inp value='{$dados->iddisciplina}' selected>{$dados->nome}</p>";
-                                }
-                                else
-                                {
+                            global $cursos;
+
+                            if (isset($_POST["curso"]) && $_POST["curso"] == 1) {
+                                foreach ($cursos['dspConstrucaoNaval'] as $dados) {
                                     echo "<p value='{$dados->iddisciplina}'>{$dados->nome}</p>";
                                 }
                             }
-                        ?>  
 
-                        <a href="addDisciplina.php"><button>Adicionar disciplina</button></a>
+                            foreach($cursos['dspGpi'] as $dados){
+                                echo "<p value='{$dados->iddisciplina}'>{$dados->nome}</p>";
+                            }
+
+                            foreach($cursos['dspGestaoEmpresarial'] as $dados){
+                                echo "<p value='{$dados->iddisciplina}'>{$dados->nome}</p>";
+                            }
+
+                            foreach($cursos['dspMeioAmbiente'] as $dados){
+                                echo "<p value='{$dados->iddisciplina}'>{$dados->nome}</p>";
+                            }
+
+                            foreach($cursos['dspSi'] as $dados){
+                                echo "<p value='{$dados->iddisciplina}'>{$dados->nome}</p>";
+                            }
+
+                            foreach($cursos['dspDsm'] as $dados){
+                                echo "<p value='{$dados->iddisciplina}'>{$dados->nome}</p>";
+                            }
+
+                            foreach($cursos['dspGti'] as $dados){
+                                echo "<p value='{$dados->iddisciplina}'>{$dados->nome}</p>";
+                            }
+
+                            foreach($cursos['dspLogistica'] as $dados){
+                                echo "<p value='{$dados->iddisciplina}'>{$dados->nome}</p>";
+                            }
+
+                            foreach($cursos['dspSistemasNavais'] as $dados){
+                                echo "<p value='{$dados->iddisciplina}'>{$dados->nome}</p>";
+                            }
+
+                        ?>  
+                        <br>
+                       
+                            <a href="addDisciplina.php"><button>Adicionar</button></a> &nbsp;
+                            <input class="form-label" type='submit' value='Mostrar'>
+                        
                         
                     </div>
                 </div>
@@ -283,6 +339,7 @@ if (isset($_FILES['pet_imagem']) && !empty($_FILES['pet_imagem'])) {
 
         .cursos{
             width: 50%; 
+            margin-left: 10px;
         }
 
         input, label{
