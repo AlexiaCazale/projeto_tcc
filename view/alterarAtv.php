@@ -5,6 +5,8 @@ session_start();
   require_once "../model/conexao.class.php";
   require_once "../model/kando.class.php";
   require_once "../model/kandoDAO.class.php";
+  require_once "../model/disciplina.class.php";
+  require_once "../model/disciplinaDAO.class.php";
 
   $msg = array("","","","");
 
@@ -93,27 +95,22 @@ if($_POST){
                     
                 <label for="disciplina">Disciplina:</label>
                 <select name="disciplina" id="disciplina">
-                        <option value="">Escolha os status da sua atividade</option>
-                        <option value="0">Fazer</option>
+                <option value="">Escolha os status da sua atividade</option>
+                        <!-- <option value="0">Fazer</option>
                         <option value="1">Fazendo</option>
-                        <option value="2">Feito</option>
+                        <option value="2">Feito</option> -->
                         <?php
 
-                            // $disciplina = new Disicplina();
-                            // $ = new cursoDAO();
-                            // $ret = $cursoDAO -> buscar_um_curso($curso);
+                            $disciplina = new Disciplina();
+                            $disciplinaDAO = new disciplinaDAO();
+                            $retorno = $disciplinaDAO -> buscar_todos($disciplina);
+
+                            echo '<pre>' . var_dump($retorno) . '</pre>';
         
-                            // foreach($ret as $dado)
-                            // {
-                            //     if(isset($_POST["curso"]) && $_POST["curso"] == $dado->idcurso)
-                            //     {
-                            //         echo "<option value='{$dado->idcurso}' selected>{$dado->nomeCurso}</option>";
-                            //     }
-                            //     else
-                            //     {
-                            //         echo "<option value='{$dado->idcurso}'>{$dado->nomeCurso}</option>";
-                            //     }
-                            // }//fim do foreach
+                            foreach($retorno as $dado)
+                            {
+                                echo "<option value='{$dado->iddisciplina}'>{$dado->nome}</option>";
+                            }
 
                         ?>
                         

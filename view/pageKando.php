@@ -71,10 +71,11 @@ session_start();
                             echo $teste->nome;
                         }
                     }
-        
-                echo "{$dados -> disciplina} <br>
-                <p>Para: <br>{$dados -> data_entrega}</p><br>
-    
+
+                $data_entrega = new DateTime($dados->data_entrega); 
+
+                echo "<p>Para: <br> " . $data_entrega->format("d/m/Y") . "</p><br>
+
                     <a href='alterarAtv.php?idkando={$dados->idkando}' class='btn-alterar'>Alterar</a> &nbsp;
     
                     <a href='deletarAtv.php?idkando={$dados->idkando}' class='btn-apagar' >Apagar</a>
@@ -99,15 +100,18 @@ session_start();
                     <td>
                 <b>{$dados -> nome}</b> <br>
                     {$dados -> descricao} <br>";
-                    
+
                     foreach($retorno as $teste)
                     {
                         if($dados -> disciplina == $teste-> iddisciplina){
                             echo $teste->nome;
                         }
                     }
-                echo "<p>Para: <br>{$dados -> data_entrega}</p><br>
-    
+                    
+                    $data_entrega = new DateTime($dados->data_entrega); 
+
+                    echo "<p>Para: <br> " . $data_entrega->format("d/m/Y") . "</p><br>
+
                     <a href='alterarAtv.php?idkando={$dados->idkando}' class='btn-alterar'>Alterar</a> &nbsp;
     
                     <a href='deletarAtv.php?idkando={$dados->idkando}' class='btn-apagar' >Apagar</a>
@@ -137,8 +141,10 @@ session_start();
                             echo $teste->nome;
                         }
                     }
-                echo "<p class='entregue'>Entregue: <br> {$dados -> data_entrega}</p> <br>
-    
+
+                    $data_entrega = new DateTime($dados->data_entrega);
+                    echo "<p class='entregue'>Entregue: <br> " . $data_entrega->format("d/m/Y") . "</p><br>
+
                     <a href='alterarAtv.php?idkando={$dados -> idkando}' class='btn-alterar'>Alterar</a> &nbsp;
     
                     <a href='deletarAtv.php?idkando={$dados -> idkando}' class='btn-apagar' >Apagar</a>
