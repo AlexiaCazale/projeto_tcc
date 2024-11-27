@@ -46,6 +46,19 @@
 			}
 		}
 
+		public function buscar_por_curso($idcurso) 
+		{
+			$sql = "SELECT * FROM disciplina WHERE idcurso = :idcurso";
+			$stmt = $this->conexao->prepare($sql);
+			$stmt->bindValue(":idcurso", $idcurso, PDO::PARAM_INT);
+			$stmt->execute();
+
+			$disciplinas = $stmt->fetchAll(PDO::FETCH_CLASS, "Disciplina");
+			return $disciplinas;
+		}
+
+		
+
 		public function alterar($disciplina)
 		{
 			$sql = "UPDATE disciplina SET nome = ?, descricao = ?WHERE idcurso = ?";

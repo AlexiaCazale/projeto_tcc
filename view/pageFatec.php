@@ -29,63 +29,106 @@ $ret = $cursoDAO -> buscar_todos($curso);
             <br>
             <div class="infos ">
                 <div class="retorno">
-                    <h3 class="title">Selecione um curso: </h3>
-                    <br>
-                    <?php
-                        global $ret;
-                           
-            
-                            foreach($ret as $dado)
-                            {
-                                if(isset($_POST["curso"]) && $_POST["curso"] == $dado->idcurso)
-                                {   
-                                    echo "<div class='align_row'>";
-                                    echo "<input type='radio' value='{$dado->idcurso}' name='curso' id='{$dado->idcurso}'>";
-                                    echo "<label for='{$dado->idcurso}'>{$dado->nome}</label> ";
-                                    echo "</div>";
-                                }
-                                else
+                    <form method="POST" action="">
+                        <h3 class="title">Selecione um curso: </h3>
+                        <br>
+                        <?php
+                            global $ret;
+                            
+                
+                                foreach($ret as $dado)
                                 {
+                                    $checked = (isset($_POST["curso"]) && $_POST["curso"] == $dado->idcurso) ? 'checked' : '';                                   
                                     echo "<div class='align_row'>";
-                                    echo "<input type='radio' value='{$dado->idcurso}' name='curso' id='{$dado->idcurso}'>";
-                                    echo "<label for='{$dado->idcurso}'>{$dado->nome}</label> ";
+                                    echo "<input type='radio' value='{$dado->idcurso}' name='curso' id='{$dado->idcurso}' $checked>";
+                                    echo "<label for='{$dado->idcurso}'>{$dado->nome}</label>";
                                     echo "</div>";
-                                }
-                            }//fim do foreach
-                                
-                        ?>
+    
+                                }//fim do foreach
+                                    
+                            ?>
+                            <br>
+                            <input type="submit" class="form-label" value="Mostrar Disciplinas">
+                        </form>
                 </div>
                 <div class="disciplinas">
+                <h3 class="title">Disciplina:</h3>
                 <?php                           
-                    global $ret;
-                    $cursoSelecionado = $ret;
-                                    
-                    //echo '<pre>' . var_dump($cursoSelecionado) . '</pre>';
+                    global $ret;                                    
+                    //echo '<pre>' . var_dump($ret) . '</pre>';         
+                    if (isset($_POST['curso'])) {
 
-                    //if (isset($_POST["curso"])) {            
-                        
-                        $disciplina = new Disciplina();
+                        $cursoSelecionado = $_POST['curso'];
+
+                        //$disciplina = new Disciplina();
                         $disciplinaDAO = new disciplinaDAO();
-                        $retorno = $disciplinaDAO->buscar_todos($disciplina);
+                        $retorno = $disciplinaDAO->buscar_todos($cursoSelecionado);
                         
-                        echo '<pre>' . var_dump($retorno) . '</pre>';
-
-                        foreach($retorno as $dado){
-                            if ($dado->idcurso == 1) {
+                        // echo '<pre>' . var_dump($cursoSelecionado) . '</pre>';
+                        // echo '<pre>' . var_dump($retorno) . '</pre>';
+                        
+                        if ($retorno) {
+                            foreach ($retorno as $dados) {
+                                if($dados -> idcurso == 1 && $cursoSelecionado == 1){
                                 echo "<div class='align_row'>";
-                                echo "<p name='curso' id='{$dado->idcurso}'>{$dado->nome}</p>";
+                                echo "<p name='disciplina'>{$dados->nome}</p>";
                                 echo "</div>";
+                                }
+
+                                if($dados -> idcurso == 2 && $cursoSelecionado == 2){
+                                echo "<div class='align_row'>";
+                                echo "<p name='disciplina'>{$dados->nome}</p>";
+                                echo "</div>";
+                                }
+
+                                if($dados -> idcurso == 3 && $cursoSelecionado == 3){
+                                echo "<div class='align_row'>";
+                                echo "<p name='disciplina'>{$dados->nome}</p>";
+                                echo "</div>";
+                                }
+
+                                if($dados -> idcurso == 4 && $cursoSelecionado == 4){
+                                echo "<div class='align_row'>";
+                                echo "<p name='disciplina'>{$dados->nome}</p>";
+                                echo "</div>";
+                                }
+
+                                if($dados -> idcurso == 5 && $cursoSelecionado == 5){
+                                echo "<div class='align_row'>";
+                                echo "<p name='disciplina'>{$dados->nome}</p>";
+                                echo "</div>";
+                                }
+
+                                if($dados -> idcurso == 6 && $cursoSelecionado == 6){
+                                echo "<div class='align_row'>";
+                                echo "<p name='disciplina'>{$dados->nome}</p>";
+                                echo "</div>";
+                                }
+                                
+                                if($dados -> idcurso == 7 && $cursoSelecionado == 7){
+                                echo "<div class='align_row'>";
+                                echo "<p name='disciplina'>{$dados->nome}</p>";
+                                echo "</div>";
+                                }
+
+                                if($dados -> idcurso == 8 && $cursoSelecionado == 8){
+                                echo "<div class='align_row'>";
+                                echo "<p name='disciplina'>{$dados->nome}</p>";
+                                echo "</div>";
+                                }
+                                
+                                if($dados -> idcurso == 9 && $cursoSelecionado == 9){
+                                echo "<div class='align_row'>";
+                                echo "<p name='disciplina'>{$dados->nome}</p>";
+                                echo "</div>";
+                                }
+                                
                             }
-                            // if ($dado->idcurso == 2) {
-                            //     echo "<div class='align_row'>";
-                            //     echo "<p name='curso' id='{$dado->idcurso}'>{$dado->nome}</p>";
-                            //     echo "</div>";
-                            // }
-                        }
-                    //}
+                        } 
+                    }
 
                 ?>  
-                <input type="submit" class="center" value="Mostrar Disciplinas">
+                <!-- <input type="submit" class="center" value="Mostrar Disciplinas"> -->
                 </div>
             </div>
         </div>
@@ -219,7 +262,7 @@ $ret = $cursoDAO -> buscar_todos($curso);
 
         .disciplinas{
             width: 50%;
-            
+            /* margin-top: 25px; */
         }
 
         .align_row {
