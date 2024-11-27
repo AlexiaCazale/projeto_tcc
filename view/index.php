@@ -10,7 +10,7 @@
         <h1>Bem-vindo(a)!</h1>
         <div class="img-center">
             <img src="../images/dark.png" alt="ícone">
-        </div/>
+        </div>
          <h3 class="center">Organize<span> &nbsp; seus estudos  &nbsp; </span>de maneira rápida e prática onde estiver!</h3>
     </div>
 

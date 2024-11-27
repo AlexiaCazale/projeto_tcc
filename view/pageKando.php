@@ -4,6 +4,8 @@ session_start();
     require_once "../model/conexao.class.php";
     require_once "../model/kandoDAO.class.php";
     require_once "../model/kando.class.php";
+    require_once "../model/disciplina.class.php";
+    require_once "../model/disciplinaDAO.class.php";
     
     if (!isset($_SESSION['id'])) {
         header("Location: index.php");
@@ -33,6 +35,10 @@ session_start();
     }
 
     //echo '<pre>' . var_dump($tableValues['arrayT1']) . '</pre>';
+    
+    $disciplina = new Disciplina();
+    $disciplinaDAO = new disciplinaDAO();
+    $retorno = $disciplinaDAO -> buscar_todos($disciplina);
 
 ?>
 
@@ -48,12 +54,25 @@ session_start();
             <th>FAZER</th>
         <?php
             global $tableValues;
+           
+            // $nomeDisciplia = ;
+
             foreach($tableValues['arrayT1'] as $dados)
             {
+
                 echo "<tr>
                     <td>
                 <b>{$dados -> nome}</b> <br>
-                    {$dados -> descricao} <br>
+                    {$dados -> descricao} <br>";
+
+                    foreach($retorno as $teste)
+                    {
+                        if($dados -> disciplina == $teste-> iddisciplina){
+                            echo $teste->nome;
+                        }
+                    }
+        
+                echo "{$dados -> disciplina} <br>
                 <p>Para: <br>{$dados -> data_entrega}</p><br>
     
                     <a href='alterarAtv.php?idkando={$dados->idkando}' class='btn-alterar'>Alterar</a> &nbsp;
@@ -79,8 +98,15 @@ session_start();
                 echo "<tr>
                     <td>
                 <b>{$dados -> nome}</b> <br>
-                    {$dados -> descricao} <br>
-                <p>Para: <br>{$dados -> data_entrega}</p><br>
+                    {$dados -> descricao} <br>";
+                    
+                    foreach($retorno as $teste)
+                    {
+                        if($dados -> disciplina == $teste-> iddisciplina){
+                            echo $teste->nome;
+                        }
+                    }
+                echo "<p>Para: <br>{$dados -> data_entrega}</p><br>
     
                     <a href='alterarAtv.php?idkando={$dados->idkando}' class='btn-alterar'>Alterar</a> &nbsp;
     
@@ -103,12 +129,19 @@ session_start();
                 echo "<tr>
                     <td>
                 <b>{$dados -> nome}</b> <br>
-                    {$dados -> descricao} <br>
-                <p class='entregue'>Entregue: <br> {$dados -> data_entrega}</p> <br>
+                    {$dados -> descricao} <br>";
+                    
+                    foreach($retorno as $teste)
+                    {
+                        if($dados -> disciplina == $teste-> iddisciplina){
+                            echo $teste->nome;
+                        }
+                    }
+                echo "<p class='entregue'>Entregue: <br> {$dados -> data_entrega}</p> <br>
     
-                    <a href='alterarAtv.php?idkando={$dados->idkando}' class='btn-alterar'>Alterar</a> &nbsp;
+                    <a href='alterarAtv.php?idkando={$dados -> idkando}' class='btn-alterar'>Alterar</a> &nbsp;
     
-                    <a href='deletarAtv.php?idkando={$dados->idkando}' class='btn-apagar' >Apagar</a>
+                    <a href='deletarAtv.php?idkando={$dados -> idkando}' class='btn-apagar' >Apagar</a>
 
                     </td>
                     </tr> "; 

@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 21/11/2024 às 15:56
+-- Tempo de geração: 27-Nov-2024 às 15:51
 -- Versão do servidor: 10.4.32-MariaDB
--- Versão do PHP: 8.2.12
+-- versão do PHP: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -24,22 +24,75 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `blocos`
+-- Estrutura da tabela `blocos`
 --
-
--- CREATE DATABASE dbcorujario;
--- USE dbcorujario;
 
 CREATE TABLE `blocos` (
   `idbloco` int(11) NOT NULL,
-  `nome` varchar(80) NOT NULL,
-  `imagem` varchar(100) NOT NULL
+  `nome` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Extraindo dados da tabela `blocos`
+--
+
+INSERT INTO `blocos` (`idbloco`, `nome`) VALUES
+(1, '20240611_070920.jpg'),
+(2, '20240611_071247.jpg'),
+(3, '20240611_071441.jpg'),
+(4, '20240611_071105.jpg'),
+(5, '20240610_130029.jpg');
 
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `kando`
+-- Estrutura da tabela `cursos`
+--
+
+CREATE TABLE `cursos` (
+  `idcurso` int(11) NOT NULL,
+  `nome` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Extraindo dados da tabela `cursos`
+--
+
+INSERT INTO `cursos` (`idcurso`, `nome`) VALUES
+(1, 'Construção Naval'),
+(2, 'Gestão da Produção Industrial'),
+(3, 'Gestão Empresarial'),
+(4, 'Meio Ambiente e Recursos Hídricos'),
+(5, 'Sistemas para Internet'),
+(6, 'Desenvolvimento de Software Multiplataforma'),
+(7, 'Gestão da Tecnologia da Informação'),
+(8, 'Logística'),
+(9, 'Sistemas Navais');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `disciplina`
+--
+
+CREATE TABLE `disciplina` (
+  `iddisciplina` int(11) NOT NULL,
+  `nome` varchar(255) NOT NULL,
+  `descricao` varchar(255) NOT NULL,
+  `idcurso` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Extraindo dados da tabela `disciplina`
+--
+
+INSERT INTO `disciplina` (`iddisciplina`, `nome`, `descricao`, `idcurso`) VALUES
+(4, 'Desenvolvimento para Servidores', 'teste', 5);
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `kando`
 --
 
 CREATE TABLE `kando` (
@@ -52,31 +105,36 @@ CREATE TABLE `kando` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Despejando dados para a tabela `kando`
+-- Extraindo dados da tabela `kando`
 --
 
 INSERT INTO `kando` (`idkando`, `nome`, `descricao`, `data_entrega`, `statusAtv`, `disciplina`) VALUES
-(1, 'testeeeeesdadasdsadas', 'aaaaaaaaa', '2024-11-05', 2, 2),
-(5, 'tyitdyitd', 'tujldyjfgliu', '2024-11-16', 2, 1),
-(6, 'alterando aaaa', 'xfvxcvgdfgvdsdsa', '2024-11-19', 0, 0),
-(8, 'aaaaaaaaaaaaaaaaaaa', 'aaaaaaaaaaaaaaaaaaaaaaaaaa', '2024-11-14', 1, 1);
+(10, 'Corujário', 'Projeto para futuro TCC', '2024-11-28', 2, 4);
 
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `pet`
+-- Estrutura da tabela `pet`
 --
 
 CREATE TABLE `pet` (
   `idpet` int(11) NOT NULL,
-  `nome` varchar(80) NOT NULL,
-  `imagem` varchar(100) NOT NULL
+  `nome` varchar(80) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Extraindo dados da tabela `pet`
+--
+
+INSERT INTO `pet` (`idpet`, `nome`) VALUES
+(3, '20240408_072047.jpg'),
+(5, '20240508_135017.jpg'),
+(6, '20240827_111126.jpg');
 
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `usuario`
+-- Estrutura da tabela `usuario`
 --
 
 CREATE TABLE `usuario` (
@@ -85,90 +143,109 @@ CREATE TABLE `usuario` (
   `email` varchar(191) NOT NULL,
   `senha` varchar(191) NOT NULL,
   `telefone` varchar(15) NOT NULL,
-  `perfil` varchar(9) NOT NULL
+  `perfil` varchar(20) NOT NULL,
+  `foto_perfil` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Despejando dados para a tabela `usuario`
+-- Extraindo dados da tabela `usuario`
 --
 
-INSERT INTO `usuario` (`idusuario`, `nome`, `email`, `senha`, `telefone`, `perfil`) VALUES
-(12, 'Alexia Ravanelli Cazale', 'alexiacazale7@gmail.com', '202cb962ac59075b964b07152d234b70', '14991156582', ''),
-(13, 'Geovana Valentim', 'geovanavalentim@gmail.com', '202cb962ac59075b964b07152d234b70', '123456789', '');
+INSERT INTO `usuario` (`idusuario`, `nome`, `email`, `senha`, `telefone`, `perfil`, `foto_perfil`) VALUES
+(14, 'Aléxia Cazale', 'alexiacazale@gmail.com', '202cb962ac59075b964b07152d234b70', '14991156582', 'Aluno', NULL),
+(15, 'Geovana Valentim', 'geovana@gmail.com', '202cb962ac59075b964b07152d234b70', '14646846464564', 'Administrador', NULL);
 
 --
 -- Índices para tabelas despejadas
 --
 
 --
--- Índices de tabela `blocos`
+-- Índices para tabela `blocos`
 --
 ALTER TABLE `blocos`
   ADD PRIMARY KEY (`idbloco`);
 
 --
--- Índices de tabela `kando`
+-- Índices para tabela `cursos`
+--
+ALTER TABLE `cursos`
+  ADD PRIMARY KEY (`idcurso`);
+
+--
+-- Índices para tabela `disciplina`
+--
+ALTER TABLE `disciplina`
+  ADD PRIMARY KEY (`iddisciplina`),
+  ADD KEY `idcurso` (`idcurso`);
+
+--
+-- Índices para tabela `kando`
 --
 ALTER TABLE `kando`
   ADD PRIMARY KEY (`idkando`);
 
 --
--- Índices de tabela `pet`
+-- Índices para tabela `pet`
 --
 ALTER TABLE `pet`
   ADD PRIMARY KEY (`idpet`);
 
 --
--- Índices de tabela `usuario`
+-- Índices para tabela `usuario`
 --
 ALTER TABLE `usuario`
   ADD PRIMARY KEY (`idusuario`);
 
 --
--- AUTO_INCREMENT para tabelas despejadas
+-- AUTO_INCREMENT de tabelas despejadas
 --
 
 --
 -- AUTO_INCREMENT de tabela `blocos`
 --
 ALTER TABLE `blocos`
-  MODIFY `idbloco` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idbloco` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT de tabela `cursos`
+--
+ALTER TABLE `cursos`
+  MODIFY `idcurso` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
+--
+-- AUTO_INCREMENT de tabela `disciplina`
+--
+ALTER TABLE `disciplina`
+  MODIFY `iddisciplina` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de tabela `kando`
 --
 ALTER TABLE `kando`
-  MODIFY `idkando` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `idkando` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT de tabela `pet`
 --
 ALTER TABLE `pet`
-  MODIFY `idpet` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idpet` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de tabela `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `idusuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `idusuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+
+--
+-- Restrições para despejos de tabelas
+--
+
+--
+-- Limitadores para a tabela `disciplina`
+--
+ALTER TABLE `disciplina`
+  ADD CONSTRAINT `idcurso` FOREIGN KEY (`idcurso`) REFERENCES `cursos` (`idcurso`);
 COMMIT;
-
-ALTER TABLE `usuario`
-  MODIFY `perfil` varchar(20) NOT NULL;
-COMMIT;
-
-ALTER TABLE `blocos` DROP COLUMN `imagem`;
-
-ALTER TABLE `blocos`
-  MODIFY `nome` varchar(100) NOT NULL;
-COMMIT;
-
-SELECT * FROM dbcorujario.pet;
-
-DELETE FROM pet WHERE idpet = 1;
-DELETE FROM pet WHERE idpet = 2;
-DELETE FROM pet WHERE idpet = 4;
-
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

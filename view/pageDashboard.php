@@ -48,7 +48,8 @@ session_start();
         <div class="center">
         <?php 
             global $tableValues;
-            
+
+
             foreach($tableValues['arrayT1'] as $dados)
             {
                 echo "<b>{$dados->nome}</b>
