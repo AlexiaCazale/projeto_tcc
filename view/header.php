@@ -21,7 +21,7 @@
 
 <body>
     <nav>
-        <a href="index.php" class="image"><img src="../images/corujaBrancaFundoTransparente.png" alt="ícone" class="logo"></a>
+        <a href="index.php" class="image"><img src="../src/images/corujaBrancaFundoTransparente.png" alt="ícone" class="logo"></a>
         <ul>
             <!-- <li><a class="nav-link active" aria-current="page" href="index.php">Home</a></li> -->
                 <?php

@@ -8,7 +8,7 @@
 		
 		public function inserir($bloco)
 		{
-			$sql = "INSERT INTO blocos (nome)VALUES(?,?)";
+			$sql = "INSERT INTO blocos (nome)VALUES(?)";
 			try
 			{
 			$stm = $this->db->prepare($sql);

@@ -3,9 +3,9 @@ $msg = array('', '', '', '', '');
 
 if($_POST){
 
-		require_once "../model/conexao.class.php";
-		require_once "../model/usuario.class.php";
-		require_once "../model/usuarioDAO.class.php";
+		require_once "../Model/conexao.class.php";
+		require_once "../Model/usuario.class.php";
+		require_once "../Model/DAO/usuarioDAO.class.php";
 
         $erro = false;
 
@@ -65,7 +65,7 @@ if($_POST){
 </head>
 <body>
     <div class="image">
-        <img src="../images/Sleepy_Owl.gif" alt="sleep owl">
+        <img src="../src/images/Sleepy_Owl.gif" alt="sleep owl">
     </div>
     <div class="container">
         <div class="content">

@@ -1,9 +1,9 @@
 <?php
-    require_once "../model/conexao.class.php";
-    require_once "../model/curso.class.php";
-    require_once "../model/cursoDAO.class.php";
-    require_once "../model/disciplina.class.php";
-    require_once "../model/disciplinaDAO.class.php";
+    require_once "../Model/conexao.class.php";
+    require_once "../Model/curso.class.php";
+    require_once "../Model/DAO/cursoDAO.class.php";
+    require_once "../Model/disciplina.class.php";
+    require_once "../Model/disciplinaDAO.class.php";
 
     $msg = array("","");
 

@@ -3,15 +3,15 @@
 session_start();
 
 require_once "header.php";
-require_once "../model/conexao.class.php";
-require_once "../model/blocos.class.php";
-require_once "../model/blocosDAO.class.php";
-require_once "../model/cursoDAO.class.php";
-require_once "../model/curso.class.php";
-require_once "../model/disciplinaDAO.class.php";
-require_once "../model/disciplina.class.php";
-require_once "../model/pet.class.php";
-require_once "../model/petDAO.class.php";
+require_once "../Model/conexao.class.php";
+require_once "../Model/blocos.class.php";
+require_once "../Model/DAO/blocosDAO.class.php";
+require_once "../Model/DAO/cursoDAO.class.php";
+require_once "../Model/curso.class.php";
+require_once "../Model/DAO/disciplinaDAO.class.php";
+require_once "../Model/disciplina.class.php";
+require_once "../Model/pet.class.php";
+require_once "../Model/DAO/petDAO.class.php";
 
 if (!isset($_SESSION['id'])) {
     header("Location: index.php");
@@ -24,7 +24,7 @@ if (isset($_FILES['bloco_imagem']) && !empty($_FILES['bloco_imagem'])) {
     $blocoDAO = new blocosDAO();
     $blocoDAO->inserir($bloco);
     
-    move_uploaded_file($_FILES['bloco_imagem']['tmp_name'], "../img-blocos/" . $_FILES['bloco_imagem']['name']);
+    move_uploaded_file($_FILES['bloco_imagem']['tmp_name'], "../src/img-blocos/" . $_FILES['bloco_imagem']['name']);
     // echo 'Update realizado com sucesso';
 }
 
@@ -34,7 +34,7 @@ if (isset($_FILES['pet_imagem']) && !empty($_FILES['pet_imagem'])) {
     $petDAO = new petDAO();
     $petDAO->inserir($pet);
 
-    move_uploaded_file($_FILES['pet_imagem']['tmp_name'], "../img-pets/" . $_FILES['pet_imagem']['name']);
+    move_uploaded_file($_FILES['pet_imagem']['tmp_name'], "../src/img-pets/" . $_FILES['pet_imagem']['name']);
     // echo 'Update realizado com sucesso';
 
 }
@@ -191,7 +191,7 @@ $ret = $cursoDAO -> buscar_todos($curso);
 
                 foreach($bloco as $dados)
                 {
-                    echo '<img src="../img-blocos/' . $dados->nome . ' "alt="imagem" class="blocos">';
+                    echo '<img src="../src/img-blocos/' . $dados->nome . ' "alt="imagem" class="blocos">';
                     //echo '<pre>' . var_dump($dados->imagem) . '</pre>';
 
                 }
@@ -219,7 +219,7 @@ $ret = $cursoDAO -> buscar_todos($curso);
 
             foreach($pet as $dados)
             {
-                echo '<img src="../img-pets/' . $dados->nome . '"alt="imagem" class="pets">';
+                echo '<img src="../src/img-pets/' . $dados->nome . '"alt="imagem" class="pets">';
             }
             ?>
             </div>

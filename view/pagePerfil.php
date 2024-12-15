@@ -2,9 +2,9 @@
     session_start();
     
     require_once "header.php";
-    require_once "../model/conexao.class.php";
-    require_once "../model/usuarioDAO.class.php";
-    require_once "../model/usuario.class.php";
+    require_once "../Model/conexao.class.php";
+    require_once "../Model/DAO/usuarioDAO.class.php";
+    require_once "../Model/usuario.class.php";
 
     
     if (!isset($_SESSION['id'])) {
@@ -19,7 +19,7 @@
         $usuarioDAO = new usuarioDAO();
         $usuarioDAO->alterarFoto($usuario);
     
-        move_uploaded_file($_FILES['perfil_imagem']['tmp_name'], "../img-perfil/" . $_FILES['perfil_imagem']['name']);
+        move_uploaded_file($_FILES['perfil_imagem']['tmp_name'], "../src/img-perfil/" . $_FILES['perfil_imagem']['name']);
         // echo 'Update realizado com sucesso';
 
     }

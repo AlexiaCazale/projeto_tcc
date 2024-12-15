@@ -2,13 +2,13 @@
 
 session_start();
 require_once "header.php";
-require_once "../model/conexao.class.php";
-require_once "../model/blocosDAO.class.php";
-require_once "../model/cursoDAO.class.php";
-require_once "../model/curso.class.php";
-require_once "../model/disciplinaDAO.class.php";
-require_once "../model/disciplina.class.php";
-require_once "../model/petDAO.class.php";
+require_once "../Model/conexao.class.php";
+require_once "../Model/DAO/blocosDAO.class.php";
+require_once "../Model/DAO/cursoDAO.class.php";
+require_once "../Model/curso.class.php";
+require_once "../Model/DAO/disciplinaDAO.class.php";
+require_once "../Model/disciplina.class.php";
+require_once "../Model/DAO/petDAO.class.php";
 
 if (!isset($_SESSION['id'])) {
     header("Location: index.php");
@@ -145,7 +145,7 @@ $ret = $cursoDAO -> buscar_todos($curso);
 
                 foreach($bloco as $dados)
                 {
-                    echo '<img src="../img-blocos/' . $dados->nome . ' "alt="imagem" class="blocos">';
+                    echo '<img src="../src/img-blocos/' . $dados->nome . ' "alt="imagem" class="blocos">';
                     //echo '<pre>' . var_dump($dados->imagem) . '</pre>';
 
                 }
@@ -166,7 +166,7 @@ $ret = $cursoDAO -> buscar_todos($curso);
 
                 foreach($pet as $dados)
                 {
-                    echo '<img src="../img-pets/' . $dados->nome . '"alt="imagem" class="pets">';
+                    echo '<img src="../src/img-pets/' . $dados->nome . '"alt="imagem" class="pets">';
                 }
                 ?>
                 </div>

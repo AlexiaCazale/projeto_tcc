@@ -57,13 +57,13 @@ session_start();
             <div id="aviso1" class="hidden">
                 <div class="aviso">
                     <p class="pomodoro">Hora do descanso!</p>
-                    <img src="../images/Sleepy_Owl.gif" alt="sleep owl">
+                    <img src="../src/images/Sleepy_Owl.gif" alt="sleep owl">
                 </div>
             </div>
             <div id="aviso2" class="hidden">
                 <div class="aviso">
                     <p class="pomodoro">Hora do estudo!</p>
-                    <img src="../images/work_time.gif" alt="work time">
+                    <img src="../src/images/work_time.gif" alt="work time">
                 </div>
             </div>
         </div>

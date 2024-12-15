@@ -2,9 +2,9 @@
     session_start();
     
     require_once "header.php";
-    require_once "../model/conexao.class.php";
-    require_once "../model/usuarioDAO.class.php";
-    require_once "../model/usuario.class.php";
+    require_once "../Model/conexao.class.php";
+    require_once "../Model/DAO/usuarioDAO.class.php";
+    require_once "../Model/usuario.class.php";
 
     
     if (!isset($_SESSION['id'])) {

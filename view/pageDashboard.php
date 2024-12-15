@@ -2,9 +2,9 @@
 session_start();
 
     require_once "header.php";
-    require_once "../model/conexao.class.php";
-    require_once "../model/kandoDAO.class.php";
-    require_once "../model/kando.class.php";
+    require_once "../Model/conexao.class.php";
+    require_once "../Model/DAO/kandoDAO.class.php";
+    require_once "../Model/kando.class.php";
     
     if (!isset($_SESSION['id'])) {
         header("Location: index.php");
